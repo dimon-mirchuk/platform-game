@@ -1,15 +1,22 @@
+import Player from "./Player";
+
 export default class Game {
     constructor(){
-
+        
     }
 
-    start() {
-        console.log('tut1');
-        
-        const canvas = document.querySelector('canvas');
-        canvas.getContext('2d');
+    start() {       
+        console.log('game started');
 
-        console.log('tut2', canvas);
+        const canvas = document.querySelector('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+        const player = new Player(context).draw();
+        
+
     }
 
     win() {}
