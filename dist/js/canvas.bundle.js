@@ -97,9 +97,20 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Game */ "./src/js/components/Game.js");
 /* harmony import */ var _components_Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Player */ "./src/js/components/Player.js");
+/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
 
 
-new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"]).start();
+
+
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"]);
+currentGame.start();
+var currentPlayer = currentGame.getPlayer();
+Object(_utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyDown"])(currentPlayer);
+Object(_utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyUp"])(currentPlayer);
+
+//мне не нравится, что все это лежит кучей
+//возможно, нам надо создать ещё один класс типа Session
+//и запускать все внутри него
 
 /***/ }),
 
@@ -131,9 +142,9 @@ var Game = /*#__PURE__*/function () {
       var context = canvas.getContext('2d');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      var player = new this.player(context, this.gravity);
-      player.draw();
-      player.animate();
+      this.player = new this.player(context, this.gravity);
+      this.player.draw();
+      this.player.animate();
     }
   }, {
     key: "win",
@@ -141,6 +152,11 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "lose",
     value: function lose() {}
+  }, {
+    key: "getPlayer",
+    value: function getPlayer() {
+      return this.player;
+    }
   }]);
   return Game;
 }();
@@ -172,6 +188,14 @@ var Player = /*#__PURE__*/function () {
       x: 0,
       y: 1
     };
+    this.keys = {
+      right: {
+        pressed: false
+      },
+      left: {
+        pressed: false
+      }
+    };
     this.width = 100;
     this.height = 100;
     this.hp = 3;
@@ -189,6 +213,7 @@ var Player = /*#__PURE__*/function () {
     value: function update() {
       this.draw();
       this.position.y += this.velocity.y;
+      this.position.x += this.velocity.x;
       if (this.position.y + this.height + this.velocity.y <= this.context.canvas.height) {
         this.velocity.y += this.gravity;
       } else {
@@ -201,11 +226,123 @@ var Player = /*#__PURE__*/function () {
       requestAnimationFrame(this.animate.bind(this));
       this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.update();
+
+      // this.goRight();
+      // this.goLeft();
+
+      // this.keys.left.pressed ? this.goLeft() : 
+      // this.keys.right.pressed ? this.goRight() :
+      // null
+
+      if (this.keys.left.pressed) {
+        this.velocity.x = -5;
+      } else if (this.keys.right.pressed) {
+        this.velocity.x = 5;
+      } else this.velocity.x = 0;
+    }
+  }, {
+    key: "jump",
+    value: function jump() {
+      // ТУТ НЕОБХОДИМО ВТОРОЕ УСЛОВИЕ ДЛЯ ПРОВЕРКИ
+      // ЧТО ПЛЕЕР УЖЕ НА ЗЕМЛЕ, ИНАЧЕ ПРИ ЗАЖАТИИ
+      // ПРЫГАЕТ БЕСКОНЕЧНО :))
+      if (this.velocity.y === 0) {
+        this.velocity.y -= 15;
+      }
+
+      //this.velocity.y -= 15;
+    }
+  }, {
+    key: "goLeft",
+    value: function goLeft() {
+      this.velocity.x = this.keys.left.pressed ? -5 : 0;
+    }
+  }, {
+    key: "goRight",
+    value: function goRight() {
+      this.velocity.x = this.keys.right.pressed ? 5 : 0;
     }
   }]);
   return Player;
 }();
 
+
+/***/ }),
+
+/***/ "./src/js/utils/listeners/index.js":
+/*!*****************************************!*\
+  !*** ./src/js/utils/listeners/index.js ***!
+  \*****************************************/
+/*! exports provided: addListenersKeyDown, addListenersKeyUp */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyDown", function() { return addListenersKeyDown; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyUp", function() { return addListenersKeyUp; });
+function addListenersKeyDown(player) {
+  addEventListener('keydown', function (_ref) {
+    var code = _ref.code;
+    switch (code) {
+      case 'ArrowUp':
+      case 'KeyW':
+        player.jump();
+        console.log('UP');
+        break;
+      case 'ArrowRight':
+      case 'KeyD':
+        player.keys.right.pressed = true;
+        //player.goRight();
+        console.log('RIGHT');
+        break;
+      case 'ArrowDown':
+      case 'KeyS':
+        console.log('DOWN');
+        break;
+      case 'ArrowLeft':
+      case 'KeyA':
+        player.keys.left.pressed = true;
+        console.log('LEFT');
+        break;
+      case 'Space':
+        console.log('JUMP');
+        break;
+      default:
+        console.log(code);
+    }
+  });
+}
+function addListenersKeyUp(player) {
+  addEventListener('keyup', function (_ref2) {
+    var code = _ref2.code;
+    switch (code) {
+      case 'ArrowUp':
+      case 'KeyW':
+        //player.jump();
+        console.log('UP');
+        break;
+      case 'ArrowRight':
+      case 'KeyD':
+        player.keys.right.pressed = false;
+        console.log('RIGHT');
+        break;
+      case 'ArrowDown':
+      case 'KeyS':
+        console.log('DOWN');
+        break;
+      case 'ArrowLeft':
+      case 'KeyA':
+        player.keys.left.pressed = false;
+        console.log('LEFT');
+        break;
+      case 'Space':
+        console.log('JUMP');
+        break;
+      default:
+        console.log(code);
+    }
+  });
+}
 
 /***/ })
 

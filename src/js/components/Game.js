@@ -15,9 +15,10 @@ export default class Game {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const player = new this.player(context, this.gravity);
-        player.draw();
-        player.animate();
+        this.player = new this.player(context, this.gravity);
+
+        this.player.draw();
+        this.player.animate();
 
 
     }
@@ -25,6 +26,10 @@ export default class Game {
     win() {}
 
     lose() {}
+
+    getPlayer() {
+        return this.player;
+    }
 
 
 }
