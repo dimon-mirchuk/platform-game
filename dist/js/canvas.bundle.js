@@ -129,8 +129,8 @@ var Game = /*#__PURE__*/function () {
       console.log('game started', this.player);
       var canvas = document.querySelector('canvas');
       var context = canvas.getContext('2d');
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
       var player = new this.player(context, this.gravity);
       player.draw();
       player.animate();

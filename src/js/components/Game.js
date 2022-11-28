@@ -12,8 +12,8 @@ export default class Game {
         const canvas = document.querySelector('canvas');
         const context = canvas.getContext('2d');
 
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         const player = new this.player(context, this.gravity);
         player.draw();
