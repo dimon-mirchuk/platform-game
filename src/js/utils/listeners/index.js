@@ -4,13 +4,10 @@ export function addListenersKeyDown(player){
             case 'ArrowUp':
             case 'KeyW':
                 player.jump();
-                console.log('UP');
                 break;
             case 'ArrowRight':
             case 'KeyD':
                 player.keys.right.pressed = true;
-                //player.goRight();
-                console.log('RIGHT');
                 break;
             case 'ArrowDown':
             case 'KeyS':
@@ -19,7 +16,6 @@ export function addListenersKeyDown(player){
             case 'ArrowLeft':
             case 'KeyA':
                 player.keys.left.pressed = true;
-                console.log('LEFT');
                 break;
             case 'Space':
                 console.log('JUMP');
@@ -35,13 +31,11 @@ export function addListenersKeyUp(player){
         switch(code) {
             case 'ArrowUp':
             case 'KeyW':
-                //player.jump();
                 console.log('UP');
                 break;
             case 'ArrowRight':
             case 'KeyD':
                 player.keys.right.pressed = false;
-                console.log('RIGHT');
                 break;
             case 'ArrowDown':
             case 'KeyS':
@@ -50,7 +44,6 @@ export function addListenersKeyUp(player){
             case 'ArrowLeft':
             case 'KeyA':
                 player.keys.left.pressed = false;
-                console.log('LEFT');
                 break;
             case 'Space':
                 console.log('JUMP');

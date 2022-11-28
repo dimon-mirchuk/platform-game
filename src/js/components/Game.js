@@ -1,7 +1,10 @@
 
 export default class Game {
-    constructor(player) {
+    constructor(player, listenerUp, listenerDown) {
         this.player = player;
+        this.listenUp = listenerUp;
+        this.listenDown = listenerDown;
+
         this.gravity = 0.5;
         this.lvl = 0;
     }
@@ -20,16 +23,11 @@ export default class Game {
         this.player.draw();
         this.player.animate();
 
-
+        this.listenDown(this.player);
+        this.listenUp(this.player);
     }
 
     win() {}
 
     lose() {}
-
-    getPlayer() {
-        return this.player;
-    }
-
-
 }

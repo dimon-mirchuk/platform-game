@@ -59,21 +59,13 @@ export default class Player {
         this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
         this.update();
 
-
-        // this.goRight();
-        // this.goLeft();
-
-        // this.keys.left.pressed ? this.goLeft() : 
-        // this.keys.right.pressed ? this.goRight() :
-        // null
-
         if (this.keys.left.pressed) {
-            this.velocity.x = -5
+            this.goLeft();
         }
         else if (this.keys.right.pressed) {
-            this.velocity.x = 5
+            this.goRight();
         }
-        else this.velocity.x = 0
+        else this.stop();
     }
 
     jump() {
@@ -84,17 +76,19 @@ export default class Player {
             this.velocity.y -= 15;
         }
         
-        
         //this.velocity.y -= 15;
     }
 
     goLeft() {
-        this.velocity.x = this.keys.left.pressed ? -5 : 0;
+        this.velocity.x = -5;
     }
 
     goRight() {
-        this.velocity.x = this.keys.right.pressed ? 5 : 0;
+        this.velocity.x = 5;
     }
 
+    stop() {
+        this.velocity.x = 0
+    }
 
 }

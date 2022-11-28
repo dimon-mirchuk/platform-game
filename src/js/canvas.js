@@ -6,19 +6,10 @@ import { addListenersKeyUp } from "./utils/listeners";
 
 
 
-let currentGame = new Game(Player);
+let currentGame = new Game(
+    Player, 
+    addListenersKeyUp, 
+    addListenersKeyDown
+);
+
 currentGame.start();
-
-const currentPlayer = currentGame.getPlayer();
-
-
-
-
-
-addListenersKeyDown(currentPlayer);
-addListenersKeyUp(currentPlayer);
-
-
-//мне не нравится, что все это лежит кучей
-//возможно, нам надо создать ещё один класс типа Session
-//и запускать все внутри него

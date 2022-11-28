@@ -102,15 +102,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyDown"]);
 currentGame.start();
-var currentPlayer = currentGame.getPlayer();
-Object(_utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyDown"])(currentPlayer);
-Object(_utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyUp"])(currentPlayer);
-
-//мне не нравится, что все это лежит кучей
-//возможно, нам надо создать ещё один класс типа Session
-//и запускать все внутри него
 
 /***/ }),
 
@@ -128,9 +121,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 var Game = /*#__PURE__*/function () {
-  function Game(player) {
+  function Game(player, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
     this.player = player;
+    this.listenUp = listenerUp;
+    this.listenDown = listenerDown;
     this.gravity = 0.5;
     this.lvl = 0;
   }
@@ -145,6 +140,8 @@ var Game = /*#__PURE__*/function () {
       this.player = new this.player(context, this.gravity);
       this.player.draw();
       this.player.animate();
+      this.listenDown(this.player);
+      this.listenUp(this.player);
     }
   }, {
     key: "win",
@@ -152,11 +149,6 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "lose",
     value: function lose() {}
-  }, {
-    key: "getPlayer",
-    value: function getPlayer() {
-      return this.player;
-    }
   }]);
   return Game;
 }();
@@ -226,19 +218,11 @@ var Player = /*#__PURE__*/function () {
       requestAnimationFrame(this.animate.bind(this));
       this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.update();
-
-      // this.goRight();
-      // this.goLeft();
-
-      // this.keys.left.pressed ? this.goLeft() : 
-      // this.keys.right.pressed ? this.goRight() :
-      // null
-
       if (this.keys.left.pressed) {
-        this.velocity.x = -5;
+        this.goLeft();
       } else if (this.keys.right.pressed) {
-        this.velocity.x = 5;
-      } else this.velocity.x = 0;
+        this.goRight();
+      } else this.stop();
     }
   }, {
     key: "jump",
@@ -255,12 +239,17 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "goLeft",
     value: function goLeft() {
-      this.velocity.x = this.keys.left.pressed ? -5 : 0;
+      this.velocity.x = -5;
     }
   }, {
     key: "goRight",
     value: function goRight() {
-      this.velocity.x = this.keys.right.pressed ? 5 : 0;
+      this.velocity.x = 5;
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      this.velocity.x = 0;
     }
   }]);
   return Player;
@@ -287,13 +276,10 @@ function addListenersKeyDown(player) {
       case 'ArrowUp':
       case 'KeyW':
         player.jump();
-        console.log('UP');
         break;
       case 'ArrowRight':
       case 'KeyD':
         player.keys.right.pressed = true;
-        //player.goRight();
-        console.log('RIGHT');
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -302,7 +288,6 @@ function addListenersKeyDown(player) {
       case 'ArrowLeft':
       case 'KeyA':
         player.keys.left.pressed = true;
-        console.log('LEFT');
         break;
       case 'Space':
         console.log('JUMP');
@@ -318,13 +303,11 @@ function addListenersKeyUp(player) {
     switch (code) {
       case 'ArrowUp':
       case 'KeyW':
-        //player.jump();
         console.log('UP');
         break;
       case 'ArrowRight':
       case 'KeyD':
         player.keys.right.pressed = false;
-        console.log('RIGHT');
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -333,7 +316,6 @@ function addListenersKeyUp(player) {
       case 'ArrowLeft':
       case 'KeyA':
         player.keys.left.pressed = false;
-        console.log('LEFT');
         break;
       case 'Space':
         console.log('JUMP');
