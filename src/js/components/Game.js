@@ -1,12 +1,13 @@
-import Player from "./Player";
 
 export default class Game {
-    constructor(){
-        
+    constructor(player) {
+        this.player = player;
+        this.gravity = 0.5;
+        this.lvl = 0;
     }
 
-    start() {       
-        console.log('game started');
+    start() {
+        console.log('game started', this.player);
 
         const canvas = document.querySelector('canvas');
         const context = canvas.getContext('2d');
@@ -14,8 +15,10 @@ export default class Game {
         canvas.width = innerWidth;
         canvas.height = innerHeight;
 
-        const player = new Player(context).draw();
-        
+        const player = new this.player(context, this.gravity);
+        player.draw();
+        player.animate();
+
 
     }
 
