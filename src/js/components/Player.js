@@ -51,7 +51,7 @@ export default class Player {
         else {
             this.velocity.y = 0;
         }    
-
+        
     }
 
     animate() {
@@ -69,14 +69,11 @@ export default class Player {
     }
 
     jump() {
-        // ТУТ НЕОБХОДИМО ВТОРОЕ УСЛОВИЕ ДЛЯ ПРОВЕРКИ
-        // ЧТО ПЛЕЕР УЖЕ НА ЗЕМЛЕ, ИНАЧЕ ПРИ ЗАЖАТИИ
-        // ПРЫГАЕТ БЕСКОНЕЧНО :))
-        if (this.velocity.y === 0){
+        const jumpCondition = this.velocity.y === 0 && (this.position.y + this.height + this.velocity.y >= this.context.canvas.height);
+
+        if (jumpCondition) {
             this.velocity.y -= 15;
         }
-        
-        //this.velocity.y -= 15;
     }
 
     goLeft() {

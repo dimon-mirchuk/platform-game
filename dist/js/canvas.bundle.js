@@ -130,6 +130,12 @@ var Game = /*#__PURE__*/function () {
     this.lvl = 0;
   }
   _createClass(Game, [{
+    key: "setup",
+    value: function setup(name) {
+      //спросить имя и дать бусты андрею и диме
+      //вывести правила
+    }
+  }, {
     key: "start",
     value: function start() {
       console.log('game started', this.player);
@@ -227,14 +233,10 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "jump",
     value: function jump() {
-      // ТУТ НЕОБХОДИМО ВТОРОЕ УСЛОВИЕ ДЛЯ ПРОВЕРКИ
-      // ЧТО ПЛЕЕР УЖЕ НА ЗЕМЛЕ, ИНАЧЕ ПРИ ЗАЖАТИИ
-      // ПРЫГАЕТ БЕСКОНЕЧНО :))
-      if (this.velocity.y === 0) {
+      var jumpCondition = this.velocity.y === 0 && this.position.y + this.height + this.velocity.y >= this.context.canvas.height;
+      if (jumpCondition) {
         this.velocity.y -= 15;
       }
-
-      //this.velocity.y -= 15;
     }
   }, {
     key: "goLeft",

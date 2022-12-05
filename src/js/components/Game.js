@@ -9,6 +9,11 @@ export default class Game {
         this.lvl = 0;
     }
 
+    setup(name) {
+        //спросить имя и дать бусты андрею и диме
+        //вывести правила
+    }
+
     start() {
         console.log('game started', this.player);
 
