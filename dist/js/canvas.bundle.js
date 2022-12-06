@@ -97,13 +97,55 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Game */ "./src/js/components/Game.js");
 /* harmony import */ var _components_Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Player */ "./src/js/components/Player.js");
-/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
+/* harmony import */ var _components_Controller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Controller */ "./src/js/components/Controller.js");
+/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
 
 
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_2__["addListenersKeyDown"]);
-currentGame.start();
+
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_3__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_3__["addListenersKeyDown"]);
+currentGame.setup();
+
+/***/ }),
+
+/***/ "./src/js/components/Controller.js":
+/*!*****************************************!*\
+  !*** ./src/js/components/Controller.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Controller; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Controller = /*#__PURE__*/function () {
+  function Controller(context) {
+    _classCallCheck(this, Controller);
+    this.context = context;
+    this.lvl = 0;
+    this.currAnimId = null;
+  }
+  _createClass(Controller, [{
+    key: "animate",
+    value: function animate(args, currLvl) {
+      if (this.lvl !== currLvl) {
+        this.lvl = currLvl;
+        cancelAnimationFrame(this.currAnimId);
+      }
+      this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
+      this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+      args.forEach(function (el) {
+        return el.animate();
+      });
+    }
+  }]);
+  return Controller;
+}();
+
 
 /***/ }),
 
@@ -117,46 +159,146 @@ currentGame.start();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
+/* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
+/* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
+
 var Game = /*#__PURE__*/function () {
-  function Game(player, listenerUp, listenerDown) {
+  function Game(player, controller, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
     this.player = player;
+    this.controller = controller;
     this.listenUp = listenerUp;
     this.listenDown = listenerDown;
-    this.gravity = 0.5;
-    this.lvl = 0;
+    this.context = null;
+    this.stats = {
+      name: 'Иван Иванов',
+      gravity: 0.5,
+      lvl: 0
+    };
   }
   _createClass(Game, [{
     key: "setup",
-    value: function setup(name) {
+    value: function setup() {
+      var canvas = document.querySelector('canvas');
+      this.context = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
       //спросить имя и дать бусты андрею и диме
-      //вывести правила
+      //this.stats.name = prompt('Как вас зовут?')
+      //alert(this.stats.name)
+
+      //вывести правила 
+      //...
+
+      this.player = new this.player(this.context, this.stats.gravity, this.winLevel.bind(this));
+      this.controller = new this.controller(this.context);
+      this.listenDown(this.player);
+      this.listenUp(this.player);
+      this.start();
     }
   }, {
     key: "start",
     value: function start() {
-      console.log('game started', this.player);
-      var canvas = document.querySelector('canvas');
-      var context = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      this.player = new this.player(context, this.gravity);
-      this.player.draw();
-      this.player.animate();
-      this.listenDown(this.player);
-      this.listenUp(this.player);
+      // это уже последний или еще нет?
+      this.startNewLevel();
     }
   }, {
-    key: "win",
-    value: function win() {}
+    key: "startNewLevel",
+    value: function startNewLevel() {
+      var _this = this;
+      this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["conditionMap"][this.stats.lvl]);
+      var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
+        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.context, element);
+      });
+      this.controller.animate([this.player].concat(_toConsumableArray(platforms)), this.stats.lvl);
+    }
+  }, {
+    key: "winLevel",
+    value: function winLevel() {
+      // поздравления
+      // ...
+
+      // плюс уровень
+      this.stats.lvl = this.stats.lvl + 1;
+      console.log('level', this.stats.lvl);
+
+      // повторить сначала
+      this.start();
+    }
+  }, {
+    key: "winGame",
+    value: function winGame() {
+      // финальные поздравления
+      // конец
+    }
   }, {
     key: "lose",
-    value: function lose() {}
+    value: function lose() {
+      // предложить попробовать еще раз
+
+      // если да
+      // повторить сначала
+      this.start();
+
+      // если нет
+      // утешение)
+    }
   }]);
   return Game;
+}();
+
+
+/***/ }),
+
+/***/ "./src/js/components/Platform.js":
+/*!***************************************!*\
+  !*** ./src/js/components/Platform.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Platform; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Platform = /*#__PURE__*/function () {
+  function Platform(context, position) {
+    _classCallCheck(this, Platform);
+    this.position = {
+      x: position.x,
+      y: position.y
+    };
+    this.width = 170;
+    this.height = 120;
+    this.context = context;
+  }
+  _createClass(Platform, [{
+    key: "draw",
+    value: function draw() {
+      this.context.fillStyle = 'red';
+      this.context.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      this.draw();
+    }
+  }]);
+  return Platform;
 }();
 
 
@@ -176,7 +318,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 var Player = /*#__PURE__*/function () {
-  function Player(context, gravity) {
+  function Player(context, gravity, winCallback) {
     _classCallCheck(this, Player);
     this.position = {
       x: 100,
@@ -184,7 +326,7 @@ var Player = /*#__PURE__*/function () {
     };
     this.velocity = {
       x: 0,
-      y: 1
+      y: 0
     };
     this.keys = {
       right: {
@@ -196,14 +338,16 @@ var Player = /*#__PURE__*/function () {
     };
     this.width = 100;
     this.height = 100;
-    this.hp = 3;
-    this.hws = 0;
+    this.awaited = 0;
+    this.activated = 0;
     this.context = context;
     this.gravity = gravity;
+    this.winCallback = winCallback;
   }
   _createClass(Player, [{
     key: "draw",
     value: function draw() {
+      this.context.fillStyle = 'blue';
       this.context.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
   }, {
@@ -221,8 +365,6 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "animate",
     value: function animate() {
-      requestAnimationFrame(this.animate.bind(this));
-      this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.update();
       if (this.keys.left.pressed) {
         this.goLeft();
@@ -237,6 +379,7 @@ var Player = /*#__PURE__*/function () {
       if (jumpCondition) {
         this.velocity.y -= 15;
       }
+      this.activate();
     }
   }, {
     key: "goLeft",
@@ -253,10 +396,93 @@ var Player = /*#__PURE__*/function () {
     value: function stop() {
       this.velocity.x = 0;
     }
+  }, {
+    key: "activate",
+    value: function activate() {
+      this.activated = this.activated + 1;
+      if (this.awaited === this.activated) {
+        this.winCallback();
+      }
+    }
+  }, {
+    key: "setLevelConditions",
+    value: function setLevelConditions(awaited) {
+      this.activated = 0;
+      this.awaited = awaited;
+    }
   }]);
   return Player;
 }();
 
+
+/***/ }),
+
+/***/ "./src/js/utils/levels/index.js":
+/*!**************************************!*\
+  !*** ./src/js/utils/levels/index.js ***!
+  \**************************************/
+/*! exports provided: PlatformMap, EnemyMap, BoosterMap, conditionMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlatformMap", function() { return PlatformMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnemyMap", function() { return EnemyMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "conditionMap", function() { return conditionMap; });
+var PlatformMap = {
+  0: [{
+    x: 200,
+    y: 100
+  }, {
+    x: 300,
+    y: 200
+  }, {
+    x: 400,
+    y: 300
+  }],
+  1: [{
+    x: 400,
+    y: 300
+  }, {
+    x: 400,
+    y: 100
+  }, {
+    x: 400,
+    y: 500
+  }],
+  2: [{
+    x: 0,
+    y: 100
+  }, {
+    x: 0,
+    y: 200
+  }, {
+    x: 0,
+    y: 300
+  }],
+  3: [{
+    x: 200,
+    y: 100
+  }, {
+    x: 300,
+    y: 200
+  }, {
+    x: 400,
+    y: 300
+  }]
+};
+var EnemyMap = {
+  0: [{}, {}, {}]
+};
+var BoosterMap = {
+  0: [{}, {}, {}]
+};
+var conditionMap = {
+  0: 3,
+  1: 10,
+  2: 20
+};
 
 /***/ }),
 

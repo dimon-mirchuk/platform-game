@@ -1,5 +1,5 @@
 export default class Player {
-    constructor(context, gravity) {
+    constructor(context, gravity, winCallback) {
         this.position = {
             x: 100,
             y: 100,
@@ -7,7 +7,7 @@ export default class Player {
 
         this.velocity = {
             x: 0,
-            y: 1,
+            y: 0,
         }
 
         this.keys = {
@@ -22,14 +22,17 @@ export default class Player {
         this.width = 100;
         this.height = 100;
 
-        this.hp = 3;
-        this.hws = 0;
+        this.awaited = 0;
+        this.activated = 0;
 
         this.context = context;
         this.gravity = gravity;
+
+        this.winCallback = winCallback;
     }
 
     draw() {
+        this.context.fillStyle = 'blue';
         this.context.fillRect(
             this.position.x, 
             this.position.y, 
@@ -55,8 +58,6 @@ export default class Player {
     }
 
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
-        this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
         this.update();
 
         if (this.keys.left.pressed) {
@@ -74,6 +75,8 @@ export default class Player {
         if (jumpCondition) {
             this.velocity.y -= 15;
         }
+
+        this.activate();
     }
 
     goLeft() {
@@ -86,6 +89,19 @@ export default class Player {
 
     stop() {
         this.velocity.x = 0
+    }
+
+    activate() {
+        this.activated = this.activated + 1;
+
+        if (this.awaited === this.activated) {
+            this.winCallback();
+        } 
+    }
+
+    setLevelConditions(awaited){
+        this.activated = 0;
+        this.awaited = awaited;
     }
 
 }

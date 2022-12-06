@@ -1,38 +1,91 @@
+import Platform from "./Platform";
+import { PlatformMap } from "../utils/levels";
+import { conditionMap } from "../utils/levels";
 
 export default class Game {
-    constructor(player, listenerUp, listenerDown) {
+    constructor(player, controller, listenerUp, listenerDown) {
         this.player = player;
+        this.controller = controller;
         this.listenUp = listenerUp;
         this.listenDown = listenerDown;
 
-        this.gravity = 0.5;
-        this.lvl = 0;
+        this.context = null;
+
+        this.stats = {
+            name: 'Иван Иванов',
+            gravity: 0.5,
+            lvl: 0,
+        }
     }
 
-    setup(name) {
-        //спросить имя и дать бусты андрею и диме
-        //вывести правила
-    }
-
-    start() {
-        console.log('game started', this.player);
-
+    setup() {
         const canvas = document.querySelector('canvas');
-        const context = canvas.getContext('2d');
+        this.context = canvas.getContext('2d');
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        this.player = new this.player(context, this.gravity);
+        //спросить имя и дать бусты андрею и диме
+        //this.stats.name = prompt('Как вас зовут?')
+        //alert(this.stats.name)
 
-        this.player.draw();
-        this.player.animate();
+        //вывести правила 
+        //...
+
+        this.player = new this.player(
+            this.context, 
+            this.stats.gravity,
+            this.winLevel.bind(this),
+        );
+
+        this.controller = new this.controller(this.context);
 
         this.listenDown(this.player);
         this.listenUp(this.player);
+
+        this.start();
     }
 
-    win() {}
+    start() {
+        // это уже последний или еще нет?
+        this.startNewLevel();
+    }
 
-    lose() {}
+    startNewLevel() {
+        this.player.setLevelConditions(conditionMap[this.stats.lvl]);
+
+        const platforms = PlatformMap[this.stats.lvl].map(element => {
+            return new Platform(this.context, element)
+        });
+        
+        this.controller.animate([this.player, ...platforms], this.stats.lvl);
+    }
+
+    winLevel() {
+        // поздравления
+        // ...
+
+        // плюс уровень
+        this.stats.lvl = this.stats.lvl + 1;
+        console.log('level', this.stats.lvl)
+
+        // повторить сначала
+        this.start();
+    }
+
+    winGame() {
+        // финальные поздравления
+        // конец
+    }
+
+    lose() {
+        // предложить попробовать еще раз
+
+        // если да
+        // повторить сначала
+        this.start();
+
+        // если нет
+        // утешение)
+    }
 }
