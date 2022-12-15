@@ -86,6 +86,19 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/playerr.png":
+/*!*****************************!*\
+  !*** ./src/img/playerr.png ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "4628ac9fa3da2365a4c58011b727ea5a.png");
+
+/***/ }),
+
 /***/ "./src/js/canvas.js":
 /*!**************************!*\
   !*** ./src/js/canvas.js ***!
@@ -161,6 +174,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
+/* harmony import */ var _img_playerr_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/playerr.png */ "./src/img/playerr.png");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -170,6 +184,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 
 
 
@@ -202,8 +217,11 @@ var Game = /*#__PURE__*/function () {
       //вывести правила 
       //...
 
-      this.player = new this.player(this.context, this.stats.gravity, this.winLevel.bind(this));
+      this.player = new this.player(this.context, this.stats.gravity, this.winLevel.bind(this), _img_playerr_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
       this.controller = new this.controller(this.context);
+      //
+      //здесь должен быть вызов this.setupSprites()
+      this.sprites = [this.player.getSprite()];
       this.listenDown(this.player);
       this.listenUp(this.player);
       this.start();
@@ -222,7 +240,7 @@ var Game = /*#__PURE__*/function () {
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.context, element);
       });
-      this.controller.animate([this.player].concat(_toConsumableArray(platforms)), this.stats.lvl);
+      this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
     key: "winLevel",
@@ -254,6 +272,11 @@ var Game = /*#__PURE__*/function () {
 
       // если нет
       // утешение)
+    }
+  }, {
+    key: "setupSprites",
+    value: function setupSprites() {
+      //вынести логику по спрайтам
     }
   }]);
   return Game;
@@ -314,11 +337,13 @@ var Platform = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Player; });
+/* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 var Player = /*#__PURE__*/function () {
-  function Player(context, gravity, winCallback) {
+  function Player(context, gravity, winCallback, url) {
     _classCallCheck(this, Player);
     this.position = {
       x: 100,
@@ -336,24 +361,28 @@ var Player = /*#__PURE__*/function () {
         pressed: false
       }
     };
-    this.width = 100;
-    this.height = 100;
+    this.width = 48;
+    this.height = 48;
     this.awaited = 0;
     this.activated = 0;
     this.context = context;
     this.gravity = gravity;
     this.winCallback = winCallback;
+    this.spriteUrl = url;
+    this.start();
   }
   _createClass(Player, [{
-    key: "draw",
-    value: function draw() {
-      this.context.fillStyle = 'blue';
-      this.context.fillRect(this.position.x, this.position.y, this.width, this.height);
+    key: "start",
+    value: function start() {
+      var img = new Image();
+      img.src = this.spriteUrl;
+      this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, img, 4, 6, 48, 48, this.position.x, this.position.y);
     }
   }, {
     key: "update",
     value: function update() {
-      this.draw();
+      this.sprite.update();
+      this.sprite.updatePosition(this.position.x, this.position.y);
       this.position.y += this.velocity.y;
       this.position.x += this.velocity.x;
       if (this.position.y + this.height + this.velocity.y <= this.context.canvas.height) {
@@ -410,8 +439,82 @@ var Player = /*#__PURE__*/function () {
       this.activated = 0;
       this.awaited = awaited;
     }
+  }, {
+    key: "getSprite",
+    value: function getSprite() {
+      return this.sprite.get();
+    }
   }]);
   return Player;
+}();
+
+
+/***/ }),
+
+/***/ "./src/js/components/Sprite.js":
+/*!*************************************!*\
+  !*** ./src/js/components/Sprite.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Sprite; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Sprite = /*#__PURE__*/function () {
+  function Sprite(context, image, ticksPerFrame, numberOfFrames, width, height, positionX, positionY) {
+    _classCallCheck(this, Sprite);
+    this.context = context;
+    this.image = image;
+    this.frameIndex = 0;
+    this.tickCount = 0;
+    this.ticksPerFrame = ticksPerFrame || 0;
+    this.numberOfFrames = numberOfFrames || 1;
+    this.width = width;
+    this.height = height;
+    this.positionX = positionX;
+    this.positionY = positionY;
+  }
+  _createClass(Sprite, [{
+    key: "update",
+    value: function update() {
+      this.tickCount++;
+      if (this.tickCount > this.ticksPerFrame) {
+        this.tickCount = 0;
+        if (this.frameIndex < this.numberOfFrames - 1) {
+          this.frameIndex++;
+        } else {
+          this.frameIndex = 0;
+        }
+      }
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      this.update();
+      this.context.drawImage(this.image, 48 * this.frameIndex, 0, 48, 48, this.positionX, this.positionY, this.width, this.height);
+    }
+  }, {
+    key: "get",
+    value: function get() {
+      return this;
+    }
+  }, {
+    key: "updatePosition",
+    value: function updatePosition(posX, posY) {
+      this.positionX = posX;
+      this.positionY = posY;
+    }
+  }, {
+    key: "updateImage",
+    value: function updateImage(newImage) {
+      this.image = newImage;
+    }
+  }]);
+  return Sprite;
 }();
 
 

@@ -1,5 +1,7 @@
+import Sprite from "./Sprite";
+
 export default class Player {
-    constructor(context, gravity, winCallback) {
+    constructor(context, gravity, winCallback, url) {
         this.position = {
             x: 100,
             y: 100,
@@ -19,8 +21,8 @@ export default class Player {
             },
         }
 
-        this.width = 100;
-        this.height = 100;
+        this.width = 48;
+        this.height = 48;
 
         this.awaited = 0;
         this.activated = 0;
@@ -29,20 +31,21 @@ export default class Player {
         this.gravity = gravity;
 
         this.winCallback = winCallback;
+        this.spriteUrl = url;
+
+        this.start();
     }
 
-    draw() {
-        this.context.fillStyle = 'blue';
-        this.context.fillRect(
-            this.position.x, 
-            this.position.y, 
-            this.width,
-            this.height
-        )
+    start() {
+        const img = new Image();
+        img.src = this.spriteUrl;
+
+        this.sprite = new Sprite(this.context, img, 4, 6, 48, 48, this.position.x, this.position.y);
     }
 
     update() {
-        this.draw();
+        this.sprite.update();
+        this.sprite.updatePosition(this.position.x, this.position.y);
 
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
@@ -102,6 +105,10 @@ export default class Player {
     setLevelConditions(awaited){
         this.activated = 0;
         this.awaited = awaited;
+    }
+    
+    getSprite(){
+        return this.sprite.get();
     }
 
 }

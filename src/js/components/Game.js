@@ -2,6 +2,8 @@ import Platform from "./Platform";
 import { PlatformMap } from "../utils/levels";
 import { conditionMap } from "../utils/levels";
 
+import playerImg from "../../img/playerr.png";
+
 export default class Game {
     constructor(player, controller, listenerUp, listenerDown) {
         this.player = player;
@@ -36,9 +38,13 @@ export default class Game {
             this.context, 
             this.stats.gravity,
             this.winLevel.bind(this),
+            playerImg
         );
 
         this.controller = new this.controller(this.context);
+        //
+        //здесь должен быть вызов this.setupSprites()
+        this.sprites = [this.player.getSprite()];
 
         this.listenDown(this.player);
         this.listenUp(this.player);
@@ -58,7 +64,7 @@ export default class Game {
             return new Platform(this.context, element)
         });
         
-        this.controller.animate([this.player, ...platforms], this.stats.lvl);
+        this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
     }
 
     winLevel() {
@@ -87,5 +93,9 @@ export default class Game {
 
         // если нет
         // утешение)
+    }
+
+    setupSprites(){
+        //вынести логику по спрайтам
     }
 }
