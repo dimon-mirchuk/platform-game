@@ -3,9 +3,17 @@ import { PlatformMap } from "../utils/levels";
 import { conditionMap } from "../utils/levels";
 
 import playerImg from "../../img/playerr.png";
+import startImage from "../../img/startImage1.jpg";
+
+const introductionImages = [
+    { imageUrl: "../../img/startImage1.jpg", input: false }, 
+    { imageUrl: "../../img/startImage1.jpg", input: false },
+    { imageUrl: "../../img/startImage1.jpg", input: false },
+    { imageUrl: "../../img/startImage1.jpg", input: false },
+];
 
 export default class Game {
-    constructor(player, controller, listenerUp, listenerDown) {
+    constructor ( player, controller, listenerUp, listenerDown ) {
         this.player = player;
         this.controller = controller;
         this.listenUp = listenerUp;
@@ -14,10 +22,27 @@ export default class Game {
         this.context = null;
 
         this.stats = {
-            name: 'Иван Иванов',
+            name: undefined,
             gravity: 0.5,
             lvl: 0,
         }
+
+        this.startIntroduction();
+    }
+
+    startIntroduction() {
+
+        const image = document.createElement('img');
+        image.src  = startImage;
+        image.setAttribute('width', '1280px');
+        image.setAttribute('height', '720px');
+        image.setAttribute('position', 'absolute');
+        image.setAttribute('top', '20%');
+        image.setAttribute('left', '20%');
+
+        document.getElementById('body').setAttribute('margin', '0 auto');
+        document.getElementById('body').appendChild(image);
+        const listenerID = this.listenDown(this);
     }
 
     setup() {

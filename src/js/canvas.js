@@ -14,4 +14,3 @@ let currentGame = new Game(
     addListenersKeyDown
 );
 
-currentGame.setup();

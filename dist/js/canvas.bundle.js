@@ -99,6 +99,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/img/startImage1.jpg":
+/*!*********************************!*\
+  !*** ./src/img/startImage1.jpg ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "f27d4cc2972fe09858425837e3625944.jpg");
+
+/***/ }),
+
 /***/ "./src/js/canvas.js":
 /*!**************************!*\
   !*** ./src/js/canvas.js ***!
@@ -118,7 +131,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_3__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_3__["addListenersKeyDown"]);
-currentGame.setup();
 
 /***/ }),
 
@@ -175,6 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 /* harmony import */ var _img_playerr_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/playerr.png */ "./src/img/playerr.png");
+/* harmony import */ var _img_startImage1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/startImage1.jpg */ "./src/img/startImage1.jpg");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -188,6 +201,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
+var introductionImages = [{
+  imageUrl: "../../img/startImage1.jpg",
+  input: false
+}, {
+  imageUrl: "../../img/startImage1.jpg",
+  input: false
+}, {
+  imageUrl: "../../img/startImage1.jpg",
+  input: false
+}, {
+  imageUrl: "../../img/startImage1.jpg",
+  input: false
+}];
 var Game = /*#__PURE__*/function () {
   function Game(player, controller, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
@@ -197,12 +224,27 @@ var Game = /*#__PURE__*/function () {
     this.listenDown = listenerDown;
     this.context = null;
     this.stats = {
-      name: 'Иван Иванов',
+      name: undefined,
       gravity: 0.5,
       lvl: 0
     };
+    this.startIntroduction();
   }
   _createClass(Game, [{
+    key: "startIntroduction",
+    value: function startIntroduction() {
+      var image = document.createElement('img');
+      image.src = _img_startImage1_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
+      image.setAttribute('width', '1280px');
+      image.setAttribute('height', '720px');
+      image.setAttribute('position', 'absolute');
+      image.setAttribute('top', '20%');
+      image.setAttribute('left', '20%');
+      document.getElementById('body').setAttribute('margin', '0 auto');
+      document.getElementById('body').appendChild(image);
+      var listenerID = this.listenDown(this);
+    }
+  }, {
     key: "setup",
     value: function setup() {
       var canvas = document.querySelector('canvas');
@@ -606,11 +648,11 @@ function addListenersKeyDown(player) {
     switch (code) {
       case 'ArrowUp':
       case 'KeyW':
-        player.jump();
+        player.jump ? player.jump() : null;
         break;
       case 'ArrowRight':
       case 'KeyD':
-        player.keys.right.pressed = true;
+        player.keys ? player.keys.right.pressed = true : null;
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -618,10 +660,13 @@ function addListenersKeyDown(player) {
         break;
       case 'ArrowLeft':
       case 'KeyA':
-        player.keys.left.pressed = true;
+        player.keys ? player.keys.left.pressed = true : null;
         break;
       case 'Space':
         console.log('JUMP');
+        break;
+      case 'Enter':
+        console.log('EEEEEEEEEEESSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTT');
         break;
       default:
         console.log(code);
@@ -638,7 +683,7 @@ function addListenersKeyUp(player) {
         break;
       case 'ArrowRight':
       case 'KeyD':
-        player.keys.right.pressed = false;
+        player.keys ? player.keys.right.pressed = false : null;
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -646,7 +691,7 @@ function addListenersKeyUp(player) {
         break;
       case 'ArrowLeft':
       case 'KeyA':
-        player.keys.left.pressed = false;
+        player.keys ? player.keys.left.pressed = false : null;
         break;
       case 'Space':
         console.log('JUMP');
