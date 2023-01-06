@@ -308,7 +308,7 @@ var Game = /*#__PURE__*/function () {
     key: "startNewLevel",
     value: function startNewLevel() {
       var _this = this;
-      this.player.setLevelConditions(conditionMap[this.stats.lvl]);
+      this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.context, element.x, element.y, element.name);
       });

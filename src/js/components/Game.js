@@ -88,7 +88,7 @@ export default class Game {
     }
 
     startNewLevel() {
-        this.player.setLevelConditions(conditionMap[this.stats.lvl]);
+        this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
         const platforms = PlatformMap[this.stats.lvl].map(element => {
             return new Platform(this.context, element.x, element.y, element.name)
