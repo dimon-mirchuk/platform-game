@@ -125,6 +125,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/img/surface/default/tile02.png":
+/*!********************************************!*\
+  !*** ./src/img/surface/default/tile02.png ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2b2853e7885e7d8ad524a629af838530.png");
+
+/***/ }),
+
 /***/ "./src/js/canvas.js":
 /*!**************************!*\
   !*** ./src/js/canvas.js ***!
@@ -208,6 +221,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -232,58 +246,67 @@ var introductionImages = [{
   imageUrl: "../../img/startImage1.jpg",
   input: false
 }];
+
+// const PlatformMapZ = {
+//     0: [{x: 200, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+//     1: [{x: 400, y: 300, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../img/surface/default/tile02.png"}],
+//     2: [{x: 0, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../img/surface/default/tile01.png"}],
+//     3: [{x: 200, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+
+// };
+
 var PlatformMapZ = {
   0: [{
     x: 200,
     y: 100,
-    url: "../../img/surface/default/tile01.png"
+    name: "tile1"
   }, {
     x: 300,
     y: 200,
-    url: "../../img/surface/default/tile01.png"
+    name: "tile2"
   }, {
     x: 400,
     y: 300,
-    url: "../../img/surface/default/tile01.png"
+    name: "tile1"
   }],
   1: [{
     x: 400,
     y: 300,
-    url: "../../img//surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 400,
     y: 100,
-    url: "../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 400,
     y: 500,
-    url: "../../img/surface/default/tile02.png"
+    url: "tile2"
   }],
   2: [{
     x: 0,
     y: 100,
-    url: "../../img/surface/default/tile01.png"
+    url: "tile1"
   }, {
     x: 0,
     y: 200,
-    url: "../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 0,
     y: 300,
-    url: "../../img/surface/default/tile01.png"
+    url: "tile1"
   }],
   3: [{
     x: 200,
     y: 100,
-    url: "../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 300,
     y: 200,
-    url: "../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 400,
     y: 300,
-    url: "../../img/surface/default/tile01.png"
+    url: "tile1"
   }]
 };
 var Game = /*#__PURE__*/function () {
@@ -306,7 +329,7 @@ var Game = /*#__PURE__*/function () {
   _createClass(Game, [{
     key: "startIntroduction",
     value: function startIntroduction() {
-      var _this = this;
+
       // const image = document.createElement('img');
       // image.src  = startImage;
       // image.setAttribute('width', '1280px');
@@ -318,17 +341,6 @@ var Game = /*#__PURE__*/function () {
       // document.getElementById('body').setAttribute('margin', '0 auto');
       // document.getElementById('body').appendChild(image);
       // const listenerID = this.listenDown(this);
-
-      //-----
-      var canvas = document.querySelector('canvas');
-      this.context = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      this.image = new Image();
-      this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_2__["default"];
-      this.image.onload = function () {
-        _this.context.drawImage(_this.image, 100, 100);
-      };
     }
   }, {
     key: "setup",
@@ -363,10 +375,13 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startNewLevel",
     value: function startNewLevel() {
-      var _this2 = this;
+      var _this = this;
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["conditionMap"][this.stats.lvl]);
       var platforms = PlatformMapZ[this.stats.lvl].map(function (element) {
-        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this2.context, element, _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+        console.log("______________________________", _typeof(_img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_2__["default"]));
+        console.log(_typeof(element.url));
+        //const i = import(emage)
+        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.context, element.x, element.y, element.name);
         //return new Platform(this.context, element, element.url)
       });
 
@@ -426,16 +441,20 @@ var Game = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Platform; });
+/* harmony import */ var _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/surface/default/tile01.png */ "./src/img/surface/default/tile01.png");
+/* harmony import */ var _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/surface/default/tile02.png */ "./src/img/surface/default/tile02.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 //import emage from "../../img/surface/default/tile01.png"
+
+
 var Platform = /*#__PURE__*/function () {
-  function Platform(context, position, url) {
+  function Platform(context, x, y, name) {
     _classCallCheck(this, Platform);
     this.position = {
-      x: position.x,
-      y: position.y
+      x: x,
+      y: y
     };
 
     // this.width = 170;
@@ -446,7 +465,7 @@ var Platform = /*#__PURE__*/function () {
     this.width = 270;
     this.height = 270;
     this.context = context;
-    this.url = url;
+    this.name = name;
     this.start();
   }
   _createClass(Platform, [{
@@ -458,7 +477,16 @@ var Platform = /*#__PURE__*/function () {
       // this.image.src = this.url;
 
       this.image = new Image();
-      this.image.src = this.url;
+      switch (this.name) {
+        case 'tile1':
+          this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+          break;
+        case 'tile2':
+          this.image.src = _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__["default"];
+          break;
+        default:
+          this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+      }
     }
   }, {
     key: "draw",

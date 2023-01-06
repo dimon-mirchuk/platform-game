@@ -16,11 +16,19 @@ const introductionImages = [
     { imageUrl: "../../img/startImage1.jpg", input: false },
 ];
 
+// const PlatformMapZ = {
+//     0: [{x: 200, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+//     1: [{x: 400, y: 300, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../img/surface/default/tile02.png"}],
+//     2: [{x: 0, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../img/surface/default/tile01.png"}],
+//     3: [{x: 200, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+
+// };
+
 const PlatformMapZ = {
-    0: [{x: 200, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
-    1: [{x: 400, y: 300, url: "../../img//surface/default/tile02.png"}, {x: 400, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../img/surface/default/tile02.png"}],
-    2: [{x: 0, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../img/surface/default/tile01.png"}],
-    3: [{x: 200, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+    0: [{x: 200, y: 100, name: "tile1"}, {x: 300, y: 200, name: "tile2"}, {x: 400, y: 300, name: "tile1"}],
+    1: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
+    2: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+    3: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
 
 };
 
@@ -57,22 +65,6 @@ export default class Game {
         // document.getElementById('body').setAttribute('margin', '0 auto');
         // document.getElementById('body').appendChild(image);
         // const listenerID = this.listenDown(this);
-
-
-        //-----
-        const canvas = document.querySelector('canvas');
-        this.context = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        this.image = new Image();
-        this.image.src = emage;
-
-        this.image.onload = () => {
-            this.context.drawImage(this.image, 100, 100)
-        }
-        
     }
 
     setup() {
@@ -116,7 +108,10 @@ export default class Game {
         this.player.setLevelConditions(conditionMap[this.stats.lvl]);
 
         const platforms = PlatformMapZ[this.stats.lvl].map(element => {
-            return new Platform(this.context, element, emage)
+            console.log("______________________________", typeof emage)
+            console.log(typeof element.url)
+            //const i = import(emage)
+            return new Platform(this.context, element.x, element.y, element.name)
             //return new Platform(this.context, element, element.url)
         });
 

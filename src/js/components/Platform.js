@@ -1,10 +1,12 @@
 //import emage from "../../img/surface/default/tile01.png"
+import tile1 from "../../img/surface/default/tile01.png"
+import tile2 from "../../img/surface/default/tile02.png"
 
 export default class Platform {
-    constructor(context, position, url) {
+    constructor(context, x, y, name) {
         this.position = {
-            x: position.x,
-            y: position.y,
+            x,
+            y,
         };
 
         // this.width = 170;
@@ -18,7 +20,10 @@ export default class Platform {
 
         this.context = context;
 
-        this.url = url;
+
+        this.name = name;
+
+
 
         this.start();
     }
@@ -30,7 +35,18 @@ export default class Platform {
         // this.image.src = this.url;
 
         this.image = new Image();
-        this.image.src = this.url;
+
+        switch(this.name) {
+            case 'tile1':
+                this.image.src = tile1;
+                break;
+            case 'tile2':
+                this.image.src = tile2;
+                break;
+            default:
+                this.image.src = tile1;
+        }
+        
     }
 
     draw() {
