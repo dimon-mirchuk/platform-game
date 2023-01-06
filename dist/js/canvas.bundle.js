@@ -212,24 +212,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
-/* harmony import */ var _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/surface/default/tile01.png */ "./src/img/surface/default/tile01.png");
-/* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
-/* harmony import */ var _img_intro_startImage1_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/intro/startImage1.jpg */ "./src/img/intro/startImage1.jpg");
+/* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
+/* harmony import */ var _img_intro_startImage1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/startImage1.jpg */ "./src/img/intro/startImage1.jpg");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 
-
-
-//import emage from "../../img/player/normalPlayer.png"
 
 
 
@@ -246,69 +241,6 @@ var introductionImages = [{
   imageUrl: "../../img/startImage1.jpg",
   input: false
 }];
-
-// const PlatformMapZ = {
-//     0: [{x: 200, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
-//     1: [{x: 400, y: 300, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../img/surface/default/tile02.png"}],
-//     2: [{x: 0, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../img/surface/default/tile01.png"}],
-//     3: [{x: 200, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
-
-// };
-
-var PlatformMapZ = {
-  0: [{
-    x: 200,
-    y: 100,
-    name: "tile1"
-  }, {
-    x: 300,
-    y: 200,
-    name: "tile2"
-  }, {
-    x: 400,
-    y: 300,
-    name: "tile1"
-  }],
-  1: [{
-    x: 400,
-    y: 300,
-    url: "tile2"
-  }, {
-    x: 400,
-    y: 100,
-    url: "tile2"
-  }, {
-    x: 400,
-    y: 500,
-    url: "tile2"
-  }],
-  2: [{
-    x: 0,
-    y: 100,
-    url: "tile1"
-  }, {
-    x: 0,
-    y: 200,
-    url: "tile2"
-  }, {
-    x: 0,
-    y: 300,
-    url: "tile1"
-  }],
-  3: [{
-    x: 200,
-    y: 100,
-    url: "tile2"
-  }, {
-    x: 300,
-    y: 200,
-    url: "tile2"
-  }, {
-    x: 400,
-    y: 300,
-    url: "tile1"
-  }]
-};
 var Game = /*#__PURE__*/function () {
   function Game(player, controller, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
@@ -357,7 +289,7 @@ var Game = /*#__PURE__*/function () {
       //вывести правила 
       //...
 
-      this.player = new this.player(this.context, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_3__["default"]);
+      this.player = new this.player(this.context, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
       this.controller = new this.controller(this.context);
       //
       //здесь должен быть вызов this.setupSprites()
@@ -376,16 +308,10 @@ var Game = /*#__PURE__*/function () {
     key: "startNewLevel",
     value: function startNewLevel() {
       var _this = this;
-      this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["conditionMap"][this.stats.lvl]);
-      var platforms = PlatformMapZ[this.stats.lvl].map(function (element) {
-        console.log("______________________________", _typeof(_img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_2__["default"]));
-        console.log(_typeof(element.url));
-        //const i = import(emage)
+      this.player.setLevelConditions(conditionMap[this.stats.lvl]);
+      var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.context, element.x, element.y, element.name);
-        //return new Platform(this.context, element, element.url)
       });
-
-      console.log(platforms);
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
@@ -446,7 +372,6 @@ __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-//import emage from "../../img/surface/default/tile01.png"
 
 
 var Platform = /*#__PURE__*/function () {
@@ -456,68 +381,22 @@ var Platform = /*#__PURE__*/function () {
       x: x,
       y: y
     };
-
-    // this.width = 170;
-    // this.height = 120;
-    //this.width = 1181;
-    //this.height = 1181;
-
-    this.width = 270;
-    this.height = 270;
     this.context = context;
     this.name = name;
+    this.width = 270;
+    this.height = 270;
     this.start();
   }
   _createClass(Platform, [{
     key: "start",
     value: function start() {
-      //console.log(1111111111111111111111)
-      //++
-      // this.image = document.createElement('img');
-      // this.image.src = this.url;
-
       this.image = new Image();
-      switch (this.name) {
-        case 'tile1':
-          this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
-          break;
-        case 'tile2':
-          this.image.src = _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__["default"];
-          break;
-        default:
-          this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
-      }
+      this.changeDecor();
     }
   }, {
     key: "draw",
     value: function draw() {
       var _this = this;
-      //console.log(22222222222222222222222222222)
-      //console.log(this.image)
-      // this.context.fillStyle = 'red';
-
-      // this.context.fillRect(
-      //     this.position.x, 
-      //     this.position.y, 
-      //     this.width,
-      //     this.height
-      // )
-
-      console.log(this.url);
-      console.log(this.image);
-
-      //++
-      // this.image.onload = () => {
-      //     this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
-      // }
-
-      //this.context.drawImage(this.image, 0, 0, this.width, this.height)
-
-      //+++
-      // this.image.onload = () =>{
-      //     this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
-      //     console.log('DONE');
-      // }
       if (this.image.complete) {
         this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
       } else {
@@ -530,6 +409,20 @@ var Platform = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       this.draw();
+    }
+  }, {
+    key: "changeDecor",
+    value: function changeDecor() {
+      switch (this.name) {
+        case 'tile1':
+          this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+          break;
+        case 'tile2':
+          this.image.src = _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__["default"];
+          break;
+        default:
+          this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+      }
     }
   }]);
   return Platform;
@@ -736,7 +629,7 @@ var Sprite = /*#__PURE__*/function () {
 /*!**************************************!*\
   !*** ./src/js/utils/levels/index.js ***!
   \**************************************/
-/*! exports provided: PlatformMap, EnemyMap, BoosterMap, conditionMap */
+/*! exports provided: PlatformMap, EnemyMap, BoosterMap, ConditionMap */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -744,61 +637,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlatformMap", function() { return PlatformMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnemyMap", function() { return EnemyMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "conditionMap", function() { return conditionMap; });
-//import image from "../../../img/surface/default/tile01.png"
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConditionMap", function() { return ConditionMap; });
 var PlatformMap = {
   0: [{
     x: 200,
     y: 100,
-    url: "../../../img/surface/default/tile01.png"
+    name: "tile1"
   }, {
     x: 300,
     y: 200,
-    url: "../../../img/surface/default/tile01.png"
+    name: "tile2"
   }, {
     x: 400,
     y: 300,
-    url: "../../../img/surface/default/tile01.png"
+    name: "tile1"
   }],
   1: [{
     x: 400,
     y: 300,
-    url: "../../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 400,
     y: 100,
-    url: "../../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 400,
     y: 500,
-    url: "../../../img/surface/default/tile02.png"
+    url: "tile2"
   }],
   2: [{
     x: 0,
     y: 100,
-    url: "../../../img/surface/default/tile01.png"
+    url: "tile1"
   }, {
     x: 0,
     y: 200,
-    url: "../../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 0,
     y: 300,
-    url: "../../../img/surface/default/tile01.png"
+    url: "tile1"
   }],
   3: [{
     x: 200,
     y: 100,
-    url: "../../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 300,
     y: 200,
-    url: "../../../img/surface/default/tile02.png"
+    url: "tile2"
   }, {
     x: 400,
     y: 300,
-    url: "../../../img/surface/default/tile01.png"
+    url: "tile1"
   }]
 };
 var EnemyMap = {
@@ -807,7 +698,7 @@ var EnemyMap = {
 var BoosterMap = {
   0: [{}, {}, {}]
 };
-var conditionMap = {
+var ConditionMap = {
   0: 3,
   1: 10,
   2: 20

@@ -1,8 +1,8 @@
 import Platform from "./Platform";
+
 import { PlatformMap } from "../utils/levels";
-import { conditionMap } from "../utils/levels";
-import emage from "../../img/surface/default/tile01.png"
-//import emage from "../../img/player/normalPlayer.png"
+import { ConditionMap } from "../utils/levels";
+
 
 import playerImg from "../../img/player/normalPlayer.png";
 import startImage from "../../img/intro/startImage1.jpg";
@@ -15,23 +15,6 @@ const introductionImages = [
     { imageUrl: "../../img/startImage1.jpg", input: false },
     { imageUrl: "../../img/startImage1.jpg", input: false },
 ];
-
-// const PlatformMapZ = {
-//     0: [{x: 200, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
-//     1: [{x: 400, y: 300, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../img/surface/default/tile02.png"}],
-//     2: [{x: 0, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../img/surface/default/tile01.png"}],
-//     3: [{x: 200, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
-
-// };
-
-const PlatformMapZ = {
-    0: [{x: 200, y: 100, name: "tile1"}, {x: 300, y: 200, name: "tile2"}, {x: 400, y: 300, name: "tile1"}],
-    1: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
-    2: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
-    3: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
-
-};
-
 
 export default class Game {
     constructor ( player, controller, listenerUp, listenerDown ) {
@@ -107,16 +90,10 @@ export default class Game {
     startNewLevel() {
         this.player.setLevelConditions(conditionMap[this.stats.lvl]);
 
-        const platforms = PlatformMapZ[this.stats.lvl].map(element => {
-            console.log("______________________________", typeof emage)
-            console.log(typeof element.url)
-            //const i = import(emage)
+        const platforms = PlatformMap[this.stats.lvl].map(element => {
             return new Platform(this.context, element.x, element.y, element.name)
-            //return new Platform(this.context, element, element.url)
         });
 
-        console.log(platforms)
-        
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
     }
 

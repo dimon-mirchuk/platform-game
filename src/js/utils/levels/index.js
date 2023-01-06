@@ -1,10 +1,8 @@
-//import image from "../../../img/surface/default/tile01.png"
-
 export const PlatformMap = {
-    0: [{x: 200, y: 100, url: "../../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../../img/surface/default/tile01.png"}],
-    1: [{x: 400, y: 300, url: "../../../img/surface/default/tile02.png"}, {x: 400, y: 100, url: "../../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../../img/surface/default/tile02.png"}],
-    2: [{x: 0, y: 100, url: "../../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../../img/surface/default/tile01.png"}],
-    3: [{x: 200, y: 100, url: "../../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../../img/surface/default/tile01.png"}],
+    0: [{x: 200, y: 100, name: "tile1"}, {x: 300, y: 200, name: "tile2"}, {x: 400, y: 300, name: "tile1"}],
+    1: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
+    2: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+    3: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
 
 };
 
@@ -18,9 +16,9 @@ export const BoosterMap = {
     
 };
 
-export const conditionMap = {
+export const ConditionMap = {
     0: 3,
     1: 10,
     2: 20,
-
-}
+    
+};

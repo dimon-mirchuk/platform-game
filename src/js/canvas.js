@@ -5,8 +5,6 @@ import Controller from "./components/Controller";
 import { addListenersKeyDown } from "./utils/listeners";
 import { addListenersKeyUp } from "./utils/listeners";
 
-
-
 let currentGame = new Game(
     Player,
     Controller,
