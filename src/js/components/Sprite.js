@@ -1,5 +1,5 @@
 export default class Sprite {
-    constructor(context, image, ticksPerFrame, numberOfFrames, width, height, positionX, positionY) {
+    constructor(context, image, ticksPerFrame, numberOfFrames, width, height, positionX, positionY, ratio) {
         this.context = context;
 
         this.image = image;
@@ -15,6 +15,7 @@ export default class Sprite {
         this.positionX = positionX;
         this.positionY = positionY;
 
+        this.ratio = ratio;
     }
 
     update() {
@@ -35,10 +36,10 @@ export default class Sprite {
 
         this.context.drawImage(
             this.image, 
-            48 * this.frameIndex,
+            this.ratio * this.frameIndex,
             0,
-            48,
-            48,
+            this.ratio,
+            this.ratio,
             this.positionX, 
             this.positionY, 
             this.width,

@@ -21,8 +21,8 @@ export default class Player {
             },
         }
 
-        this.width = 48;
-        this.height = 48;
+        this.width = 240;
+        this.height = 240;
 
         this.awaited = 0;
         this.activated = 0;
@@ -40,7 +40,7 @@ export default class Player {
         const img = new Image();
         img.src = this.spriteUrl;
 
-        this.sprite = new Sprite(this.context, img, 4, 6, 48, 48, this.position.x, this.position.y);
+        this.sprite = new Sprite(this.context, img, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
     update() {
@@ -106,7 +106,7 @@ export default class Player {
         this.activated = 0;
         this.awaited = awaited;
     }
-    
+
     getSprite(){
         return this.sprite.get();
     }

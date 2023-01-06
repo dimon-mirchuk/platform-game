@@ -1,9 +1,13 @@
 import Platform from "./Platform";
 import { PlatformMap } from "../utils/levels";
 import { conditionMap } from "../utils/levels";
+import emage from "../../img/surface/default/tile01.png"
+//import emage from "../../img/player/normalPlayer.png"
 
-import playerImg from "../../img/playerr.png";
-import startImage from "../../img/startImage1.jpg";
+import playerImg from "../../img/player/normalPlayer.png";
+import startImage from "../../img/intro/startImage1.jpg";
+
+
 
 const introductionImages = [
     { imageUrl: "../../img/startImage1.jpg", input: false }, 
@@ -11,6 +15,15 @@ const introductionImages = [
     { imageUrl: "../../img/startImage1.jpg", input: false },
     { imageUrl: "../../img/startImage1.jpg", input: false },
 ];
+
+const PlatformMapZ = {
+    0: [{x: 200, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile01.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+    1: [{x: 400, y: 300, url: "../../img//surface/default/tile02.png"}, {x: 400, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 500, url: "../../img/surface/default/tile02.png"}],
+    2: [{x: 0, y: 100, url: "../../img/surface/default/tile01.png"}, {x: 0, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 0, y: 300, url: "../../img/surface/default/tile01.png"}],
+    3: [{x: 200, y: 100, url: "../../img/surface/default/tile02.png"}, {x: 300, y: 200, url: "../../img/surface/default/tile02.png"}, {x: 400, y: 300, url: "../../img/surface/default/tile01.png"}],
+
+};
+
 
 export default class Game {
     constructor ( player, controller, listenerUp, listenerDown ) {
@@ -27,22 +40,39 @@ export default class Game {
             lvl: 0,
         }
 
-        this.startIntroduction();
+       //this.startIntroduction();
+       this.setup();
     }
 
     startIntroduction() {
 
-        const image = document.createElement('img');
-        image.src  = startImage;
-        image.setAttribute('width', '1280px');
-        image.setAttribute('height', '720px');
-        image.setAttribute('position', 'absolute');
-        image.setAttribute('top', '20%');
-        image.setAttribute('left', '20%');
+        // const image = document.createElement('img');
+        // image.src  = startImage;
+        // image.setAttribute('width', '1280px');
+        // image.setAttribute('height', '720px');
+        // image.setAttribute('position', 'absolute');
+        // image.setAttribute('top', '20%');
+        // image.setAttribute('left', '20%');
 
-        document.getElementById('body').setAttribute('margin', '0 auto');
-        document.getElementById('body').appendChild(image);
-        const listenerID = this.listenDown(this);
+        // document.getElementById('body').setAttribute('margin', '0 auto');
+        // document.getElementById('body').appendChild(image);
+        // const listenerID = this.listenDown(this);
+
+
+        //-----
+        const canvas = document.querySelector('canvas');
+        this.context = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        this.image = new Image();
+        this.image.src = emage;
+
+        this.image.onload = () => {
+            this.context.drawImage(this.image, 100, 100)
+        }
+        
     }
 
     setup() {
@@ -85,9 +115,12 @@ export default class Game {
     startNewLevel() {
         this.player.setLevelConditions(conditionMap[this.stats.lvl]);
 
-        const platforms = PlatformMap[this.stats.lvl].map(element => {
-            return new Platform(this.context, element)
+        const platforms = PlatformMapZ[this.stats.lvl].map(element => {
+            return new Platform(this.context, element, emage)
+            //return new Platform(this.context, element, element.url)
         });
+
+        console.log(platforms)
         
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
     }
