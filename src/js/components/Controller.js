@@ -17,4 +17,10 @@ export default class Controller {
 
         args.forEach(el => el.animate())      
     }
+
+    stop() {
+        if (this.currAnimId) {
+            cancelAnimationFrame(this.currAnimId);
+        }
+    }
 }

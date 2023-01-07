@@ -150,13 +150,100 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Game */ "./src/js/components/Game.js");
 /* harmony import */ var _components_Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Player */ "./src/js/components/Player.js");
 /* harmony import */ var _components_Controller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Controller */ "./src/js/components/Controller.js");
-/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
+/* harmony import */ var _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ContextManager */ "./src/js/components/ContextManager.js");
+/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
 
 
 
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_3__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_3__["addListenersKeyDown"]);
+
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_4__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_4__["addListenersKeyDown"]);
+
+/***/ }),
+
+/***/ "./src/js/components/ContextManager.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/ContextManager.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContextManager; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var ContextManager = /*#__PURE__*/function () {
+  function ContextManager() {
+    _classCallCheck(this, ContextManager);
+    //ссылки на объекты контекста
+    this.gameContext = null;
+    this.managerContext = null;
+
+    //ссылка на объект текущ контекста (один из двух)
+    this.activeContext = null;
+    this.setupContexts();
+    this.proba();
+  }
+  _createClass(ContextManager, [{
+    key: "setupContexts",
+    value: function setupContexts() {
+      //нода
+      this.gameNode = document.getElementById('gameplay');
+      if (this.gameNode.getContext('2d')) {
+        this.gameContext = this.gameNode.getContext('2d');
+        this.gameNode.width = window.innerWidth;
+        this.gameNode.height = window.innerHeight;
+        this.gameNode.setAttribute('style', 'z-index:0; position:absolute;');
+        this.gameContext.fillStyle = "blue";
+        this.gameContext.fillRect(0, 0, this.gameNode.width, this.gameNode.height);
+        this.managerNode = document.getElementById('management');
+        this.managerContext = this.managerNode.getContext('2d');
+        this.managerNode.width = window.innerWidth;
+        this.managerNode.height = window.innerHeight;
+        this.managerNode.setAttribute('style', 'z-index:0; position:absolute;');
+        this.managerContext.fillStyle = "red";
+        this.managerContext.fillRect(0, 0, this.managerNode.width, this.managerNode.height);
+        this.activeContext = this.managerContext;
+      } else {
+        alert('Ваш браузер полный отстой! Установите другой или попробуйте обновить этот :(');
+      }
+    }
+  }, {
+    key: "getGameContext",
+    value: function getGameContext() {
+      return this.gameContext;
+    }
+  }, {
+    key: "getManagerContext",
+    value: function getManagerContext() {
+      return this.managerContext;
+    }
+  }, {
+    key: "getActiveContext",
+    value: function getActiveContext() {
+      return this.activeContext;
+    }
+  }, {
+    key: "showGameContext",
+    value: function showGameContext() {
+      this.gameNode.setAttribute('style', 'z-index:1; position:absolute;');
+      this.managerNode.setAttribute('style', 'z-index:0; position:absolute;');
+      this.activeContext = this.gameContext;
+    }
+  }, {
+    key: "showManagerContext",
+    value: function showManagerContext() {
+      this.gameNode.setAttribute('style', 'z-index:0; position:absolute;');
+      this.managerNode.setAttribute('style', 'z-index:1; position:absolute;');
+      this.activeContext = this.managerContext;
+    }
+  }]);
+  return ContextManager;
+}();
+
 
 /***/ }),
 
@@ -192,6 +279,13 @@ var Controller = /*#__PURE__*/function () {
       args.forEach(function (el) {
         return el.animate();
       });
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      if (this.currAnimId) {
+        cancelAnimationFrame(this.currAnimId);
+      }
     }
   }]);
   return Controller;
@@ -242,13 +336,16 @@ var introductionImages = [{
   input: false
 }];
 var Game = /*#__PURE__*/function () {
-  function Game(player, controller, listenerUp, listenerDown) {
+  function Game(player, controller, ctxManager, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
     this.player = player;
     this.controller = controller;
+    this.ctxManager = ctxManager;
     this.listenUp = listenerUp;
     this.listenDown = listenerDown;
-    this.context = null;
+
+    //this.context = null;
+    this.gameContext = null;
     this.stats = {
       name: undefined,
       gravity: 0.5,
@@ -256,9 +353,17 @@ var Game = /*#__PURE__*/function () {
     };
 
     //this.startIntroduction();
-    this.setup();
+    //this.setup();
+
+    this.test();
   }
   _createClass(Game, [{
+    key: "test",
+    value: function test() {
+      this.ctxManager = new this.ctxManager();
+      this.gameContext = this.ctxManager.getGameContext();
+    }
+  }, {
     key: "startIntroduction",
     value: function startIntroduction() {
 
@@ -277,10 +382,12 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "setup",
     value: function setup() {
-      var canvas = document.querySelector('canvas');
-      this.context = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      //const canvas = document.querySelector('canvas');
+      // const canvas = document.getElementById('gameplay');
+      // this.context = canvas.getContext('2d');
+
+      // canvas.width = window.innerWidth;
+      // canvas.height = window.innerHeight;
 
       //спросить имя и дать бусты андрею и диме
       //this.stats.name = prompt('Как вас зовут?')
@@ -289,14 +396,21 @@ var Game = /*#__PURE__*/function () {
       //вывести правила 
       //...
 
-      this.player = new this.player(this.context, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
-      this.controller = new this.controller(this.context);
+      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      this.controller = new this.controller(this.gameContext);
       //
       //здесь должен быть вызов this.setupSprites()
       this.sprites = [this.player.getSprite()];
       this.listenDown(this.player);
       this.listenUp(this.player);
-      this.start();
+
+      //this.start();
+
+      //=======
+      // this.context2 = canvas.getContext('2d');
+      // const emg = new Image();
+      // emg.src = startImage;
+      // this.context2.drawImage(startImage, window.innerWidth, window.innerHeight)
     }
   }, {
     key: "start",
@@ -310,7 +424,7 @@ var Game = /*#__PURE__*/function () {
       var _this = this;
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
-        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.context, element.x, element.y, element.name);
+        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
       });
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
@@ -717,17 +831,17 @@ var ConditionMap = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyDown", function() { return addListenersKeyDown; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyUp", function() { return addListenersKeyUp; });
-function addListenersKeyDown(player) {
+function addListenersKeyDown(obj) {
   addEventListener('keydown', function (_ref) {
     var code = _ref.code;
     switch (code) {
       case 'ArrowUp':
       case 'KeyW':
-        player.jump ? player.jump() : null;
+        obj.jump ? obj.jump() : null;
         break;
       case 'ArrowRight':
       case 'KeyD':
-        player.keys ? player.keys.right.pressed = true : null;
+        obj.keys ? obj.keys.right.pressed = true : null;
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -735,7 +849,7 @@ function addListenersKeyDown(player) {
         break;
       case 'ArrowLeft':
       case 'KeyA':
-        player.keys ? player.keys.left.pressed = true : null;
+        obj.keys ? obj.keys.left.pressed = true : null;
         break;
       case 'Space':
         console.log('JUMP');
@@ -748,7 +862,7 @@ function addListenersKeyDown(player) {
     }
   });
 }
-function addListenersKeyUp(player) {
+function addListenersKeyUp(obj) {
   addEventListener('keyup', function (_ref2) {
     var code = _ref2.code;
     switch (code) {
@@ -758,7 +872,7 @@ function addListenersKeyUp(player) {
         break;
       case 'ArrowRight':
       case 'KeyD':
-        player.keys ? player.keys.right.pressed = false : null;
+        obj.keys ? obj.keys.right.pressed = false : null;
         break;
       case 'ArrowDown':
       case 'KeyS':
@@ -766,7 +880,7 @@ function addListenersKeyUp(player) {
         break;
       case 'ArrowLeft':
       case 'KeyA':
-        player.keys ? player.keys.left.pressed = false : null;
+        obj.keys ? obj.keys.left.pressed = false : null;
         break;
       case 'Space':
         console.log('JUMP');

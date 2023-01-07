@@ -3,7 +3,6 @@ import Platform from "./Platform";
 import { PlatformMap } from "../utils/levels";
 import { ConditionMap } from "../utils/levels";
 
-
 import playerImg from "../../img/player/normalPlayer.png";
 import startImage from "../../img/intro/startImage1.jpg";
 
@@ -17,13 +16,15 @@ const introductionImages = [
 ];
 
 export default class Game {
-    constructor ( player, controller, listenerUp, listenerDown ) {
+    constructor ( player, controller, ctxManager, listenerUp, listenerDown ) {
         this.player = player;
         this.controller = controller;
+        this.ctxManager = ctxManager;
         this.listenUp = listenerUp;
         this.listenDown = listenerDown;
 
-        this.context = null;
+        //this.context = null;
+        this.gameContext = null;
 
         this.stats = {
             name: undefined,
@@ -32,8 +33,17 @@ export default class Game {
         }
 
        //this.startIntroduction();
-       this.setup();
+       //this.setup();
+
+       this.test();
     }
+
+    test() {
+        this.ctxManager = new this.ctxManager();
+        this.gameContext = this.ctxManager.getGameContext();
+    }
+
+    
 
     startIntroduction() {
 
@@ -51,11 +61,12 @@ export default class Game {
     }
 
     setup() {
-        const canvas = document.querySelector('canvas');
-        this.context = canvas.getContext('2d');
+        //const canvas = document.querySelector('canvas');
+        // const canvas = document.getElementById('gameplay');
+        // this.context = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // canvas.width = window.innerWidth;
+        // canvas.height = window.innerHeight;
 
         //спросить имя и дать бусты андрею и диме
         //this.stats.name = prompt('Как вас зовут?')
@@ -65,13 +76,13 @@ export default class Game {
         //...
 
         this.player = new this.player(
-            this.context, 
+            this.gameContext, 
             this.stats.gravity,
             this.winLevel.bind(this),
             playerImg
         );
 
-        this.controller = new this.controller(this.context);
+        this.controller = new this.controller(this.gameContext);
         //
         //здесь должен быть вызов this.setupSprites()
         this.sprites = [this.player.getSprite()];
@@ -79,7 +90,13 @@ export default class Game {
         this.listenDown(this.player);
         this.listenUp(this.player);
 
-        this.start();
+        //this.start();
+
+        //=======
+        // this.context2 = canvas.getContext('2d');
+        // const emg = new Image();
+        // emg.src = startImage;
+        // this.context2.drawImage(startImage, window.innerWidth, window.innerHeight)
     }
 
     start() {
@@ -91,7 +108,7 @@ export default class Game {
         this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
         const platforms = PlatformMap[this.stats.lvl].map(element => {
-            return new Platform(this.context, element.x, element.y, element.name)
+            return new Platform(this.gameContext, element.x, element.y, element.name)
         });
 
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);

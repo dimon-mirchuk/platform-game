@@ -1,19 +1,19 @@
-export function addListenersKeyDown(player){
+export function addListenersKeyDown(obj){
     addEventListener('keydown', ({ code }) => {      
         switch(code) {
             case 'ArrowUp':
             case 'KeyW':
 
-                player.jump ? 
-                player.jump() 
+                obj.jump ? 
+                obj.jump() 
                 : null;
 
                 break;
             case 'ArrowRight':
             case 'KeyD':
 
-                player.keys ? 
-                player.keys.right.pressed = true 
+                obj.keys ? 
+                obj.keys.right.pressed = true 
                 : null;
 
                 break;
@@ -26,8 +26,8 @@ export function addListenersKeyDown(player){
             case 'ArrowLeft':
             case 'KeyA':
 
-                player.keys ? 
-                player.keys.left.pressed = true
+                obj.keys ? 
+                obj.keys.left.pressed = true
                 : null;
 
                 break;
@@ -43,7 +43,7 @@ export function addListenersKeyDown(player){
     })
 }
 
-export function addListenersKeyUp(player){
+export function addListenersKeyUp(obj){
     addEventListener('keyup', ({ code }) => {      
         switch(code) {
             case 'ArrowUp':
@@ -55,8 +55,8 @@ export function addListenersKeyUp(player){
             case 'ArrowRight':
             case 'KeyD':
 
-                player.keys ? 
-                player.keys.right.pressed = false 
+                obj.keys ? 
+                obj.keys.right.pressed = false 
                 : null;
 
                 break;
@@ -69,8 +69,8 @@ export function addListenersKeyUp(player){
             case 'ArrowLeft':
             case 'KeyA':
 
-                player.keys ? 
-                player.keys.left.pressed = false
+                obj.keys ? 
+                obj.keys.left.pressed = false
                 : null;
                 
                 break;
