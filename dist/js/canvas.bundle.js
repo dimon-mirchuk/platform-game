@@ -86,19 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/img/intro/startImage1.jpg":
-/*!***************************************!*\
-  !*** ./src/img/intro/startImage1.jpg ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "f27d4cc2972fe09858425837e3625944.jpg");
-
-/***/ }),
-
 /***/ "./src/img/player/normalPlayer.png":
 /*!*****************************************!*\
   !*** ./src/img/player/normalPlayer.png ***!
@@ -185,7 +172,6 @@ var ContextManager = /*#__PURE__*/function () {
     //ссылка на объект текущ контекста (один из двух)
     this.activeContext = null;
     this.setupContexts();
-    this.proba();
   }
   _createClass(ContextManager, [{
     key: "setupContexts",
@@ -307,7 +293,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 /* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
-/* harmony import */ var _img_intro_startImage1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/startImage1.jpg */ "./src/img/intro/startImage1.jpg");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -321,30 +306,59 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-
-var introductionImages = [{
-  imageUrl: "../../img/startImage1.jpg",
-  input: false
-}, {
-  imageUrl: "../../img/startImage1.jpg",
-  input: false
-}, {
-  imageUrl: "../../img/startImage1.jpg",
-  input: false
-}, {
-  imageUrl: "../../img/startImage1.jpg",
-  input: false
-}];
+var introData = {
+  0: {
+    context: false,
+    srcName: 'intro1'
+  },
+  1: {
+    context: false,
+    srcName: 'intro2',
+    input: true
+  },
+  2: {
+    context: false,
+    srcName: 'intro3'
+  },
+  3: {
+    context: true
+  },
+  4: {
+    context: false,
+    srcName: 'intro4'
+  },
+  5: {
+    context: true
+  },
+  6: {
+    context: false,
+    srcName: 'intro5'
+  },
+  7: {
+    context: false,
+    srcName: 'intro6'
+  },
+  8: {
+    context: true
+  },
+  9: {
+    context: true
+  },
+  10: {
+    context: true
+  },
+  11: {
+    context: true
+  }
+};
 var Game = /*#__PURE__*/function () {
-  function Game(player, controller, ctxManager, listenerUp, listenerDown) {
+  function Game(player, controller, contextManager, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
     this.player = player;
     this.controller = controller;
-    this.ctxManager = ctxManager;
+    this.contextManager = contextManager;
     this.listenUp = listenerUp;
     this.listenDown = listenerDown;
-
-    //this.context = null;
     this.gameContext = null;
     this.stats = {
       name: undefined,
@@ -360,8 +374,26 @@ var Game = /*#__PURE__*/function () {
   _createClass(Game, [{
     key: "test",
     value: function test() {
-      this.ctxManager = new this.ctxManager();
-      this.gameContext = this.ctxManager.getGameContext();
+      this.contextManager = new this.contextManager();
+      this.gameContext = this.contextManager.getGameContext();
+      this.run();
+    }
+  }, {
+    key: "run",
+    value: function run() {
+      var _this = this;
+      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      this.controller = new this.controller(this.gameContext);
+      this.sprites = [this.player.getSprite()];
+      this.listenDown(this.player, false, false);
+      this.listenUp(this.player, false, false);
+      this.contextManager.showGameContext();
+      this.stats.lvl = 3;
+      this.startNewLevel();
+      setTimeout(function () {
+        _this.listenDown(_this.player, false, true);
+        _this.listenUp(_this.player, false, true);
+      }, 5000);
     }
   }, {
     key: "startIntroduction",
@@ -421,10 +453,10 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startNewLevel",
     value: function startNewLevel() {
-      var _this = this;
+      var _this2 = this;
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
-        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
+        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this2.gameContext, element.x, element.y, element.name);
       });
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
@@ -753,7 +785,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConditionMap", function() { return ConditionMap; });
 var PlatformMap = {
-  0: [{
+  3: [{
     x: 200,
     y: 100,
     name: "tile1"
@@ -766,7 +798,7 @@ var PlatformMap = {
     y: 300,
     name: "tile1"
   }],
-  1: [{
+  5: [{
     x: 400,
     y: 300,
     url: "tile2"
@@ -779,7 +811,7 @@ var PlatformMap = {
     y: 500,
     url: "tile2"
   }],
-  2: [{
+  8: [{
     x: 0,
     y: 100,
     url: "tile1"
@@ -792,7 +824,7 @@ var PlatformMap = {
     y: 300,
     url: "tile1"
   }],
-  3: [{
+  9: [{
     x: 200,
     y: 100,
     url: "tile2"
@@ -813,9 +845,9 @@ var BoosterMap = {
   0: [{}, {}, {}]
 };
 var ConditionMap = {
-  0: 3,
-  1: 10,
-  2: 20
+  3: 3,
+  5: 10,
+  8: 20
 };
 
 /***/ }),
@@ -831,8 +863,8 @@ var ConditionMap = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyDown", function() { return addListenersKeyDown; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyUp", function() { return addListenersKeyUp; });
-function addListenersKeyDown(obj) {
-  addEventListener('keydown', function (_ref) {
+function addListenersKeyDown(obj, once, kill) {
+  function check(_ref) {
     var code = _ref.code;
     switch (code) {
       case 'ArrowUp':
@@ -860,10 +892,22 @@ function addListenersKeyDown(obj) {
       default:
         console.log(code);
     }
-  });
+  }
+  if (!kill && once) {
+    console.log('на один раз');
+    window.addEventListener('keydown', check, {
+      once: true
+    });
+  } else if (!kill && !once) {
+    console.log('на много раз');
+    window.addEventListener('keydown', check);
+  } else if (kill) {
+    console.log('убрано :)');
+    window.removeEventListener('keydown', check);
+  }
 }
-function addListenersKeyUp(obj) {
-  addEventListener('keyup', function (_ref2) {
+function addListenersKeyUp(obj, once, kill) {
+  function check(_ref2) {
     var code = _ref2.code;
     switch (code) {
       case 'ArrowUp':
@@ -888,8 +932,107 @@ function addListenersKeyUp(obj) {
       default:
         console.log(code);
     }
-  });
+  }
+  if (!kill && once) {
+    console.log('на один раз');
+    window.addEventListener('keyup', check, {
+      once: true
+    });
+  } else if (!kill && !once) {
+    console.log('на много раз');
+    window.addEventListener('keyup', check);
+  } else if (kill) {
+    console.log('убрано :)');
+    window.removeEventListener('keyup', check);
+  }
 }
+
+// export function addListenersKeyDown(obj, once, kill){
+//     addEventListener('keydown', ({ code }) => {      
+//         switch(code) {
+//             case 'ArrowUp':
+//             case 'KeyW':
+
+//                 obj.jump ? 
+//                 obj.jump() 
+//                 : null;
+
+//                 break;
+//             case 'ArrowRight':
+//             case 'KeyD':
+
+//                 obj.keys ? 
+//                 obj.keys.right.pressed = true 
+//                 : null;
+
+//                 break;
+//             case 'ArrowDown':
+//             case 'KeyS':
+
+//                 console.log('DOWN');
+
+//                 break;
+//             case 'ArrowLeft':
+//             case 'KeyA':
+
+//                 obj.keys ? 
+//                 obj.keys.left.pressed = true
+//                 : null;
+
+//                 break;
+//             case 'Space':
+//                 console.log('JUMP');
+//                 break;
+//             case 'Enter':
+//                 console.log('EEEEEEEEEEESSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTT');
+//                 break;
+//             default:
+//                 console.log(code);
+//         }
+//     })
+
+//     console.log(id)
+// }
+
+// export function addListenersKeyUp(obj){
+//     addEventListener('keyup', ({ code }) => {      
+//         switch(code) {
+//             case 'ArrowUp':
+//             case 'KeyW':
+
+//                 console.log('UP');
+
+//                 break;
+//             case 'ArrowRight':
+//             case 'KeyD':
+
+//                 obj.keys ? 
+//                 obj.keys.right.pressed = false 
+//                 : null;
+
+//                 break;
+//             case 'ArrowDown':
+//             case 'KeyS':
+
+//                 console.log('DOWN');
+
+//                 break;
+//             case 'ArrowLeft':
+//             case 'KeyA':
+
+//                 obj.keys ? 
+//                 obj.keys.left.pressed = false
+//                 : null;
+
+//                 break;
+//             case 'Space':
+//                 console.log('JUMP');
+//                 break;
+//             default:
+//                 console.log(code);
+//         }
+//     })
+// }
 
 /***/ })
 

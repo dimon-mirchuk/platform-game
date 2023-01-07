@@ -4,26 +4,33 @@ import { PlatformMap } from "../utils/levels";
 import { ConditionMap } from "../utils/levels";
 
 import playerImg from "../../img/player/normalPlayer.png";
-import startImage from "../../img/intro/startImage1.jpg";
 
 
+const introData = {
+    0: { context: false, srcName: 'intro1'},
+    1: { context: false, srcName: 'intro2', input: true },
+    2: { context: false, srcName: 'intro3'},
+    3: { context: true },
+    4: { context: false, srcName: 'intro4'},
+    5: { context: true },
+    6: { context: false, srcName: 'intro5'},
+    7: { context: false, srcName: 'intro6'},
+    8: { context: true },
+    9: { context: true },
+    10: { context: true },
+    11: { context: true },
+};
 
-const introductionImages = [
-    { imageUrl: "../../img/startImage1.jpg", input: false }, 
-    { imageUrl: "../../img/startImage1.jpg", input: false },
-    { imageUrl: "../../img/startImage1.jpg", input: false },
-    { imageUrl: "../../img/startImage1.jpg", input: false },
-];
+
 
 export default class Game {
-    constructor ( player, controller, ctxManager, listenerUp, listenerDown ) {
+    constructor ( player, controller, contextManager, listenerUp, listenerDown ) {
         this.player = player;
         this.controller = controller;
-        this.ctxManager = ctxManager;
+        this.contextManager = contextManager;
         this.listenUp = listenerUp;
         this.listenDown = listenerDown;
 
-        //this.context = null;
         this.gameContext = null;
 
         this.stats = {
@@ -39,8 +46,37 @@ export default class Game {
     }
 
     test() {
-        this.ctxManager = new this.ctxManager();
-        this.gameContext = this.ctxManager.getGameContext();
+        this.contextManager = new this.contextManager();
+        this.gameContext = this.contextManager.getGameContext();
+
+        this.run();
+    }
+
+    run() {
+        this.player = new this.player(
+            this.gameContext, 
+            this.stats.gravity,
+            this.winLevel.bind(this),
+            playerImg
+        );
+
+        this.controller = new this.controller(this.gameContext);
+
+        this.sprites = [this.player.getSprite()];
+
+        this.listenDown(this.player, false, false);
+        this.listenUp(this.player, false, false);
+
+        this.contextManager.showGameContext();
+
+
+        this.stats.lvl = 3;
+        this.startNewLevel();
+
+        setTimeout(()=>{
+            this.listenDown(this.player, false, true);
+            this.listenUp(this.player, false, true);
+        }, 5000)
     }
 
     

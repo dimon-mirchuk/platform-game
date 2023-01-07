@@ -8,7 +8,6 @@ export default class ContextManager {
         this.activeContext = null;
 
         this.setupContexts();
-        this.proba();
     }
 
     setupContexts() {
