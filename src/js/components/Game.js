@@ -1,25 +1,26 @@
+// entities
 import Platform from "./Platform";
 
+// maps
 import { PlatformMap } from "../utils/levels";
 import { ConditionMap } from "../utils/levels";
+import { introData } from "../utils/levels";
 
+// resources
 import playerImg from "../../img/player/normalPlayer.png";
 
+import intro0 from "../../img/intro/intro1.jpg";
+import intro1 from "../../img/intro/intro2.jpg";
+import intro2 from "../../img/intro/intro3.jpg";
+import intro4 from "../../img/intro/intro5.jpg";
+import intro6 from "../../img/intro/intro6.jpg";
+import intro7 from "../../img/intro/intro7.jpg";
 
-const introData = {
-    0: { context: false, srcName: 'intro1'},
-    1: { context: false, srcName: 'intro2', input: true },
-    2: { context: false, srcName: 'intro3'},
-    3: { context: true },
-    4: { context: false, srcName: 'intro4'},
-    5: { context: true },
-    6: { context: false, srcName: 'intro5'},
-    7: { context: false, srcName: 'intro6'},
-    8: { context: true },
-    9: { context: true },
-    10: { context: true },
-    11: { context: true },
-};
+import nevergiveup from "../../img/intro/nevergiveup.jpg";
+import timeout from "../../img/intro/timeout.jpg";
+import wingame from "../../img/intro/wingame.jpg";
+import winlevel from "../../img/intro/winlevel.jpg";
+import bugs from "../../img/intro/bugs.jpg";
 
 
 
@@ -31,28 +32,117 @@ export default class Game {
         this.listenUp = listenerUp;
         this.listenDown = listenerDown;
 
-        this.gameContext = null;
-
         this.stats = {
             name: undefined,
             gravity: 0.5,
             lvl: 0,
         }
 
-       //this.startIntroduction();
-       //this.setup();
+        this.intro = true;
 
-       this.test();
+        this.setup();
     }
 
-    test() {
+    setup() {
         this.contextManager = new this.contextManager();
         this.gameContext = this.contextManager.getGameContext();
+        this.managerContext = this.contextManager.getManagerContext();
 
-        this.run();
+        this.listenUp(this, false, false);
+
+        this.startIntro();
     }
 
-    run() {
+    levelup() {
+        this.stats.lvl = this.stats.lvl + 1;
+    }
+
+    startIntro() {
+
+        console.log('____', 'зашли в интро')
+
+        if (introData[this.stats.lvl].introDone) {
+            this.intro = false;
+            console.log('____', 'закончили интро')
+        } 
+
+        if (introData[this.stats.lvl].input) {
+            //take name
+            console.log('____', 'зашли в инпут')
+        } 
+
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+
+        if (introData[this.stats.lvl].srcName && this.intro) {
+            console.log('____', 'показываем интро')
+            this.showImg(introData[this.stats.lvl].srcName);
+        } else {
+
+            if (this.player.gravity) {
+                console.log('____', 'начинаем уровень')
+                this.startNewLevel();
+            } else {
+                console.log('____', 'начинаем игру')
+                this.startGame();
+            }
+        }
+    }
+
+    showImg(name) {
+        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+        this.contextManager.showManagerContext();
+
+        if (this.controller.currAnimId) {
+            this.controller.stop();
+            console.log('____', 'остановили движок')
+        }
+
+        const img = this.changeImg(name);
+        
+        if (img.complete) {
+            this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight)
+        } else {
+            img.onload = () => {
+                this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight)
+            }
+        }
+        this.managerContext.globalAlpha = 0.5
+    }
+
+    winLevel() {
+        console.log('____', 'выиграли уровень')
+        this.showLevelResult();
+    }
+
+    showLevelResult() {
+        this.controller.stop();
+        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+        this.contextManager.showManagerContext();
+
+        if (this.player.awaited === this.player.activated) {
+            this.showImg('winlevel')
+            console.log('____', 'выиграли уровень - молдец')
+        }
+        else {
+            this.showImg('nevergiveup')
+            console.log('____', 'выиграли уровень - не молдец')
+        }
+
+        if (introData[this.stats.lvl+1].finish) {
+            this.winGame();
+        }
+
+    }
+
+    winGame() {
+        this.controller.stop();
+        this.showImg('wingame');
+        // удалить листенеры
+    }
+
+    startGame() {
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+
         this.player = new this.player(
             this.gameContext, 
             this.stats.gravity,
@@ -67,80 +157,14 @@ export default class Game {
         this.listenDown(this.player, false, false);
         this.listenUp(this.player, false, false);
 
-        this.contextManager.showGameContext();
-
-
-        this.stats.lvl = 3;
-        this.startNewLevel();
-
-        setTimeout(()=>{
-            this.listenDown(this.player, false, true);
-            this.listenUp(this.player, false, true);
-        }, 5000)
-    }
-
-    
-
-    startIntroduction() {
-
-        // const image = document.createElement('img');
-        // image.src  = startImage;
-        // image.setAttribute('width', '1280px');
-        // image.setAttribute('height', '720px');
-        // image.setAttribute('position', 'absolute');
-        // image.setAttribute('top', '20%');
-        // image.setAttribute('left', '20%');
-
-        // document.getElementById('body').setAttribute('margin', '0 auto');
-        // document.getElementById('body').appendChild(image);
-        // const listenerID = this.listenDown(this);
-    }
-
-    setup() {
-        //const canvas = document.querySelector('canvas');
-        // const canvas = document.getElementById('gameplay');
-        // this.context = canvas.getContext('2d');
-
-        // canvas.width = window.innerWidth;
-        // canvas.height = window.innerHeight;
-
-        //спросить имя и дать бусты андрею и диме
-        //this.stats.name = prompt('Как вас зовут?')
-        //alert(this.stats.name)
-
-        //вывести правила 
-        //...
-
-        this.player = new this.player(
-            this.gameContext, 
-            this.stats.gravity,
-            this.winLevel.bind(this),
-            playerImg
-        );
-
-        this.controller = new this.controller(this.gameContext);
-        //
-        //здесь должен быть вызов this.setupSprites()
-        this.sprites = [this.player.getSprite()];
-
-        this.listenDown(this.player);
-        this.listenUp(this.player);
-
-        //this.start();
-
-        //=======
-        // this.context2 = canvas.getContext('2d');
-        // const emg = new Image();
-        // emg.src = startImage;
-        // this.context2.drawImage(startImage, window.innerWidth, window.innerHeight)
-    }
-
-    start() {
-        // это уже последний или еще нет?
         this.startNewLevel();
     }
 
     startNewLevel() {
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+
+        this.player.begin();
+        this.contextManager.showGameContext();
         this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
         const platforms = PlatformMap[this.stats.lvl].map(element => {
@@ -150,35 +174,49 @@ export default class Game {
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
     }
 
-    winLevel() {
-        // поздравления
-        // ...
+    changeImg(name) {
 
-        // плюс уровень
-        this.stats.lvl = this.stats.lvl + 1;
-        console.log('level', this.stats.lvl)
+        let img = new Image();
 
-        // повторить сначала
-        this.start();
+        switch(name) {
+            case 'intro0':
+                img.src = intro0;
+                break;
+            case 'intro1':
+                img.src = intro1;
+                break;
+            case 'intro2':
+                img.src = intro2;
+                break;
+            case 'intro4':
+                img.src = intro4;
+                break;
+            case 'intro6':
+                img.src = intro6;
+                break;
+            case 'intro7':
+                img.src = intro7;
+                break;   
+            case 'bugs':
+                img.src = bugs;
+                break;
+            case 'timeout':
+                img.src = timeout;
+                break;
+            case 'nevergiveup':
+                img.src = nevergiveup;
+                break;
+            case 'winlevel':
+                img.src = winlevel;
+                break;   
+            case 'wingame':
+                img.src = wingame;
+                break;
+            default:
+                img.src = intro0;
+        }
+
+        return img;
     }
 
-    winGame() {
-        // финальные поздравления
-        // конец
-    }
-
-    lose() {
-        // предложить попробовать еще раз
-
-        // если да
-        // повторить сначала
-        this.start();
-
-        // если нет
-        // утешение)
-    }
-
-    setupSprites(){
-        //вынести логику по спрайтам
-    }
 }

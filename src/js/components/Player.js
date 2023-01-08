@@ -111,4 +111,10 @@ export default class Player {
         return this.sprite.get();
     }
 
+    begin(){
+        this.position.x = 100
+        this.position.y = 100
+        this.velocity.y = 0;
+    }
+
 }

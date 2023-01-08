@@ -86,6 +86,149 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/intro/bugs.jpg":
+/*!********************************!*\
+  !*** ./src/img/intro/bugs.jpg ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "a58b32ae36ab93e87c491c327a44acbd.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/intro1.jpg":
+/*!**********************************!*\
+  !*** ./src/img/intro/intro1.jpg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "3f6d0a6d65f84b5055c09fd5f46fab51.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/intro2.jpg":
+/*!**********************************!*\
+  !*** ./src/img/intro/intro2.jpg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "c201e1a24a03d654799ca2fa21482f06.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/intro3.jpg":
+/*!**********************************!*\
+  !*** ./src/img/intro/intro3.jpg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "909c4e3ab10cd202cdff8c579564f037.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/intro5.jpg":
+/*!**********************************!*\
+  !*** ./src/img/intro/intro5.jpg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "3f7e550bf527ef79c9f62f8aed3b121c.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/intro6.jpg":
+/*!**********************************!*\
+  !*** ./src/img/intro/intro6.jpg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "67f5ecedb48c0be5370848b17c4c745a.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/intro7.jpg":
+/*!**********************************!*\
+  !*** ./src/img/intro/intro7.jpg ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "1fef0561948f630376c3098a80527e59.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/nevergiveup.jpg":
+/*!***************************************!*\
+  !*** ./src/img/intro/nevergiveup.jpg ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "d2e901d97d4b214bb43bffaf79e7cd19.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/timeout.jpg":
+/*!***********************************!*\
+  !*** ./src/img/intro/timeout.jpg ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2181fad9028d3f87bfb83111195a4f7c.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/wingame.jpg":
+/*!***********************************!*\
+  !*** ./src/img/intro/wingame.jpg ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "01585ba7f81753b8d5c9d854e0defd33.jpg");
+
+/***/ }),
+
+/***/ "./src/img/intro/winlevel.jpg":
+/*!************************************!*\
+  !*** ./src/img/intro/winlevel.jpg ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "0329abc04609b758174b756c319e8217.jpg");
+
+/***/ }),
+
 /***/ "./src/img/player/normalPlayer.png":
 /*!*****************************************!*\
   !*** ./src/img/player/normalPlayer.png ***!
@@ -190,7 +333,7 @@ var ContextManager = /*#__PURE__*/function () {
         this.managerNode.width = window.innerWidth;
         this.managerNode.height = window.innerHeight;
         this.managerNode.setAttribute('style', 'z-index:0; position:absolute;');
-        this.managerContext.fillStyle = "red";
+        this.managerContext.fillStyle = "yellow";
         this.managerContext.fillRect(0, 0, this.managerNode.width, this.managerNode.height);
         this.activeContext = this.managerContext;
       } else {
@@ -293,6 +436,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 /* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
+/* harmony import */ var _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/intro1.jpg */ "./src/img/intro/intro1.jpg");
+/* harmony import */ var _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/intro/intro2.jpg */ "./src/img/intro/intro2.jpg");
+/* harmony import */ var _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../img/intro/intro3.jpg */ "./src/img/intro/intro3.jpg");
+/* harmony import */ var _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../img/intro/intro5.jpg */ "./src/img/intro/intro5.jpg");
+/* harmony import */ var _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../img/intro/intro6.jpg */ "./src/img/intro/intro6.jpg");
+/* harmony import */ var _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/intro/intro7.jpg */ "./src/img/intro/intro7.jpg");
+/* harmony import */ var _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/intro/nevergiveup.jpg */ "./src/img/intro/nevergiveup.jpg");
+/* harmony import */ var _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/timeout.jpg */ "./src/img/intro/timeout.jpg");
+/* harmony import */ var _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/intro/wingame.jpg */ "./src/img/intro/wingame.jpg");
+/* harmony import */ var _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/intro/winlevel.jpg */ "./src/img/intro/winlevel.jpg");
+/* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -302,55 +456,27 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+// entities
+
+
+// maps
 
 
 
 
-var introData = {
-  0: {
-    context: false,
-    srcName: 'intro1'
-  },
-  1: {
-    context: false,
-    srcName: 'intro2',
-    input: true
-  },
-  2: {
-    context: false,
-    srcName: 'intro3'
-  },
-  3: {
-    context: true
-  },
-  4: {
-    context: false,
-    srcName: 'intro4'
-  },
-  5: {
-    context: true
-  },
-  6: {
-    context: false,
-    srcName: 'intro5'
-  },
-  7: {
-    context: false,
-    srcName: 'intro6'
-  },
-  8: {
-    context: true
-  },
-  9: {
-    context: true
-  },
-  10: {
-    context: true
-  },
-  11: {
-    context: true
-  }
-};
+// resources
+
+
+
+
+
+
+
+
+
+
+
+
 var Game = /*#__PURE__*/function () {
   function Game(player, controller, contextManager, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
@@ -359,101 +485,122 @@ var Game = /*#__PURE__*/function () {
     this.contextManager = contextManager;
     this.listenUp = listenerUp;
     this.listenDown = listenerDown;
-    this.gameContext = null;
     this.stats = {
       name: undefined,
       gravity: 0.5,
       lvl: 0
     };
-
-    //this.startIntroduction();
-    //this.setup();
-
-    this.test();
+    this.intro = true;
+    this.setup();
   }
   _createClass(Game, [{
-    key: "test",
-    value: function test() {
+    key: "setup",
+    value: function setup() {
       this.contextManager = new this.contextManager();
       this.gameContext = this.contextManager.getGameContext();
-      this.run();
+      this.managerContext = this.contextManager.getManagerContext();
+      this.listenUp(this, false, false);
+      this.startIntro();
     }
   }, {
-    key: "run",
-    value: function run() {
+    key: "levelup",
+    value: function levelup() {
+      this.stats.lvl = this.stats.lvl + 1;
+    }
+  }, {
+    key: "startIntro",
+    value: function startIntro() {
+      console.log('____', 'зашли в интро');
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].introDone) {
+        this.intro = false;
+        console.log('____', 'закончили интро');
+      }
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].input) {
+        //take name
+        console.log('____', 'зашли в инпут');
+      }
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName && this.intro) {
+        console.log('____', 'показываем интро');
+        this.showImg(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName);
+      } else {
+        if (this.player.gravity) {
+          console.log('____', 'начинаем уровень');
+          this.startNewLevel();
+        } else {
+          console.log('____', 'начинаем игру');
+          this.startGame();
+        }
+      }
+    }
+  }, {
+    key: "showImg",
+    value: function showImg(name) {
       var _this = this;
+      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+      this.contextManager.showManagerContext();
+      if (this.controller.currAnimId) {
+        this.controller.stop();
+        console.log('____', 'остановили движок');
+      }
+      var img = this.changeImg(name);
+      if (img.complete) {
+        this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
+      } else {
+        img.onload = function () {
+          _this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
+        };
+      }
+      this.managerContext.globalAlpha = 0.5;
+    }
+  }, {
+    key: "winLevel",
+    value: function winLevel() {
+      console.log('____', 'выиграли уровень');
+      this.showLevelResult();
+    }
+  }, {
+    key: "showLevelResult",
+    value: function showLevelResult() {
+      this.controller.stop();
+      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+      this.contextManager.showManagerContext();
+      if (this.player.awaited === this.player.activated) {
+        this.showImg('winlevel');
+        console.log('____', 'выиграли уровень - молдец');
+      } else {
+        this.showImg('nevergiveup');
+        console.log('____', 'выиграли уровень - не молдец');
+      }
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl + 1].finish) {
+        this.winGame();
+      }
+    }
+  }, {
+    key: "winGame",
+    value: function winGame() {
+      this.controller.stop();
+      this.showImg('wingame');
+      // удалить листенеры
+    }
+  }, {
+    key: "startGame",
+    value: function startGame() {
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
       this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
       this.controller = new this.controller(this.gameContext);
       this.sprites = [this.player.getSprite()];
       this.listenDown(this.player, false, false);
       this.listenUp(this.player, false, false);
-      this.contextManager.showGameContext();
-      this.stats.lvl = 3;
-      this.startNewLevel();
-      setTimeout(function () {
-        _this.listenDown(_this.player, false, true);
-        _this.listenUp(_this.player, false, true);
-      }, 5000);
-    }
-  }, {
-    key: "startIntroduction",
-    value: function startIntroduction() {
-
-      // const image = document.createElement('img');
-      // image.src  = startImage;
-      // image.setAttribute('width', '1280px');
-      // image.setAttribute('height', '720px');
-      // image.setAttribute('position', 'absolute');
-      // image.setAttribute('top', '20%');
-      // image.setAttribute('left', '20%');
-
-      // document.getElementById('body').setAttribute('margin', '0 auto');
-      // document.getElementById('body').appendChild(image);
-      // const listenerID = this.listenDown(this);
-    }
-  }, {
-    key: "setup",
-    value: function setup() {
-      //const canvas = document.querySelector('canvas');
-      // const canvas = document.getElementById('gameplay');
-      // this.context = canvas.getContext('2d');
-
-      // canvas.width = window.innerWidth;
-      // canvas.height = window.innerHeight;
-
-      //спросить имя и дать бусты андрею и диме
-      //this.stats.name = prompt('Как вас зовут?')
-      //alert(this.stats.name)
-
-      //вывести правила 
-      //...
-
-      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
-      this.controller = new this.controller(this.gameContext);
-      //
-      //здесь должен быть вызов this.setupSprites()
-      this.sprites = [this.player.getSprite()];
-      this.listenDown(this.player);
-      this.listenUp(this.player);
-
-      //this.start();
-
-      //=======
-      // this.context2 = canvas.getContext('2d');
-      // const emg = new Image();
-      // emg.src = startImage;
-      // this.context2.drawImage(startImage, window.innerWidth, window.innerHeight)
-    }
-  }, {
-    key: "start",
-    value: function start() {
-      // это уже последний или еще нет?
       this.startNewLevel();
     }
   }, {
     key: "startNewLevel",
     value: function startNewLevel() {
       var _this2 = this;
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+      this.player.begin();
+      this.contextManager.showGameContext();
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this2.gameContext, element.x, element.y, element.name);
@@ -461,40 +608,47 @@ var Game = /*#__PURE__*/function () {
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
-    key: "winLevel",
-    value: function winLevel() {
-      // поздравления
-      // ...
-
-      // плюс уровень
-      this.stats.lvl = this.stats.lvl + 1;
-      console.log('level', this.stats.lvl);
-
-      // повторить сначала
-      this.start();
-    }
-  }, {
-    key: "winGame",
-    value: function winGame() {
-      // финальные поздравления
-      // конец
-    }
-  }, {
-    key: "lose",
-    value: function lose() {
-      // предложить попробовать еще раз
-
-      // если да
-      // повторить сначала
-      this.start();
-
-      // если нет
-      // утешение)
-    }
-  }, {
-    key: "setupSprites",
-    value: function setupSprites() {
-      //вынести логику по спрайтам
+    key: "changeImg",
+    value: function changeImg(name) {
+      var img = new Image();
+      switch (name) {
+        case 'intro0':
+          img.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
+          break;
+        case 'intro1':
+          img.src = _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_4__["default"];
+          break;
+        case 'intro2':
+          img.src = _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_5__["default"];
+          break;
+        case 'intro4':
+          img.src = _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_6__["default"];
+          break;
+        case 'intro6':
+          img.src = _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_7__["default"];
+          break;
+        case 'intro7':
+          img.src = _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
+          break;
+        case 'bugs':
+          img.src = _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_13__["default"];
+          break;
+        case 'timeout':
+          img.src = _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_10__["default"];
+          break;
+        case 'nevergiveup':
+          img.src = _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_9__["default"];
+          break;
+        case 'winlevel':
+          img.src = _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_12__["default"];
+          break;
+        case 'wingame':
+          img.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_11__["default"];
+          break;
+        default:
+          img.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
+      }
+      return img;
     }
   }]);
   return Game;
@@ -694,6 +848,13 @@ var Player = /*#__PURE__*/function () {
     value: function getSprite() {
       return this.sprite.get();
     }
+  }, {
+    key: "begin",
+    value: function begin() {
+      this.position.x = 100;
+      this.position.y = 100;
+      this.velocity.y = 0;
+    }
   }]);
   return Player;
 }();
@@ -775,7 +936,7 @@ var Sprite = /*#__PURE__*/function () {
 /*!**************************************!*\
   !*** ./src/js/utils/levels/index.js ***!
   \**************************************/
-/*! exports provided: PlatformMap, EnemyMap, BoosterMap, ConditionMap */
+/*! exports provided: PlatformMap, EnemyMap, BoosterMap, ConditionMap, introData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -784,6 +945,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnemyMap", function() { return EnemyMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConditionMap", function() { return ConditionMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "introData", function() { return introData; });
 var PlatformMap = {
   3: [{
     x: 200,
@@ -847,7 +1009,39 @@ var BoosterMap = {
 var ConditionMap = {
   3: 3,
   5: 10,
-  8: 20
+  8: 20,
+  9: 3
+};
+var introData = {
+  0: {
+    srcName: 'intro0'
+  },
+  1: {
+    srcName: 'intro1',
+    input: true
+  },
+  2: {
+    srcName: 'intro2'
+  },
+  3: {},
+  4: {
+    srcName: 'intro4'
+  },
+  5: {},
+  6: {
+    srcName: 'intro6'
+  },
+  7: {
+    srcName: 'intro7'
+  },
+  8: {
+    introDone: true
+  },
+  9: {},
+  10: {
+    finish: true
+  },
+  11: {}
 };
 
 /***/ }),
@@ -864,8 +1058,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyDown", function() { return addListenersKeyDown; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyUp", function() { return addListenersKeyUp; });
 function addListenersKeyDown(obj, once, kill) {
-  function check(_ref) {
+  var check = function check(_ref) {
     var code = _ref.code;
+    //function check({ code }) {       
     switch (code) {
       case 'ArrowUp':
       case 'KeyW':
@@ -877,32 +1072,28 @@ function addListenersKeyDown(obj, once, kill) {
         break;
       case 'ArrowDown':
       case 'KeyS':
-        console.log('DOWN');
         break;
       case 'ArrowLeft':
       case 'KeyA':
         obj.keys ? obj.keys.left.pressed = true : null;
         break;
       case 'Space':
-        console.log('JUMP');
         break;
       case 'Enter':
-        console.log('EEEEEEEEEEESSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTT');
         break;
       default:
-        console.log(code);
     }
-  }
+  };
   if (!kill && once) {
-    console.log('на один раз');
+    //console.log('на один раз')
     window.addEventListener('keydown', check, {
       once: true
     });
   } else if (!kill && !once) {
-    console.log('на много раз');
+    //console.log('на много раз')
     window.addEventListener('keydown', check);
   } else if (kill) {
-    console.log('убрано :)');
+    //console.log('убрано :)')
     window.removeEventListener('keydown', check);
   }
 }
@@ -912,7 +1103,6 @@ function addListenersKeyUp(obj, once, kill) {
     switch (code) {
       case 'ArrowUp':
       case 'KeyW':
-        console.log('UP');
         break;
       case 'ArrowRight':
       case 'KeyD':
@@ -920,29 +1110,34 @@ function addListenersKeyUp(obj, once, kill) {
         break;
       case 'ArrowDown':
       case 'KeyS':
-        console.log('DOWN');
         break;
       case 'ArrowLeft':
       case 'KeyA':
         obj.keys ? obj.keys.left.pressed = false : null;
         break;
       case 'Space':
-        console.log('JUMP');
+        if (obj.contextManager) {
+          console.log('_______1', obj.stats.lvl);
+          if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro) {
+            obj.levelup();
+            obj.startIntro();
+          } else if (!obj.intro) {
+            obj.levelup();
+            obj.startNewLevel();
+          }
+          console.log('_______2', obj.stats.lvl);
+        }
         break;
       default:
-        console.log(code);
     }
   }
   if (!kill && once) {
-    console.log('на один раз');
     window.addEventListener('keyup', check, {
       once: true
     });
   } else if (!kill && !once) {
-    console.log('на много раз');
     window.addEventListener('keyup', check);
   } else if (kill) {
-    console.log('убрано :)');
     window.removeEventListener('keyup', check);
   }
 }

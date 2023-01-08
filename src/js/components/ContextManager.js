@@ -28,7 +28,7 @@ export default class ContextManager {
             this.managerNode.width = window.innerWidth;
             this.managerNode.height = window.innerHeight;
             this.managerNode.setAttribute('style', 'z-index:0; position:absolute;');
-            this.managerContext.fillStyle = "red";
+            this.managerContext.fillStyle = "yellow";
             this.managerContext.fillRect(0, 0, this.managerNode.width, this.managerNode.height);
 
             this.activeContext = this.managerContext;
