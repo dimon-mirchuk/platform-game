@@ -9,26 +9,12 @@ import { introData } from "../utils/levels";
 // resources
 import playerImg from "../../img/player/normalPlayer.png";
 
-import intro0 from "../../img/intro/intro1.jpg";
-import intro1 from "../../img/intro/intro2.jpg";
-import intro2 from "../../img/intro/intro3.jpg";
-import intro4 from "../../img/intro/intro5.jpg";
-import intro6 from "../../img/intro/intro6.jpg";
-import intro7 from "../../img/intro/intro7.jpg";
-
-import nevergiveup from "../../img/intro/nevergiveup.jpg";
-import timeout from "../../img/intro/timeout.jpg";
-import wingame from "../../img/intro/wingame.jpg";
-import winlevel from "../../img/intro/winlevel.jpg";
-import bugs from "../../img/intro/bugs.jpg";
-
-
-
 export default class Game {
-    constructor ( player, controller, contextManager, listenerUp, listenerDown ) {
+    constructor ( player, controller, contextManager, imageManager, listenerUp, listenerDown ) {
         this.player = player;
         this.controller = controller;
         this.contextManager = contextManager;
+        this.imageManager = imageManager;
         this.listenUp = listenerUp;
         this.listenDown = listenerDown;
 
@@ -47,6 +33,7 @@ export default class Game {
         this.contextManager = new this.contextManager();
         this.gameContext = this.contextManager.getGameContext();
         this.managerContext = this.contextManager.getManagerContext();
+        this.imageManager = new this.imageManager(this.managerContext);
 
         this.listenUp(this, false, false);
 
@@ -75,7 +62,7 @@ export default class Game {
 
         if (introData[this.stats.lvl].srcName && this.intro) {
             console.log('____', 'показываем интро')
-            this.showImg(introData[this.stats.lvl].srcName);
+            this.showImage(introData[this.stats.lvl].srcName);
         } else {
 
             if (this.player.gravity) {
@@ -88,7 +75,7 @@ export default class Game {
         }
     }
 
-    showImg(name) {
+    showImage(name) {
         this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
         this.contextManager.showManagerContext();
 
@@ -97,16 +84,7 @@ export default class Game {
             console.log('____', 'остановили движок')
         }
 
-        const img = this.changeImg(name);
-        
-        if (img.complete) {
-            this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight)
-        } else {
-            img.onload = () => {
-                this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight)
-            }
-        }
-        this.managerContext.globalAlpha = 0.5
+        this.imageManager.showImage(name);
     }
 
     winLevel() {
@@ -120,11 +98,11 @@ export default class Game {
         this.contextManager.showManagerContext();
 
         if (this.player.awaited === this.player.activated) {
-            this.showImg('winlevel')
+            this.showImage('winlevel')
             console.log('____', 'выиграли уровень - молдец')
         }
         else {
-            this.showImg('nevergiveup')
+            this.showImage('nevergiveup')
             console.log('____', 'выиграли уровень - не молдец')
         }
 
@@ -136,7 +114,7 @@ export default class Game {
 
     winGame() {
         this.controller.stop();
-        this.showImg('wingame');
+        this.showImage('wingame');
         // удалить листенеры
     }
 
@@ -172,51 +150,6 @@ export default class Game {
         });
 
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
-    }
-
-    changeImg(name) {
-
-        let img = new Image();
-
-        switch(name) {
-            case 'intro0':
-                img.src = intro0;
-                break;
-            case 'intro1':
-                img.src = intro1;
-                break;
-            case 'intro2':
-                img.src = intro2;
-                break;
-            case 'intro4':
-                img.src = intro4;
-                break;
-            case 'intro6':
-                img.src = intro6;
-                break;
-            case 'intro7':
-                img.src = intro7;
-                break;   
-            case 'bugs':
-                img.src = bugs;
-                break;
-            case 'timeout':
-                img.src = timeout;
-                break;
-            case 'nevergiveup':
-                img.src = nevergiveup;
-                break;
-            case 'winlevel':
-                img.src = winlevel;
-                break;   
-            case 'wingame':
-                img.src = wingame;
-                break;
-            default:
-                img.src = intro0;
-        }
-
-        return img;
     }
 
 }

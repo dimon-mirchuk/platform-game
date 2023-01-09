@@ -281,14 +281,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Player */ "./src/js/components/Player.js");
 /* harmony import */ var _components_Controller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Controller */ "./src/js/components/Controller.js");
 /* harmony import */ var _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ContextManager */ "./src/js/components/ContextManager.js");
-/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
+/* harmony import */ var _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ImageManager */ "./src/js/components/ImageManager.js");
+/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
 
 
 
 
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_4__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_4__["addListenersKeyDown"]);
+
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_5__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_5__["addListenersKeyDown"]);
 
 /***/ }),
 
@@ -436,17 +438,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 /* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
-/* harmony import */ var _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/intro1.jpg */ "./src/img/intro/intro1.jpg");
-/* harmony import */ var _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/intro/intro2.jpg */ "./src/img/intro/intro2.jpg");
-/* harmony import */ var _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../img/intro/intro3.jpg */ "./src/img/intro/intro3.jpg");
-/* harmony import */ var _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../img/intro/intro5.jpg */ "./src/img/intro/intro5.jpg");
-/* harmony import */ var _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../img/intro/intro6.jpg */ "./src/img/intro/intro6.jpg");
-/* harmony import */ var _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/intro/intro7.jpg */ "./src/img/intro/intro7.jpg");
-/* harmony import */ var _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/intro/nevergiveup.jpg */ "./src/img/intro/nevergiveup.jpg");
-/* harmony import */ var _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/timeout.jpg */ "./src/img/intro/timeout.jpg");
-/* harmony import */ var _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/intro/wingame.jpg */ "./src/img/intro/wingame.jpg");
-/* harmony import */ var _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/intro/winlevel.jpg */ "./src/img/intro/winlevel.jpg");
-/* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -466,23 +457,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 // resources
 
-
-
-
-
-
-
-
-
-
-
-
 var Game = /*#__PURE__*/function () {
-  function Game(player, controller, contextManager, listenerUp, listenerDown) {
+  function Game(player, controller, contextManager, imageManager, listenerUp, listenerDown) {
     _classCallCheck(this, Game);
     this.player = player;
     this.controller = controller;
     this.contextManager = contextManager;
+    this.imageManager = imageManager;
     this.listenUp = listenerUp;
     this.listenDown = listenerDown;
     this.stats = {
@@ -499,6 +480,7 @@ var Game = /*#__PURE__*/function () {
       this.contextManager = new this.contextManager();
       this.gameContext = this.contextManager.getGameContext();
       this.managerContext = this.contextManager.getManagerContext();
+      this.imageManager = new this.imageManager(this.managerContext);
       this.listenUp(this, false, false);
       this.startIntro();
     }
@@ -522,7 +504,7 @@ var Game = /*#__PURE__*/function () {
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName && this.intro) {
         console.log('____', 'показываем интро');
-        this.showImg(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName);
+        this.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName);
       } else {
         if (this.player.gravity) {
           console.log('____', 'начинаем уровень');
@@ -534,24 +516,15 @@ var Game = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "showImg",
-    value: function showImg(name) {
-      var _this = this;
+    key: "showImage",
+    value: function showImage(name) {
       this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
       this.contextManager.showManagerContext();
       if (this.controller.currAnimId) {
         this.controller.stop();
         console.log('____', 'остановили движок');
       }
-      var img = this.changeImg(name);
-      if (img.complete) {
-        this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
-      } else {
-        img.onload = function () {
-          _this.managerContext.drawImage(img, 0, 0, window.innerWidth, window.innerHeight);
-        };
-      }
-      this.managerContext.globalAlpha = 0.5;
+      this.imageManager.showImage(name);
     }
   }, {
     key: "winLevel",
@@ -566,10 +539,10 @@ var Game = /*#__PURE__*/function () {
       this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
       this.contextManager.showManagerContext();
       if (this.player.awaited === this.player.activated) {
-        this.showImg('winlevel');
+        this.showImage('winlevel');
         console.log('____', 'выиграли уровень - молдец');
       } else {
-        this.showImg('nevergiveup');
+        this.showImage('nevergiveup');
         console.log('____', 'выиграли уровень - не молдец');
       }
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl + 1].finish) {
@@ -580,7 +553,7 @@ var Game = /*#__PURE__*/function () {
     key: "winGame",
     value: function winGame() {
       this.controller.stop();
-      this.showImg('wingame');
+      this.showImage('wingame');
       // удалить листенеры
     }
   }, {
@@ -597,61 +570,122 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startNewLevel",
     value: function startNewLevel() {
-      var _this2 = this;
+      var _this = this;
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
       this.player.begin();
       this.contextManager.showGameContext();
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
-        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this2.gameContext, element.x, element.y, element.name);
+        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
       });
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
-  }, {
-    key: "changeImg",
-    value: function changeImg(name) {
-      var img = new Image();
-      switch (name) {
-        case 'intro0':
-          img.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
-          break;
-        case 'intro1':
-          img.src = _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_4__["default"];
-          break;
-        case 'intro2':
-          img.src = _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_5__["default"];
-          break;
-        case 'intro4':
-          img.src = _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_6__["default"];
-          break;
-        case 'intro6':
-          img.src = _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_7__["default"];
-          break;
-        case 'intro7':
-          img.src = _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
-          break;
-        case 'bugs':
-          img.src = _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_13__["default"];
-          break;
-        case 'timeout':
-          img.src = _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_10__["default"];
-          break;
-        case 'nevergiveup':
-          img.src = _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_9__["default"];
-          break;
-        case 'winlevel':
-          img.src = _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_12__["default"];
-          break;
-        case 'wingame':
-          img.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_11__["default"];
-          break;
-        default:
-          img.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
-      }
-      return img;
-    }
   }]);
   return Game;
+}();
+
+
+/***/ }),
+
+/***/ "./src/js/components/ImageManager.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/ImageManager.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ImageManager; });
+/* harmony import */ var _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/intro/intro1.jpg */ "./src/img/intro/intro1.jpg");
+/* harmony import */ var _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/intro/intro2.jpg */ "./src/img/intro/intro2.jpg");
+/* harmony import */ var _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/intro/intro3.jpg */ "./src/img/intro/intro3.jpg");
+/* harmony import */ var _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/intro5.jpg */ "./src/img/intro/intro5.jpg");
+/* harmony import */ var _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/intro/intro6.jpg */ "./src/img/intro/intro6.jpg");
+/* harmony import */ var _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../img/intro/intro7.jpg */ "./src/img/intro/intro7.jpg");
+/* harmony import */ var _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../img/intro/nevergiveup.jpg */ "./src/img/intro/nevergiveup.jpg");
+/* harmony import */ var _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../img/intro/timeout.jpg */ "./src/img/intro/timeout.jpg");
+/* harmony import */ var _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/intro/wingame.jpg */ "./src/img/intro/wingame.jpg");
+/* harmony import */ var _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/intro/winlevel.jpg */ "./src/img/intro/winlevel.jpg");
+/* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
+
+
+
+
+
+
+
+
+
+var ImageManager = /*#__PURE__*/function () {
+  function ImageManager(managerContext) {
+    _classCallCheck(this, ImageManager);
+    this.managerContext = managerContext;
+  }
+  _createClass(ImageManager, [{
+    key: "showImage",
+    value: function showImage(name) {
+      var _this = this;
+      var image = this.changeImage(name);
+      if (image.complete) {
+        this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);
+      } else {
+        image.onload = function () {
+          _this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);
+        };
+      }
+      this.managerContext.globalAlpha = 0.5;
+    }
+  }, {
+    key: "changeImage",
+    value: function changeImage(name) {
+      var image = new Image();
+      switch (name) {
+        case 'intro0':
+          image.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__["default"];
+          break;
+        case 'intro1':
+          image.src = _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_1__["default"];
+          break;
+        case 'intro2':
+          image.src = _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_2__["default"];
+          break;
+        case 'intro4':
+          image.src = _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
+          break;
+        case 'intro6':
+          image.src = _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_4__["default"];
+          break;
+        case 'intro7':
+          image.src = _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_5__["default"];
+          break;
+        case 'bugs':
+          image.src = _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__["default"];
+          break;
+        case 'timeout':
+          image.src = _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_7__["default"];
+          break;
+        case 'nevergiveup':
+          image.src = _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_6__["default"];
+          break;
+        case 'winlevel':
+          image.src = _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_9__["default"];
+          break;
+        case 'wingame':
+          image.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
+          break;
+        default:
+          image.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__["default"];
+      }
+      return image;
+    }
+  }]);
+  return ImageManager;
 }();
 
 
@@ -1117,7 +1151,7 @@ function addListenersKeyUp(obj, once, kill) {
         break;
       case 'Space':
         if (obj.contextManager) {
-          console.log('_______1', obj.stats.lvl);
+          console.log('_______', obj.stats.lvl);
           if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro) {
             obj.levelup();
             obj.startIntro();
@@ -1125,7 +1159,7 @@ function addListenersKeyUp(obj, once, kill) {
             obj.levelup();
             obj.startNewLevel();
           }
-          console.log('_______2', obj.stats.lvl);
+          console.log('_______', obj.stats.lvl);
         }
         break;
       default:
@@ -1141,93 +1175,6 @@ function addListenersKeyUp(obj, once, kill) {
     window.removeEventListener('keyup', check);
   }
 }
-
-// export function addListenersKeyDown(obj, once, kill){
-//     addEventListener('keydown', ({ code }) => {      
-//         switch(code) {
-//             case 'ArrowUp':
-//             case 'KeyW':
-
-//                 obj.jump ? 
-//                 obj.jump() 
-//                 : null;
-
-//                 break;
-//             case 'ArrowRight':
-//             case 'KeyD':
-
-//                 obj.keys ? 
-//                 obj.keys.right.pressed = true 
-//                 : null;
-
-//                 break;
-//             case 'ArrowDown':
-//             case 'KeyS':
-
-//                 console.log('DOWN');
-
-//                 break;
-//             case 'ArrowLeft':
-//             case 'KeyA':
-
-//                 obj.keys ? 
-//                 obj.keys.left.pressed = true
-//                 : null;
-
-//                 break;
-//             case 'Space':
-//                 console.log('JUMP');
-//                 break;
-//             case 'Enter':
-//                 console.log('EEEEEEEEEEESSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTT');
-//                 break;
-//             default:
-//                 console.log(code);
-//         }
-//     })
-
-//     console.log(id)
-// }
-
-// export function addListenersKeyUp(obj){
-//     addEventListener('keyup', ({ code }) => {      
-//         switch(code) {
-//             case 'ArrowUp':
-//             case 'KeyW':
-
-//                 console.log('UP');
-
-//                 break;
-//             case 'ArrowRight':
-//             case 'KeyD':
-
-//                 obj.keys ? 
-//                 obj.keys.right.pressed = false 
-//                 : null;
-
-//                 break;
-//             case 'ArrowDown':
-//             case 'KeyS':
-
-//                 console.log('DOWN');
-
-//                 break;
-//             case 'ArrowLeft':
-//             case 'KeyA':
-
-//                 obj.keys ? 
-//                 obj.keys.left.pressed = false
-//                 : null;
-
-//                 break;
-//             case 'Space':
-//                 console.log('JUMP');
-//                 break;
-//             default:
-//                 console.log(code);
-//         }
-//     })
-// }
 
 /***/ })
 
