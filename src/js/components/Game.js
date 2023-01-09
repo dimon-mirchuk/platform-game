@@ -25,6 +25,7 @@ export default class Game {
         }
 
         this.intro = true;
+        this.input = false;
 
         this.setup();
     }
@@ -46,30 +47,31 @@ export default class Game {
 
     startIntro() {
 
-        console.log('____', 'зашли в интро')
+        //console.log('STAGE:', 'зашли в интро')
 
         if (introData[this.stats.lvl].introDone) {
             this.intro = false;
-            console.log('____', 'закончили интро')
+            //console.log('STAGE:', 'закончили интро')
         } 
 
         if (introData[this.stats.lvl].input) {
             //take name
-            console.log('____', 'зашли в инпут')
+            //console.log('STAGE:', 'зашли в инпут')
+            // 00 this.getName();
         } 
 
         this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
 
         if (introData[this.stats.lvl].srcName && this.intro) {
-            console.log('____', 'показываем интро')
+            //console.log('STAGE:', 'показываем интро')
             this.showImage(introData[this.stats.lvl].srcName);
         } else {
 
             if (this.player.gravity) {
-                console.log('____', 'начинаем уровень')
+                //console.log('STAGE:', 'начинаем уровень')
                 this.startNewLevel();
             } else {
-                console.log('____', 'начинаем игру')
+                //console.log('STAGE:', 'начинаем игру')
                 this.startGame();
             }
         }
@@ -81,14 +83,14 @@ export default class Game {
 
         if (this.controller.currAnimId) {
             this.controller.stop();
-            console.log('____', 'остановили движок')
+            //console.log('STAGE:', 'остановили движок')
         }
 
         this.imageManager.showImage(name);
     }
 
     winLevel() {
-        console.log('____', 'выиграли уровень')
+        //console.log('STAGE:', 'выиграли уровень')
         this.showLevelResult();
     }
 
@@ -99,11 +101,11 @@ export default class Game {
 
         if (this.player.awaited === this.player.activated) {
             this.showImage('winlevel')
-            console.log('____', 'выиграли уровень - молдец')
+            //console.log('STAGE:', 'выиграли уровень - молдец')
         }
         else {
             this.showImage('nevergiveup')
-            console.log('____', 'выиграли уровень - не молдец')
+            //console.log('STAGE:', 'выиграли уровень - не молдец')
         }
 
         if (introData[this.stats.lvl+1].finish) {
@@ -150,6 +152,64 @@ export default class Game {
         });
 
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
+    }
+
+    getName() {
+        this.input = true;
+        
+        const body = document.getElementById('body');
+
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.setAttribute('style', 'position:absolute; width:100vw; height:100vh; display:flex;');
+        wrapperDiv.setAttribute('id', 'wrapperDiv');
+        body.appendChild(wrapperDiv);
+        
+        const conteinerDiv = document.createElement('div');
+        conteinerDiv.setAttribute('style', 'width:300px; height:300px; background:black; z-index: 5;')
+        wrapperDiv.appendChild(conteinerDiv);
+
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text')
+        conteinerDiv.appendChild(input);
+        input.focus();
+    }
+
+    // isName(smt) {
+    //     if (smt) {
+
+    //     }
+    // }
+
+    setName() {
+        const inputElement = document.querySelector('input');
+
+        if(inputElement.value && inputElement.value !== '') {
+            this.stats.name = inputElement.value;
+            console.log(this.stats.name);
+            console.log('!!!!')
+            //this.input = false;
+            //document.getElementById('wrapperDiv').remove();
+            //this.levelup();
+
+        } else {
+            inputElement.setAttribute('style', 'border: 2px solid red')
+        }
+
+        //console.log('name:', )
+
+        //document.querySelector('input').setAttribute('style', 'border: 2px solid red')
+
+        // console.log("setName")
+        
+        // if (document.querySelector('input').value === '') {
+        //     console.log("input value ''")
+        //     document.querySelector('input').setAttribute('style', 'border: 2px solid red')
+            
+        // } else {
+        //     this.stats.name = document.querySelector('input').value
+        //     this.input = false;
+        //     console.log("input value", document.querySelector('input').value)
+        // }
     }
 
 }

@@ -70,15 +70,26 @@ export function addListenersKeyUp(obj, once, kill) {
                 break;
             case 'Space':
                 if (obj.contextManager){
-                    console.log('_______', obj.stats.lvl)
-                    if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro){
+                    console.log("listen to game")
+                    //console.log('_______', obj.stats.lvl)
+                    if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro && !obj.input) {
+                        console.log("management + intro + !input")
                         obj.levelup();
                         obj.startIntro();
-                    } else if (!obj.intro) {
+                    } else if (!obj.intro && !obj.input) {
+                        console.log("!intro + !input")
                         obj.levelup();
                         obj.startNewLevel();
-                    }
-                    console.log('_______', obj.stats.lvl)
+                    } 
+                    
+                    
+                    // 00 else if (obj.input) {
+                    // 00    console.log("input")
+                    // 00    obj.setName();
+                        //obj.levelup();
+                        //obj.startIntro();
+                    // 00}
+                    //console.log('_______', obj.stats.lvl)
                 }
                 break;
             default:

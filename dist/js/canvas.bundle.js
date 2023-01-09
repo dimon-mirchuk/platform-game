@@ -472,6 +472,7 @@ var Game = /*#__PURE__*/function () {
       lvl: 0
     };
     this.intro = true;
+    this.input = false;
     this.setup();
   }
   _createClass(Game, [{
@@ -492,25 +493,28 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startIntro",
     value: function startIntro() {
-      console.log('____', 'зашли в интро');
+      //console.log('STAGE:', 'зашли в интро')
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].introDone) {
         this.intro = false;
-        console.log('____', 'закончили интро');
+        //console.log('STAGE:', 'закончили интро')
       }
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].input) {
         //take name
-        console.log('____', 'зашли в инпут');
+        //console.log('STAGE:', 'зашли в инпут')
+        // 00 this.getName();
       }
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName && this.intro) {
-        console.log('____', 'показываем интро');
+        //console.log('STAGE:', 'показываем интро')
         this.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName);
       } else {
         if (this.player.gravity) {
-          console.log('____', 'начинаем уровень');
+          //console.log('STAGE:', 'начинаем уровень')
           this.startNewLevel();
         } else {
-          console.log('____', 'начинаем игру');
+          //console.log('STAGE:', 'начинаем игру')
           this.startGame();
         }
       }
@@ -522,14 +526,15 @@ var Game = /*#__PURE__*/function () {
       this.contextManager.showManagerContext();
       if (this.controller.currAnimId) {
         this.controller.stop();
-        console.log('____', 'остановили движок');
+        //console.log('STAGE:', 'остановили движок')
       }
+
       this.imageManager.showImage(name);
     }
   }, {
     key: "winLevel",
     value: function winLevel() {
-      console.log('____', 'выиграли уровень');
+      //console.log('STAGE:', 'выиграли уровень')
       this.showLevelResult();
     }
   }, {
@@ -540,11 +545,12 @@ var Game = /*#__PURE__*/function () {
       this.contextManager.showManagerContext();
       if (this.player.awaited === this.player.activated) {
         this.showImage('winlevel');
-        console.log('____', 'выиграли уровень - молдец');
+        //console.log('STAGE:', 'выиграли уровень - молдец')
       } else {
         this.showImage('nevergiveup');
-        console.log('____', 'выиграли уровень - не молдец');
+        //console.log('STAGE:', 'выиграли уровень - не молдец')
       }
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl + 1].finish) {
         this.winGame();
       }
@@ -579,6 +585,60 @@ var Game = /*#__PURE__*/function () {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
       });
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
+    }
+  }, {
+    key: "getName",
+    value: function getName() {
+      this.input = true;
+      var body = document.getElementById('body');
+      var wrapperDiv = document.createElement('div');
+      wrapperDiv.setAttribute('style', 'position:absolute; width:100vw; height:100vh; display:flex;');
+      wrapperDiv.setAttribute('id', 'wrapperDiv');
+      body.appendChild(wrapperDiv);
+      var conteinerDiv = document.createElement('div');
+      conteinerDiv.setAttribute('style', 'width:300px; height:300px; background:black; z-index: 5;');
+      wrapperDiv.appendChild(conteinerDiv);
+      var input = document.createElement('input');
+      input.setAttribute('type', 'text');
+      conteinerDiv.appendChild(input);
+      input.focus();
+    }
+
+    // isName(smt) {
+    //     if (smt) {
+
+    //     }
+    // }
+  }, {
+    key: "setName",
+    value: function setName() {
+      var inputElement = document.querySelector('input');
+      if (inputElement.value && inputElement.value !== '') {
+        this.stats.name = inputElement.value;
+        console.log(this.stats.name);
+        console.log('!!!!');
+        //this.input = false;
+        //document.getElementById('wrapperDiv').remove();
+        //this.levelup();
+      } else {
+        inputElement.setAttribute('style', 'border: 2px solid red');
+      }
+
+      //console.log('name:', )
+
+      //document.querySelector('input').setAttribute('style', 'border: 2px solid red')
+
+      // console.log("setName")
+
+      // if (document.querySelector('input').value === '') {
+      //     console.log("input value ''")
+      //     document.querySelector('input').setAttribute('style', 'border: 2px solid red')
+
+      // } else {
+      //     this.stats.name = document.querySelector('input').value
+      //     this.input = false;
+      //     console.log("input value", document.querySelector('input').value)
+      // }
     }
   }]);
   return Game;
@@ -1151,16 +1211,27 @@ function addListenersKeyUp(obj, once, kill) {
         break;
       case 'Space':
         if (obj.contextManager) {
-          console.log('_______', obj.stats.lvl);
-          if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro) {
+          console.log("listen to game");
+          //console.log('_______', obj.stats.lvl)
+          if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro && !obj.input) {
+            console.log("management + intro + !input");
             obj.levelup();
             obj.startIntro();
-          } else if (!obj.intro) {
+          } else if (!obj.intro && !obj.input) {
+            console.log("!intro + !input");
             obj.levelup();
             obj.startNewLevel();
           }
-          console.log('_______', obj.stats.lvl);
+
+          // 00 else if (obj.input) {
+          // 00    console.log("input")
+          // 00    obj.setName();
+          //obj.levelup();
+          //obj.startIntro();
+          // 00}
+          //console.log('_______', obj.stats.lvl)
         }
+
         break;
       default:
     }
