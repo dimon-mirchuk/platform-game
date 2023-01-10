@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Player {
-    constructor(context, gravity, winCallback, url) {
+    constructor(context, gravity, winCallback, img) {
         this.position = {
             x: 100,
             y: 100,
@@ -31,16 +31,15 @@ export default class Player {
         this.gravity = gravity;
 
         this.winCallback = winCallback;
-        this.spriteUrl = url;
-
+        this.spriteImg = img;
+        console.log(this.spriteUrl)
         this.start();
     }
 
     start() {
-        const img = new Image();
-        img.src = this.spriteUrl;
-
-        this.sprite = new Sprite(this.context, img, 8, 4, 240, 240, this.position.x, this.position.y, 240);
+        console.log(this.spriteImg)
+        console.log(typeof this.spriteImg)
+        this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
     update() {
@@ -112,6 +111,11 @@ export default class Player {
     }
 
     begin(){
+        this.stop();
+
+        this.keys.left.pressed = false;
+        this.keys.right.pressed = false;
+        
         this.position.x = 100
         this.position.y = 100
         this.velocity.y = 0;

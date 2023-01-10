@@ -7,16 +7,14 @@ import { ConditionMap } from "../utils/levels";
 import { introData } from "../utils/levels";
 
 // resources
-import playerImg from "../../img/player/normalPlayer.png";
 
 export default class Game {
-    constructor ( player, controller, contextManager, imageManager, listenerUp, listenerDown ) {
+    constructor ( player, controller, contextManager, imageManager, eventManager ) {
         this.player = player;
         this.controller = controller;
         this.contextManager = contextManager;
         this.imageManager = imageManager;
-        this.listenUp = listenerUp;
-        this.listenDown = listenerDown;
+        this.eventManager = eventManager;
 
         this.stats = {
             name: undefined,
@@ -35,8 +33,9 @@ export default class Game {
         this.gameContext = this.contextManager.getGameContext();
         this.managerContext = this.contextManager.getManagerContext();
         this.imageManager = new this.imageManager(this.managerContext);
+        this.eventManager = new this.eventManager();
 
-        this.listenUp(this, false, false);
+        this.setShowTime();
 
         this.startIntro();
     }
@@ -45,7 +44,39 @@ export default class Game {
         this.stats.lvl = this.stats.lvl + 1;
     }
 
+    setShowTime() {
+        console.log('___setShowTime___')
+
+        // глушим движок
+        if (this.controller.currAnimId) this.controller.stop();
+        // удалить старые листенеры 
+        this.eventManager.removeListener();
+        // отчистить все контексты
+        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+        // переключить на менежера
+        this.contextManager.showManagerContext();
+        // повесить один листенер
+        this.eventManager.addListener(this, 'keyup');
+    }
+
+    setPlayTime() {
+        console.log('___setPlayTime___')
+
+        // удалить старые листенеры 
+        this.eventManager.removeListener();
+        // отчистить все контексты
+        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+        // переключить на игру
+        this.contextManager.showGameContext();
+        // повесить листенеры
+        this.eventManager.addListener(this.player, 'keyup');
+    }
+
     startIntro() {
+
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
 
         //console.log('STAGE:', 'зашли в интро')
 
@@ -57,14 +88,12 @@ export default class Game {
         if (introData[this.stats.lvl].input) {
             //take name
             //console.log('STAGE:', 'зашли в инпут')
-            // 00 this.getName();
+            this.getName();
         } 
-
-        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
 
         if (introData[this.stats.lvl].srcName && this.intro) {
             //console.log('STAGE:', 'показываем интро')
-            this.showImage(introData[this.stats.lvl].srcName);
+            this.imageManager.showImage(introData[this.stats.lvl].srcName);
         } else {
 
             if (this.player.gravity) {
@@ -77,34 +106,20 @@ export default class Game {
         }
     }
 
-    showImage(name) {
-        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
-        this.contextManager.showManagerContext();
-
-        if (this.controller.currAnimId) {
-            this.controller.stop();
-            //console.log('STAGE:', 'остановили движок')
-        }
-
-        this.imageManager.showImage(name);
-    }
-
     winLevel() {
         //console.log('STAGE:', 'выиграли уровень')
         this.showLevelResult();
     }
 
     showLevelResult() {
-        this.controller.stop();
-        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
-        this.contextManager.showManagerContext();
+        this.setShowTime();
 
         if (this.player.awaited === this.player.activated) {
-            this.showImage('winlevel')
+            this.imageManager.showImage('winlevel')
             //console.log('STAGE:', 'выиграли уровень - молдец')
         }
         else {
-            this.showImage('nevergiveup')
+            this.imageManager.showImage('nevergiveup')
             //console.log('STAGE:', 'выиграли уровень - не молдец')
         }
 
@@ -115,36 +130,34 @@ export default class Game {
     }
 
     winGame() {
-        this.controller.stop();
-        this.showImage('wingame');
+        this.setShowTime();
+        this.imageManager.showImage('wingame');
+
         // удалить листенеры
+        this.eventManager.removeListener();
     }
 
     startGame() {
-        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
 
         this.player = new this.player(
             this.gameContext, 
             this.stats.gravity,
             this.winLevel.bind(this),
-            playerImg
+            //playerImg
+            this.setPlayerSkin(this.stats.name)
         );
 
         this.controller = new this.controller(this.gameContext);
 
         this.sprites = [this.player.getSprite()];
 
-        this.listenDown(this.player, false, false);
-        this.listenUp(this.player, false, false);
-
         this.startNewLevel();
     }
 
     startNewLevel() {
-        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+        this.setPlayTime();
 
         this.player.begin();
-        this.contextManager.showGameContext();
         this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
         const platforms = PlatformMap[this.stats.lvl].map(element => {
@@ -174,42 +187,35 @@ export default class Game {
         input.focus();
     }
 
-    // isName(smt) {
-    //     if (smt) {
-
-    //     }
-    // }
-
     setName() {
         const inputElement = document.querySelector('input');
 
-        if(inputElement.value && inputElement.value !== '') {
-            this.stats.name = inputElement.value;
-            console.log(this.stats.name);
-            console.log('!!!!')
-            //this.input = false;
-            //document.getElementById('wrapperDiv').remove();
-            //this.levelup();
-
-        } else {
+        if (inputElement.value.trim().length) {
+            this.stats.name = inputElement.value.trim();
+            //this.setPlayerStats
+            this.input = false;
+            document.getElementById('wrapperDiv').remove();
+            this.levelup();
+            this.startIntro();
+        } 
+        else {
             inputElement.setAttribute('style', 'border: 2px solid red')
         }
+    }
 
-        //console.log('name:', )
-
-        //document.querySelector('input').setAttribute('style', 'border: 2px solid red')
-
-        // console.log("setName")
-        
-        // if (document.querySelector('input').value === '') {
-        //     console.log("input value ''")
-        //     document.querySelector('input').setAttribute('style', 'border: 2px solid red')
-            
-        // } else {
-        //     this.stats.name = document.querySelector('input').value
-        //     this.input = false;
-        //     console.log("input value", document.querySelector('input').value)
-        // }
+    setPlayerSkin(name) {
+        switch(name) {
+            case 'Андрей':
+                return this.imageManager.changeImage('Андрей')
+            case 'Дима':
+            case 'Дмитрий':
+            case 'Димас':
+            case 'Димон':
+            case 'Димочка':
+                return this.imageManager.changeImage('Дима')
+            default:
+                return this.imageManager.changeImage('Имя')
+        }
     }
 
 }

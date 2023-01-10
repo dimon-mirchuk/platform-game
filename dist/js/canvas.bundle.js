@@ -229,6 +229,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/img/player/dimaPlayer.png":
+/*!***************************************!*\
+  !*** ./src/img/player/dimaPlayer.png ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "605f0d1d6ac512148bf2c227af9193a5.png");
+
+/***/ }),
+
 /***/ "./src/img/player/normalPlayer.png":
 /*!*****************************************!*\
   !*** ./src/img/player/normalPlayer.png ***!
@@ -282,15 +295,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Controller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Controller */ "./src/js/components/Controller.js");
 /* harmony import */ var _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ContextManager */ "./src/js/components/ContextManager.js");
 /* harmony import */ var _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ImageManager */ "./src/js/components/ImageManager.js");
-/* harmony import */ var _utils_listeners__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/listeners */ "./src/js/utils/listeners/index.js");
+/* harmony import */ var _components_EventManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EventManager */ "./src/js/components/EventManager.js");
 
 
 
 
 
 
-
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _utils_listeners__WEBPACK_IMPORTED_MODULE_5__["addListenersKeyUp"], _utils_listeners__WEBPACK_IMPORTED_MODULE_5__["addListenersKeyDown"]);
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 
@@ -425,6 +437,118 @@ var Controller = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/js/components/EventManager.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/EventManager.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EventManager; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var EventManager = /*#__PURE__*/function () {
+  function EventManager() {
+    _classCallCheck(this, EventManager);
+    this.object = null;
+    this.event = null;
+    this.time = null;
+    this.functionUp = null;
+    this.functionDown = null;
+  }
+  _createClass(EventManager, [{
+    key: "addListener",
+    value: function addListener(obj, event) {
+      this.object = obj;
+      this.time = this.object.keys ? 'playtime' : 'showtime';
+      if (this.time === 'showtime') {
+        this.event = event;
+        this.functionUp = this.checkerUp.bind(this);
+        addEventListener(this.event, this.functionUp);
+        console.log('___EventManager___', 'listener added:', this.time, this.event);
+      } else if (this.time === 'playtime') {
+        this.event = {
+          0: 'keyup',
+          1: 'keydown'
+        };
+        this.functionUp = this.checkerUp.bind(this);
+        this.functionDown = this.checkerDown.bind(this);
+        addEventListener(this.event[0], this.functionUp);
+        addEventListener(this.event[1], this.functionDown);
+        console.log('___EventManager___', 'listenerS added:', this.time, this.event);
+      }
+    }
+  }, {
+    key: "removeListener",
+    value: function removeListener() {
+      if (this.time === 'showtime') {
+        removeEventListener(this.event, this.functionUp);
+        console.log('___EventManager___', 'listener removed');
+      } else if (this.time === 'playtime') {
+        removeEventListener(this.event[0], this.functionUp);
+        removeEventListener(this.event[1], this.functionDown);
+        console.log('___EventManager___', 'listenerS removed');
+      }
+    }
+  }, {
+    key: "checkerDown",
+    value: function checkerDown(_ref) {
+      var code = _ref.code;
+      switch (code) {
+        case 'ArrowUp':
+        case 'KeyW':
+          if (this.time === 'playtime') this.object.jump();
+          break;
+        case 'ArrowRight':
+        case 'KeyD':
+          if (this.time === 'playtime') this.object.keys.right.pressed = true;
+          break;
+        case 'ArrowLeft':
+        case 'KeyA':
+          if (this.time === 'playtime') this.object.keys.left.pressed = true;
+          break;
+        default:
+      }
+    }
+  }, {
+    key: "checkerUp",
+    value: function checkerUp(_ref2) {
+      var code = _ref2.code;
+      switch (code) {
+        case 'ArrowRight':
+        case 'KeyD':
+          if (this.time === 'playtime') this.object.keys.right.pressed = false;
+          break;
+        case 'ArrowLeft':
+        case 'KeyA':
+          if (this.time === 'playtime') this.object.keys.left.pressed = false;
+          break;
+        case 'Space':
+          if (this.time === 'showtime') {
+            if (this.object.intro && !this.object.input) {
+              this.object.levelup();
+              this.object.startIntro();
+            } else if (!this.object.intro && !this.object.input) {
+              this.object.levelup();
+              this.object.startNewLevel();
+            } else if (this.object.input) {
+              this.object.setName();
+            }
+          }
+          break;
+        default:
+      }
+    }
+  }]);
+  return EventManager;
+}();
+
+
+/***/ }),
+
 /***/ "./src/js/components/Game.js":
 /*!***********************************!*\
   !*** ./src/js/components/Game.js ***!
@@ -437,7 +561,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
-/* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -456,16 +579,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 // resources
-
 var Game = /*#__PURE__*/function () {
-  function Game(player, controller, contextManager, imageManager, listenerUp, listenerDown) {
+  function Game(player, controller, contextManager, imageManager, eventManager) {
     _classCallCheck(this, Game);
     this.player = player;
     this.controller = controller;
     this.contextManager = contextManager;
     this.imageManager = imageManager;
-    this.listenUp = listenerUp;
-    this.listenDown = listenerDown;
+    this.eventManager = eventManager;
     this.stats = {
       name: undefined,
       gravity: 0.5,
@@ -482,7 +603,8 @@ var Game = /*#__PURE__*/function () {
       this.gameContext = this.contextManager.getGameContext();
       this.managerContext = this.contextManager.getManagerContext();
       this.imageManager = new this.imageManager(this.managerContext);
-      this.listenUp(this, false, false);
+      this.eventManager = new this.eventManager();
+      this.setShowTime();
       this.startIntro();
     }
   }, {
@@ -491,8 +613,42 @@ var Game = /*#__PURE__*/function () {
       this.stats.lvl = this.stats.lvl + 1;
     }
   }, {
+    key: "setShowTime",
+    value: function setShowTime() {
+      console.log('___setShowTime___');
+
+      // глушим движок
+      if (this.controller.currAnimId) this.controller.stop();
+      // удалить старые листенеры 
+      this.eventManager.removeListener();
+      // отчистить все контексты
+      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+      // переключить на менежера
+      this.contextManager.showManagerContext();
+      // повесить один листенер
+      this.eventManager.addListener(this, 'keyup');
+    }
+  }, {
+    key: "setPlayTime",
+    value: function setPlayTime() {
+      console.log('___setPlayTime___');
+
+      // удалить старые листенеры 
+      this.eventManager.removeListener();
+      // отчистить все контексты
+      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+      // переключить на игру
+      this.contextManager.showGameContext();
+      // повесить листенеры
+      this.eventManager.addListener(this.player, 'keyup');
+    }
+  }, {
     key: "startIntro",
     value: function startIntro() {
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+
       //console.log('STAGE:', 'зашли в интро')
 
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].introDone) {
@@ -503,12 +659,11 @@ var Game = /*#__PURE__*/function () {
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].input) {
         //take name
         //console.log('STAGE:', 'зашли в инпут')
-        // 00 this.getName();
+        this.getName();
       }
-      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName && this.intro) {
         //console.log('STAGE:', 'показываем интро')
-        this.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName);
+        this.imageManager.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName);
       } else {
         if (this.player.gravity) {
           //console.log('STAGE:', 'начинаем уровень')
@@ -520,18 +675,6 @@ var Game = /*#__PURE__*/function () {
       }
     }
   }, {
-    key: "showImage",
-    value: function showImage(name) {
-      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
-      this.contextManager.showManagerContext();
-      if (this.controller.currAnimId) {
-        this.controller.stop();
-        //console.log('STAGE:', 'остановили движок')
-      }
-
-      this.imageManager.showImage(name);
-    }
-  }, {
     key: "winLevel",
     value: function winLevel() {
       //console.log('STAGE:', 'выиграли уровень')
@@ -540,14 +683,12 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "showLevelResult",
     value: function showLevelResult() {
-      this.controller.stop();
-      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
-      this.contextManager.showManagerContext();
+      this.setShowTime();
       if (this.player.awaited === this.player.activated) {
-        this.showImage('winlevel');
+        this.imageManager.showImage('winlevel');
         //console.log('STAGE:', 'выиграли уровень - молдец')
       } else {
-        this.showImage('nevergiveup');
+        this.imageManager.showImage('nevergiveup');
         //console.log('STAGE:', 'выиграли уровень - не молдец')
       }
 
@@ -558,28 +699,28 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "winGame",
     value: function winGame() {
-      this.controller.stop();
-      this.showImage('wingame');
+      this.setShowTime();
+      this.imageManager.showImage('wingame');
+
       // удалить листенеры
+      this.eventManager.removeListener();
     }
   }, {
     key: "startGame",
     value: function startGame() {
-      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
+      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this),
+      //playerImg
+      this.setPlayerSkin(this.stats.name));
       this.controller = new this.controller(this.gameContext);
       this.sprites = [this.player.getSprite()];
-      this.listenDown(this.player, false, false);
-      this.listenUp(this.player, false, false);
       this.startNewLevel();
     }
   }, {
     key: "startNewLevel",
     value: function startNewLevel() {
       var _this = this;
-      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+      this.setPlayTime();
       this.player.begin();
-      this.contextManager.showGameContext();
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
@@ -603,42 +744,36 @@ var Game = /*#__PURE__*/function () {
       conteinerDiv.appendChild(input);
       input.focus();
     }
-
-    // isName(smt) {
-    //     if (smt) {
-
-    //     }
-    // }
   }, {
     key: "setName",
     value: function setName() {
       var inputElement = document.querySelector('input');
-      if (inputElement.value && inputElement.value !== '') {
-        this.stats.name = inputElement.value;
-        console.log(this.stats.name);
-        console.log('!!!!');
-        //this.input = false;
-        //document.getElementById('wrapperDiv').remove();
-        //this.levelup();
+      if (inputElement.value.trim().length) {
+        this.stats.name = inputElement.value.trim();
+        //this.setPlayerStats
+        this.input = false;
+        document.getElementById('wrapperDiv').remove();
+        this.levelup();
+        this.startIntro();
       } else {
         inputElement.setAttribute('style', 'border: 2px solid red');
       }
-
-      //console.log('name:', )
-
-      //document.querySelector('input').setAttribute('style', 'border: 2px solid red')
-
-      // console.log("setName")
-
-      // if (document.querySelector('input').value === '') {
-      //     console.log("input value ''")
-      //     document.querySelector('input').setAttribute('style', 'border: 2px solid red')
-
-      // } else {
-      //     this.stats.name = document.querySelector('input').value
-      //     this.input = false;
-      //     console.log("input value", document.querySelector('input').value)
-      // }
+    }
+  }, {
+    key: "setPlayerSkin",
+    value: function setPlayerSkin(name) {
+      switch (name) {
+        case 'Андрей':
+          return this.imageManager.changeImage('Андрей');
+        case 'Дима':
+        case 'Дмитрий':
+        case 'Димас':
+        case 'Димон':
+        case 'Димочка':
+          return this.imageManager.changeImage('Дима');
+        default:
+          return this.imageManager.changeImage('Имя');
+      }
     }
   }]);
   return Game;
@@ -668,9 +803,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/intro/wingame.jpg */ "./src/img/intro/wingame.jpg");
 /* harmony import */ var _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/intro/winlevel.jpg */ "./src/img/intro/winlevel.jpg");
 /* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
+/* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
+/* harmony import */ var _img_player_dimaPlayer_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/player/dimaPlayer.png */ "./src/img/player/dimaPlayer.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
 
 
 
@@ -705,6 +844,7 @@ var ImageManager = /*#__PURE__*/function () {
     key: "changeImage",
     value: function changeImage(name) {
       var image = new Image();
+      console.log(name);
       switch (name) {
         case 'intro0':
           image.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__["default"];
@@ -739,8 +879,16 @@ var ImageManager = /*#__PURE__*/function () {
         case 'wingame':
           image.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
           break;
+        case 'Андрей':
+          image.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
+          break;
+        case 'Дима':
+          image.src = _img_player_dimaPlayer_png__WEBPACK_IMPORTED_MODULE_12__["default"];
+          break;
+        case 'Имя':
+          image.src = _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_11__["default"];
+          break;
         default:
-          image.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__["default"];
       }
       return image;
     }
@@ -836,12 +984,13 @@ var Platform = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Player; });
 /* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Player = /*#__PURE__*/function () {
-  function Player(context, gravity, winCallback, url) {
+  function Player(context, gravity, winCallback, img) {
     _classCallCheck(this, Player);
     this.position = {
       x: 100,
@@ -866,15 +1015,16 @@ var Player = /*#__PURE__*/function () {
     this.context = context;
     this.gravity = gravity;
     this.winCallback = winCallback;
-    this.spriteUrl = url;
+    this.spriteImg = img;
+    console.log(this.spriteUrl);
     this.start();
   }
   _createClass(Player, [{
     key: "start",
     value: function start() {
-      var img = new Image();
-      img.src = this.spriteUrl;
-      this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, img, 8, 4, 240, 240, this.position.x, this.position.y, 240);
+      console.log(this.spriteImg);
+      console.log(_typeof(this.spriteImg));
+      this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
   }, {
     key: "update",
@@ -945,6 +1095,9 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "begin",
     value: function begin() {
+      this.stop();
+      this.keys.left.pressed = false;
+      this.keys.right.pressed = false;
       this.position.x = 100;
       this.position.y = 100;
       this.velocity.y = 0;
@@ -1137,115 +1290,6 @@ var introData = {
   },
   11: {}
 };
-
-/***/ }),
-
-/***/ "./src/js/utils/listeners/index.js":
-/*!*****************************************!*\
-  !*** ./src/js/utils/listeners/index.js ***!
-  \*****************************************/
-/*! exports provided: addListenersKeyDown, addListenersKeyUp */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyDown", function() { return addListenersKeyDown; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addListenersKeyUp", function() { return addListenersKeyUp; });
-function addListenersKeyDown(obj, once, kill) {
-  var check = function check(_ref) {
-    var code = _ref.code;
-    //function check({ code }) {       
-    switch (code) {
-      case 'ArrowUp':
-      case 'KeyW':
-        obj.jump ? obj.jump() : null;
-        break;
-      case 'ArrowRight':
-      case 'KeyD':
-        obj.keys ? obj.keys.right.pressed = true : null;
-        break;
-      case 'ArrowDown':
-      case 'KeyS':
-        break;
-      case 'ArrowLeft':
-      case 'KeyA':
-        obj.keys ? obj.keys.left.pressed = true : null;
-        break;
-      case 'Space':
-        break;
-      case 'Enter':
-        break;
-      default:
-    }
-  };
-  if (!kill && once) {
-    //console.log('на один раз')
-    window.addEventListener('keydown', check, {
-      once: true
-    });
-  } else if (!kill && !once) {
-    //console.log('на много раз')
-    window.addEventListener('keydown', check);
-  } else if (kill) {
-    //console.log('убрано :)')
-    window.removeEventListener('keydown', check);
-  }
-}
-function addListenersKeyUp(obj, once, kill) {
-  function check(_ref2) {
-    var code = _ref2.code;
-    switch (code) {
-      case 'ArrowUp':
-      case 'KeyW':
-        break;
-      case 'ArrowRight':
-      case 'KeyD':
-        obj.keys ? obj.keys.right.pressed = false : null;
-        break;
-      case 'ArrowDown':
-      case 'KeyS':
-        break;
-      case 'ArrowLeft':
-      case 'KeyA':
-        obj.keys ? obj.keys.left.pressed = false : null;
-        break;
-      case 'Space':
-        if (obj.contextManager) {
-          console.log("listen to game");
-          //console.log('_______', obj.stats.lvl)
-          if (obj.contextManager.getActiveContext().canvas.id === 'management' && obj.intro && !obj.input) {
-            console.log("management + intro + !input");
-            obj.levelup();
-            obj.startIntro();
-          } else if (!obj.intro && !obj.input) {
-            console.log("!intro + !input");
-            obj.levelup();
-            obj.startNewLevel();
-          }
-
-          // 00 else if (obj.input) {
-          // 00    console.log("input")
-          // 00    obj.setName();
-          //obj.levelup();
-          //obj.startIntro();
-          // 00}
-          //console.log('_______', obj.stats.lvl)
-        }
-
-        break;
-      default:
-    }
-  }
-  if (!kill && once) {
-    window.addEventListener('keyup', check, {
-      once: true
-    });
-  } else if (!kill && !once) {
-    window.addEventListener('keyup', check);
-  } else if (kill) {
-    window.removeEventListener('keyup', check);
-  }
-}
 
 /***/ })
 

@@ -11,6 +11,9 @@ import wingame from "../../img/intro/wingame.jpg";
 import winlevel from "../../img/intro/winlevel.jpg";
 import bugs from "../../img/intro/bugs.jpg";
 
+import normalPlayer from "../../img/player/normalPlayer.png";
+import dimaPlayer from "../../img/player/dimaPlayer.png"
+
 export default class ImageManager {
     constructor ( managerContext ) {
         this.managerContext = managerContext;
@@ -33,6 +36,8 @@ export default class ImageManager {
     changeImage(name) {
 
         let image = new Image();
+
+        console.log(name)
 
         switch(name) {
             case 'intro0':
@@ -68,8 +73,16 @@ export default class ImageManager {
             case 'wingame':
                 image.src = wingame;
                 break;
+            case 'Андрей':
+                image.src = wingame;
+                break;
+            case 'Дима':
+                image.src = dimaPlayer;
+                break;
+            case 'Имя':
+                image.src = normalPlayer;
+                break;
             default:
-                image.src = intro0;
         }
 
         return image;
