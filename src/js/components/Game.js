@@ -9,8 +9,9 @@ import { introData } from "../utils/levels";
 // resources
 
 export default class Game {
-    constructor ( player, controller, contextManager, imageManager, eventManager ) {
+    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager ) {
         this.player = player;
+        this.playerCustomizer = playerCustom;
         this.controller = controller;
         this.contextManager = contextManager;
         this.imageManager = imageManager;
@@ -34,6 +35,7 @@ export default class Game {
         this.managerContext = this.contextManager.getManagerContext();
         this.imageManager = new this.imageManager(this.managerContext);
         this.eventManager = new this.eventManager();
+        this.playerCustomizer = new this.playerCustomizer(this.imageManager);
 
         this.setShowTime();
 
@@ -88,7 +90,11 @@ export default class Game {
         if (introData[this.stats.lvl].input) {
             //take name
             //console.log('STAGE:', 'зашли в инпут')
-            this.getName();
+
+
+            // 88 this.getName();
+            this.input = true;
+            this.playerCustomizer.getPlayerName();
         } 
 
         if (introData[this.stats.lvl].srcName && this.intro) {
@@ -143,8 +149,7 @@ export default class Game {
             this.gameContext, 
             this.stats.gravity,
             this.winLevel.bind(this),
-            //playerImg
-            this.setPlayerSkin(this.stats.name)
+            this.playerCustomizer.setPlayerSkin(this.stats.name)
         );
 
         this.controller = new this.controller(this.gameContext);
@@ -166,56 +171,11 @@ export default class Game {
 
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
     }
+    
+    setStats(name) {
+        this.input = false;
+        this.stats.name = name;
 
-    getName() {
-        this.input = true;
-        
-        const body = document.getElementById('body');
-
-        const wrapperDiv = document.createElement('div');
-        wrapperDiv.setAttribute('style', 'position:absolute; width:100vw; height:100vh; display:flex;');
-        wrapperDiv.setAttribute('id', 'wrapperDiv');
-        body.appendChild(wrapperDiv);
-        
-        const conteinerDiv = document.createElement('div');
-        conteinerDiv.setAttribute('style', 'width:300px; height:300px; background:black; z-index: 5;')
-        wrapperDiv.appendChild(conteinerDiv);
-
-        const input = document.createElement('input');
-        input.setAttribute('type', 'text')
-        conteinerDiv.appendChild(input);
-        input.focus();
-    }
-
-    setName() {
-        const inputElement = document.querySelector('input');
-
-        if (inputElement.value.trim().length) {
-            this.stats.name = inputElement.value.trim();
-            //this.setPlayerStats
-            this.input = false;
-            document.getElementById('wrapperDiv').remove();
-            this.levelup();
-            this.startIntro();
-        } 
-        else {
-            inputElement.setAttribute('style', 'border: 2px solid red')
-        }
-    }
-
-    setPlayerSkin(name) {
-        switch(name) {
-            case 'Андрей':
-                return this.imageManager.changeImage('Андрей')
-            case 'Дима':
-            case 'Дмитрий':
-            case 'Димас':
-            case 'Димон':
-            case 'Димочка':
-                return this.imageManager.changeImage('Дима')
-            default:
-                return this.imageManager.changeImage('Имя')
-        }
     }
 
 }

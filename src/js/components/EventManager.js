@@ -90,7 +90,11 @@ export default class EventManager {
                         this.object.startNewLevel();
                     } 
                     else if (this.object.input) {
-                        this.object.setName();
+                        this.object.playerCustomizer.setPlayerName(
+                            this.object.setStats.bind(this.object),
+                            this.object.levelup.bind(this.object),
+                            this.object.startIntro.bind(this.object),
+                        );
                     }      
                 }
                 break;

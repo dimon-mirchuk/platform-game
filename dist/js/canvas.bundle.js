@@ -296,13 +296,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ContextManager */ "./src/js/components/ContextManager.js");
 /* harmony import */ var _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ImageManager */ "./src/js/components/ImageManager.js");
 /* harmony import */ var _components_EventManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EventManager */ "./src/js/components/EventManager.js");
+/* harmony import */ var _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/PlayerCustomizer */ "./src/js/components/PlayerCustomizer.js");
 
 
 
 
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
 /***/ }),
 
@@ -535,7 +537,7 @@ var EventManager = /*#__PURE__*/function () {
               this.object.levelup();
               this.object.startNewLevel();
             } else if (this.object.input) {
-              this.object.setName();
+              this.object.playerCustomizer.setPlayerName(this.object.setStats.bind(this.object), this.object.levelup.bind(this.object), this.object.startIntro.bind(this.object));
             }
           }
           break;
@@ -580,9 +582,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 // resources
 var Game = /*#__PURE__*/function () {
-  function Game(player, controller, contextManager, imageManager, eventManager) {
+  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager) {
     _classCallCheck(this, Game);
     this.player = player;
+    this.playerCustomizer = playerCustom;
     this.controller = controller;
     this.contextManager = contextManager;
     this.imageManager = imageManager;
@@ -604,6 +607,7 @@ var Game = /*#__PURE__*/function () {
       this.managerContext = this.contextManager.getManagerContext();
       this.imageManager = new this.imageManager(this.managerContext);
       this.eventManager = new this.eventManager();
+      this.playerCustomizer = new this.playerCustomizer(this.imageManager);
       this.setShowTime();
       this.startIntro();
     }
@@ -659,7 +663,10 @@ var Game = /*#__PURE__*/function () {
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].input) {
         //take name
         //console.log('STAGE:', 'зашли в инпут')
-        this.getName();
+
+        // 88 this.getName();
+        this.input = true;
+        this.playerCustomizer.getPlayerName();
       }
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_1__["introData"][this.stats.lvl].srcName && this.intro) {
         //console.log('STAGE:', 'показываем интро')
@@ -708,9 +715,7 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startGame",
     value: function startGame() {
-      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this),
-      //playerImg
-      this.setPlayerSkin(this.stats.name));
+      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name));
       this.controller = new this.controller(this.gameContext);
       this.sprites = [this.player.getSprite()];
       this.startNewLevel();
@@ -728,52 +733,10 @@ var Game = /*#__PURE__*/function () {
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
-    key: "getName",
-    value: function getName() {
-      this.input = true;
-      var body = document.getElementById('body');
-      var wrapperDiv = document.createElement('div');
-      wrapperDiv.setAttribute('style', 'position:absolute; width:100vw; height:100vh; display:flex;');
-      wrapperDiv.setAttribute('id', 'wrapperDiv');
-      body.appendChild(wrapperDiv);
-      var conteinerDiv = document.createElement('div');
-      conteinerDiv.setAttribute('style', 'width:300px; height:300px; background:black; z-index: 5;');
-      wrapperDiv.appendChild(conteinerDiv);
-      var input = document.createElement('input');
-      input.setAttribute('type', 'text');
-      conteinerDiv.appendChild(input);
-      input.focus();
-    }
-  }, {
-    key: "setName",
-    value: function setName() {
-      var inputElement = document.querySelector('input');
-      if (inputElement.value.trim().length) {
-        this.stats.name = inputElement.value.trim();
-        //this.setPlayerStats
-        this.input = false;
-        document.getElementById('wrapperDiv').remove();
-        this.levelup();
-        this.startIntro();
-      } else {
-        inputElement.setAttribute('style', 'border: 2px solid red');
-      }
-    }
-  }, {
-    key: "setPlayerSkin",
-    value: function setPlayerSkin(name) {
-      switch (name) {
-        case 'Андрей':
-          return this.imageManager.changeImage('Андрей');
-        case 'Дима':
-        case 'Дмитрий':
-        case 'Димас':
-        case 'Димон':
-        case 'Димочка':
-          return this.imageManager.changeImage('Дима');
-        default:
-          return this.imageManager.changeImage('Имя');
-      }
+    key: "setStats",
+    value: function setStats(name) {
+      this.input = false;
+      this.stats.name = name;
     }
   }]);
   return Game;
@@ -1104,6 +1067,76 @@ var Player = /*#__PURE__*/function () {
     }
   }]);
   return Player;
+}();
+
+
+/***/ }),
+
+/***/ "./src/js/components/PlayerCustomizer.js":
+/*!***********************************************!*\
+  !*** ./src/js/components/PlayerCustomizer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlayerCustomizer; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var PlayerCustomizer = /*#__PURE__*/function () {
+  function PlayerCustomizer(imageManager) {
+    _classCallCheck(this, PlayerCustomizer);
+    this.imageManager = imageManager;
+  }
+  _createClass(PlayerCustomizer, [{
+    key: "getPlayerName",
+    value: function getPlayerName() {
+      var body = document.getElementById('body');
+      var wrapperDiv = document.createElement('div');
+      wrapperDiv.setAttribute('style', 'position:absolute; width:100vw; height:100vh; display:flex;');
+      wrapperDiv.setAttribute('id', 'wrapperDiv');
+      body.appendChild(wrapperDiv);
+      var conteinerDiv = document.createElement('div');
+      conteinerDiv.setAttribute('style', 'width:300px; height:300px; background:black; z-index: 5;');
+      wrapperDiv.appendChild(conteinerDiv);
+      var input = document.createElement('input');
+      input.setAttribute('type', 'text');
+      conteinerDiv.appendChild(input);
+      input.focus();
+    }
+  }, {
+    key: "setPlayerName",
+    value: function setPlayerName(setStats, levelup, startIntro) {
+      var inputElement = document.querySelector('input');
+      if (inputElement.value.trim().length) {
+        document.getElementById('wrapperDiv').remove();
+        setStats(inputElement.value.trim());
+        levelup();
+        startIntro();
+      } else {
+        inputElement.setAttribute('style', 'border: 2px solid red');
+      }
+    }
+  }, {
+    key: "setPlayerSkin",
+    value: function setPlayerSkin(name) {
+      switch (name) {
+        case 'Андрей':
+          return this.imageManager.changeImage('Андрей');
+        case 'Дима':
+        case 'Дмитрий':
+        case 'Димас':
+        case 'Димон':
+        case 'Димочка':
+          return this.imageManager.changeImage('Дима');
+        default:
+          return this.imageManager.changeImage('Имя');
+      }
+    }
+  }]);
+  return PlayerCustomizer;
 }();
 
 
