@@ -32,13 +32,11 @@ export default class Player {
 
         this.winCallback = winCallback;
         this.spriteImg = img;
-        console.log(this.spriteUrl)
+
         this.start();
     }
 
     start() {
-        console.log(this.spriteImg)
-        console.log(typeof this.spriteImg)
         this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
@@ -62,15 +60,38 @@ export default class Player {
     animate() {
         this.update();
 
-        console.log('________', this.position)
+        //console.log('________', this.position)
 
-        if (this.keys.left.pressed) {
+        if (this.keys.left.pressed && this.position.x > 300) {
             this.goLeft();
         }
-        else if (this.keys.right.pressed) {
+        else if (this.keys.left.pressed && this.position.x <= 300) {
+            this.stop();
+
+            if (this.keys.left.pressed) {
+                console.log(this.dependent)
+                this.dependent.forEach(element => {
+                    element.moveRight();
+                });
+            }
+        }
+        else if (this.keys.right.pressed && this.position.x < 800) {
             this.goRight();
         }
-        else this.stop();
+        else if (this.keys.right.pressed && this.position.x >= 800) {
+
+            this.stop();
+
+            if (this.keys.right.pressed) {
+                console.log(this.dependent)
+                this.dependent.forEach(element => {
+                    element.moveLeft();
+                });
+            }
+        }
+        else {
+            this.stop();
+        }
     }
 
     jump() {
@@ -83,19 +104,16 @@ export default class Player {
             setTimeout(() => {
                 this.jumping = false;
             }, 500);
-
         }
 
         this.activate();
     }
 
     doubleJump() {
-
         if (this.jumping) {
             this.velocity.y -= 10;
             this.jumping = false;
-        }
-        
+        }    
     }
 
     goLeft() {
@@ -133,9 +151,12 @@ export default class Player {
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;
         
-        this.position.x = 100
-        this.position.y = 100
+        this.position.x = 400
+        this.position.y = 400
         this.velocity.y = 0;
     }
 
+    setDependentEntities(args) {
+        this.dependent = args;
+    }
 }

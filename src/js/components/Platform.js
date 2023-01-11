@@ -48,4 +48,12 @@ export default class Platform {
                 this.image.src = tile1;
         }
     }
+
+    moveRight() {
+        this.position.x = this.position.x + 5;
+    } 
+
+    moveLeft() {
+        this.position.x = this.position.x - 5;
+    } 
 }

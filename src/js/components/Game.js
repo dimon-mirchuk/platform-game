@@ -169,6 +169,8 @@ export default class Game {
             return new Platform(this.gameContext, element.x, element.y, element.name)
         });
 
+        this.player.setDependentEntities(platforms);
+
         this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
     }
     

@@ -732,6 +732,7 @@ var Game = /*#__PURE__*/function () {
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
       });
+      this.player.setDependentEntities(platforms);
       this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
@@ -931,6 +932,16 @@ var Platform = /*#__PURE__*/function () {
           this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
       }
     }
+  }, {
+    key: "moveRight",
+    value: function moveRight() {
+      this.position.x = this.position.x + 5;
+    }
+  }, {
+    key: "moveLeft",
+    value: function moveLeft() {
+      this.position.x = this.position.x - 5;
+    }
   }]);
   return Platform;
 }();
@@ -949,7 +960,6 @@ var Platform = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Player; });
 /* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -981,14 +991,11 @@ var Player = /*#__PURE__*/function () {
     this.gravity = gravity;
     this.winCallback = winCallback;
     this.spriteImg = img;
-    console.log(this.spriteUrl);
     this.start();
   }
   _createClass(Player, [{
     key: "start",
     value: function start() {
-      console.log(this.spriteImg);
-      console.log(_typeof(this.spriteImg));
       this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
   }, {
@@ -1008,12 +1015,32 @@ var Player = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       this.update();
-      console.log('________', this.position);
-      if (this.keys.left.pressed) {
+
+      //console.log('________', this.position)
+
+      if (this.keys.left.pressed && this.position.x > 300) {
         this.goLeft();
-      } else if (this.keys.right.pressed) {
+      } else if (this.keys.left.pressed && this.position.x <= 300) {
+        this.stop();
+        if (this.keys.left.pressed) {
+          console.log(this.dependent);
+          this.dependent.forEach(function (element) {
+            element.moveRight();
+          });
+        }
+      } else if (this.keys.right.pressed && this.position.x < 800) {
         this.goRight();
-      } else this.stop();
+      } else if (this.keys.right.pressed && this.position.x >= 800) {
+        this.stop();
+        if (this.keys.right.pressed) {
+          console.log(this.dependent);
+          this.dependent.forEach(function (element) {
+            element.moveLeft();
+          });
+        }
+      } else {
+        this.stop();
+      }
     }
   }, {
     key: "jump",
@@ -1077,9 +1104,14 @@ var Player = /*#__PURE__*/function () {
       this.stop();
       this.keys.left.pressed = false;
       this.keys.right.pressed = false;
-      this.position.x = 100;
-      this.position.y = 100;
+      this.position.x = 400;
+      this.position.y = 400;
       this.velocity.y = 0;
+    }
+  }, {
+    key: "setDependentEntities",
+    value: function setDependentEntities(args) {
+      this.dependent = args;
     }
   }]);
   return Player;
