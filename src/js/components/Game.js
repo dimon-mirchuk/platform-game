@@ -1,6 +1,7 @@
 // entities
 import Platform from "./Platform";
 
+
 // maps
 import { PlatformMap } from "../utils/levels";
 import { ConditionMap } from "../utils/levels";
@@ -9,13 +10,14 @@ import { introData } from "../utils/levels";
 // resources
 
 export default class Game {
-    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager ) {
+    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression ) {
         this.player = player;
         this.playerCustomizer = playerCustom;
         this.controller = controller;
         this.contextManager = contextManager;
         this.imageManager = imageManager;
         this.eventManager = eventManager;
+        this.depression = depression;
 
         this.stats = {
             name: undefined,
@@ -159,7 +161,14 @@ export default class Game {
 
         this.controller = new this.controller(this.gameContext);
 
-        this.sprites = [this.player.getSprite()];
+        this.depression = new this.depression(
+            this.gameContext, 
+            this.stats.gravity,
+            this.imageManager.changeImage('depression'),
+            this.loseLevel.bind(this),
+        )
+
+        this.sprites = [this.player.getSprite(), this.depression.getSprite()];
 
         this.startNewLevel();
     }
@@ -168,15 +177,16 @@ export default class Game {
         this.setPlayTime();
 
         this.player.begin();
+        this.depression.begin();
         this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
         const platforms = PlatformMap[this.stats.lvl].map(element => {
             return new Platform(this.gameContext, element.x, element.y, element.name)
         });
 
-        this.player.setDependentEntities(platforms);
+        this.player.setDependentEntities([...platforms, this.depression]);
 
-        this.controller.animate([this.player, ...platforms, ...this.sprites], this.stats.lvl);
+        this.controller.animate([this.player, this.depression, ...platforms, ...this.sprites], this.stats.lvl);
     }
     
     setStats(name) {

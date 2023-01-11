@@ -49,11 +49,11 @@ export default class Platform {
         }
     }
 
-    moveRight() {
-        this.position.x = this.position.x + 5;
+    moveRight(v) {
+        this.position.x = this.position.x + v;
     } 
 
-    moveLeft() {
-        this.position.x = this.position.x - 5;
+    moveLeft(v) {
+        this.position.x = this.position.x - v;
     } 
 }

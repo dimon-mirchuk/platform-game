@@ -63,6 +63,8 @@ export default class Player {
 
         //console.log('________', this.position)
 
+        //console.log('!!!,', this.dependent, typeof this.dependent)
+
         if (this.keys.left.pressed && this.position.x > 799) {
             this.goLeft();
         }
@@ -70,9 +72,11 @@ export default class Player {
             this.stop();
 
             if (this.keys.left.pressed) {
-                console.log(this.dependent)
+                // 88 console.log(this.dependent)
                 this.dependent.forEach(element => {
-                    element.moveRight();
+                   // element.moveRight(this.velocity.x);
+                   //console.log(this.velocity)
+                   element.moveRight(5);
                 });
             }
         }
@@ -84,9 +88,10 @@ export default class Player {
             this.stop();
 
             if (this.keys.right.pressed) {
-                console.log(this.dependent)
+                // 88 console.log(this.dependent)
                 this.dependent.forEach(element => {
-                    element.moveLeft();
+                    //element.moveLeft(this.velocity.x);
+                    element.moveLeft(5);
                 });
             }
         }

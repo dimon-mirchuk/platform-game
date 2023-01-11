@@ -14,6 +14,8 @@ import bugs from "../../img/intro/bugs.jpg";
 import normalPlayer from "../../img/player/normalPlayer.png";
 import dimaPlayer from "../../img/player/dimaPlayer.png"
 
+import depression from "../../img/creatures/depression.png"
+
 export default class ImageManager {
     constructor ( managerContext ) {
         this.managerContext = managerContext;
@@ -81,6 +83,9 @@ export default class ImageManager {
                 break;
             case 'Имя':
                 image.src = normalPlayer;
+                break;
+            case 'depression':
+                image.src = depression;
                 break;
             default:
         }

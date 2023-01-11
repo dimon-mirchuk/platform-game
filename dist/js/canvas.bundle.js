@@ -86,6 +86,19 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/creatures/depression.png":
+/*!******************************************!*\
+  !*** ./src/img/creatures/depression.png ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2ecf4577b4ec810968719eece269de3d.png");
+
+/***/ }),
+
 /***/ "./src/img/intro/bugs.jpg":
 /*!********************************!*\
   !*** ./src/img/intro/bugs.jpg ***!
@@ -297,6 +310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ImageManager */ "./src/js/components/ImageManager.js");
 /* harmony import */ var _components_EventManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EventManager */ "./src/js/components/EventManager.js");
 /* harmony import */ var _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/PlayerCustomizer */ "./src/js/components/PlayerCustomizer.js");
+/* harmony import */ var _components_Depression__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Depression */ "./src/js/components/Depression.js");
 
 
 
@@ -304,7 +318,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"], _components_Depression__WEBPACK_IMPORTED_MODULE_7__["default"]);
 
 /***/ }),
 
@@ -434,6 +449,106 @@ var Controller = /*#__PURE__*/function () {
     }
   }]);
   return Controller;
+}();
+
+
+/***/ }),
+
+/***/ "./src/js/components/Depression.js":
+/*!*****************************************!*\
+  !*** ./src/js/components/Depression.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Depression; });
+/* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Depression = /*#__PURE__*/function () {
+  function Depression(context, gravity, img, loseCallback) {
+    _classCallCheck(this, Depression);
+    this.position = {
+      x: 100,
+      y: 100
+    };
+    this.width = 240;
+    this.height = 240;
+    this.context = context;
+    this.gravity = gravity;
+    this.spriteImg = img;
+    this.loseCallback = loseCallback;
+    this.velocity = {
+      x: 3,
+      y: 0
+    };
+    this.start();
+  }
+  _createClass(Depression, [{
+    key: "start",
+    value: function start() {
+      console.log('Есть Депрешн');
+      this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      this.sprite.update();
+      this.sprite.updatePosition(this.position.x, this.position.y);
+      this.position.y += this.velocity.y;
+      this.position.x = this.position.x + this.velocity.x;
+      console.log('depression апдейт', this.position.x);
+      if (this.position.y + this.height + this.velocity.y <= this.context.canvas.height) {
+        this.velocity.y += this.gravity;
+      } else {
+        this.velocity.y = 0;
+      }
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      this.update();
+    }
+  }, {
+    key: "getSprite",
+    value: function getSprite() {
+      return this.sprite.get();
+    }
+  }, {
+    key: "begin",
+    value: function begin() {
+      this.position.x = 100;
+      this.position.y = 100;
+      this.velocity.x = 3;
+
+      // СУПЕР ВАЖНО
+      // 3
+      // 5
+      // setInterval(()=>{ 
+      //     this.velocity.x = this.velocity.x + 1; 
+      // }, 3000)
+    }
+  }, {
+    key: "killHuman",
+    value: function killHuman() {
+      this.loseCallback();
+    }
+  }, {
+    key: "moveRight",
+    value: function moveRight(v) {
+      this.position.x = this.position.x + v;
+    }
+  }, {
+    key: "moveLeft",
+    value: function moveLeft(v) {
+      this.position.x = this.position.x - v;
+    }
+  }]);
+  return Depression;
 }();
 
 
@@ -584,7 +699,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 // resources
 var Game = /*#__PURE__*/function () {
-  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager) {
+  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager, depression) {
     _classCallCheck(this, Game);
     this.player = player;
     this.playerCustomizer = playerCustom;
@@ -592,6 +707,7 @@ var Game = /*#__PURE__*/function () {
     this.contextManager = contextManager;
     this.imageManager = imageManager;
     this.eventManager = eventManager;
+    this.depression = depression;
     this.stats = {
       name: undefined,
       gravity: 0.5,
@@ -724,7 +840,8 @@ var Game = /*#__PURE__*/function () {
     value: function startGame() {
       this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), this.loseLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name));
       this.controller = new this.controller(this.gameContext);
-      this.sprites = [this.player.getSprite()];
+      this.depression = new this.depression(this.gameContext, this.stats.gravity, this.imageManager.changeImage('depression'), this.loseLevel.bind(this));
+      this.sprites = [this.player.getSprite(), this.depression.getSprite()];
       this.startNewLevel();
     }
   }, {
@@ -733,12 +850,13 @@ var Game = /*#__PURE__*/function () {
       var _this = this;
       this.setPlayTime();
       this.player.begin();
+      this.depression.begin();
       this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_1__["ConditionMap"][this.stats.lvl]);
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_1__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
       });
-      this.player.setDependentEntities(platforms);
-      this.controller.animate([this.player].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
+      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression]));
+      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
     key: "setStats",
@@ -776,9 +894,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
 /* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
 /* harmony import */ var _img_player_dimaPlayer_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/player/dimaPlayer.png */ "./src/img/player/dimaPlayer.png");
+/* harmony import */ var _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/creatures/depression.png */ "./src/img/creatures/depression.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 
 
 
@@ -858,6 +978,9 @@ var ImageManager = /*#__PURE__*/function () {
           break;
         case 'Имя':
           image.src = _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_11__["default"];
+          break;
+        case 'depression':
+          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_13__["default"];
           break;
         default:
       }
@@ -939,13 +1062,13 @@ var Platform = /*#__PURE__*/function () {
     }
   }, {
     key: "moveRight",
-    value: function moveRight() {
-      this.position.x = this.position.x + 5;
+    value: function moveRight(v) {
+      this.position.x = this.position.x + v;
     }
   }, {
     key: "moveLeft",
-    value: function moveLeft() {
-      this.position.x = this.position.x - 5;
+    value: function moveLeft(v) {
+      this.position.x = this.position.x - v;
     }
   }]);
   return Platform;
@@ -1024,14 +1147,18 @@ var Player = /*#__PURE__*/function () {
 
       //console.log('________', this.position)
 
+      //console.log('!!!,', this.dependent, typeof this.dependent)
+
       if (this.keys.left.pressed && this.position.x > 799) {
         this.goLeft();
       } else if (this.keys.left.pressed && this.position.x <= 799) {
         this.stop();
         if (this.keys.left.pressed) {
-          console.log(this.dependent);
+          // 88 console.log(this.dependent)
           this.dependent.forEach(function (element) {
-            element.moveRight();
+            // element.moveRight(this.velocity.x);
+            //console.log(this.velocity)
+            element.moveRight(5);
           });
         }
       } else if (this.keys.right.pressed && this.position.x < 800) {
@@ -1039,9 +1166,10 @@ var Player = /*#__PURE__*/function () {
       } else if (this.keys.right.pressed && this.position.x >= 800) {
         this.stop();
         if (this.keys.right.pressed) {
-          console.log(this.dependent);
+          // 88 console.log(this.dependent)
           this.dependent.forEach(function (element) {
-            element.moveLeft();
+            //element.moveLeft(this.velocity.x);
+            element.moveLeft(5);
           });
         }
       } else {

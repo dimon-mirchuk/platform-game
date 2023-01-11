@@ -6,6 +6,8 @@ import ImageManager from "./components/ImageManager";
 import EventManager from "./components/EventManager";
 import PlayerCustomizer from "./components/PlayerCustomizer";
 
+import Depression from "./components/Depression";
+
 let currentGame = new Game (
     Player,
     PlayerCustomizer,
@@ -13,5 +15,6 @@ let currentGame = new Game (
     ContextManager,
     ImageManager,
     EventManager,
+    Depression,
 );
 
