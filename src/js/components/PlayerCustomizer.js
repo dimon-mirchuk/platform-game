@@ -1,6 +1,7 @@
 export default class PlayerCustomizer {
     constructor(imageManager) {
         this.imageManager = imageManager;
+        this.skinId = null;
     }
 
     getPlayerName() {
@@ -38,18 +39,33 @@ export default class PlayerCustomizer {
     }
 
     setPlayerSkin(name) {
-        switch(name) {
-            case 'Андрей':
+        const universalName = name.toLowerCase();
+        console.log(313131, universalName)
+        switch(universalName) {
+            case 'андрей':
+            case 'кобец':
+            case 'кобеза':
+            case 'kobezzza':
+                this.skinId = 'andreyPlayer'
                 return this.imageManager.changeImage('Андрей')
-            case 'Дима':
-            case 'Дмитрий':
-            case 'Димас':
-            case 'Димон':
-            case 'Димочка':
+            case 'дима':
+            case 'дмитрий':
+            case 'димас':
+            case 'димон':
+            case 'димочка':
+                
+                this.skinId = 'dimaPlayer'
+                console.log('!!!!!!!!!!!!!!!!', this.skinId)
                 return this.imageManager.changeImage('Дима')
             default:
+                this.skinId = 'normalPlayer'
                 return this.imageManager.changeImage('Имя')
         }
+    }
+
+    getSkinId() {
+        console.log('getSkinId', this.skinId)
+        return this.skinId;
     }
 
 }

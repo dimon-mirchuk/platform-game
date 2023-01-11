@@ -25,8 +25,6 @@ export default class Depression {
     }
 
     start() {
-
-        console.log('Есть Депрешн')
         this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
@@ -37,7 +35,7 @@ export default class Depression {
         this.position.y += this.velocity.y;
         this.position.x = this.position.x + this.velocity.x;
 
-        console.log('depression апдейт', this.position.x)
+        //console.log('depression апдейт', this.position.x)
 
         if (this.position.y + this.height + this.velocity.y <= 
             this.context.canvas.height) {

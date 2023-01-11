@@ -93,8 +93,6 @@ export default class Game {
             //take name
             //console.log('STAGE:', 'зашли в инпут')
 
-
-            // 88 this.getName();
             this.input = true;
             this.playerCustomizer.getPlayerName();
         } 
@@ -150,13 +148,16 @@ export default class Game {
     }
 
     startGame() {
+        console.log('START', this.stats)
 
         this.player = new this.player(
-            this.gameContext, 
+            this.gameContext,
+            this.imageManager,
             this.stats.gravity,
             this.winLevel.bind(this),
             this.loseLevel.bind(this),
-            this.playerCustomizer.setPlayerSkin(this.stats.name)
+            this.playerCustomizer.setPlayerSkin(this.stats.name),
+            this.playerCustomizer.getSkinId(),
         );
 
         this.controller = new this.controller(this.gameContext);
@@ -189,10 +190,12 @@ export default class Game {
         this.controller.animate([this.player, this.depression, ...platforms, ...this.sprites], this.stats.lvl);
     }
     
-    setStats(name) {
+    setStats(name) {    
         this.input = false;
         this.stats.name = name;
-
     }
 
 }
+
+
+

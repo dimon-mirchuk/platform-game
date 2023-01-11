@@ -242,23 +242,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/img/player/dimaPlayer.png":
-/*!***************************************!*\
-  !*** ./src/img/player/dimaPlayer.png ***!
-  \***************************************/
+/***/ "./src/img/player/dimaPlayerL.png":
+/*!****************************************!*\
+  !*** ./src/img/player/dimaPlayerL.png ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "605f0d1d6ac512148bf2c227af9193a5.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "674b1fdd21ace2b669f62db73df23cf9.png");
 
 /***/ }),
 
-/***/ "./src/img/player/normalPlayer.png":
-/*!*****************************************!*\
-  !*** ./src/img/player/normalPlayer.png ***!
-  \*****************************************/
+/***/ "./src/img/player/dimaPlayerR.png":
+/*!****************************************!*\
+  !*** ./src/img/player/dimaPlayerR.png ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "ccb5a89387071fe1dfb8f42b4f2f63c1.png");
+
+/***/ }),
+
+/***/ "./src/img/player/normalPlayerR.png":
+/*!******************************************!*\
+  !*** ./src/img/player/normalPlayerR.png ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -491,7 +504,6 @@ var Depression = /*#__PURE__*/function () {
   _createClass(Depression, [{
     key: "start",
     value: function start() {
-      console.log('Есть Депрешн');
       this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
   }, {
@@ -501,7 +513,9 @@ var Depression = /*#__PURE__*/function () {
       this.sprite.updatePosition(this.position.x, this.position.y);
       this.position.y += this.velocity.y;
       this.position.x = this.position.x + this.velocity.x;
-      console.log('depression апдейт', this.position.x);
+
+      //console.log('depression апдейт', this.position.x)
+
       if (this.position.y + this.height + this.velocity.y <= this.context.canvas.height) {
         this.velocity.y += this.gravity;
       } else {
@@ -782,7 +796,6 @@ var Game = /*#__PURE__*/function () {
         //take name
         //console.log('STAGE:', 'зашли в инпут')
 
-        // 88 this.getName();
         this.input = true;
         this.playerCustomizer.getPlayerName();
       }
@@ -838,7 +851,8 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startGame",
     value: function startGame() {
-      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), this.loseLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name));
+      console.log('START', this.stats);
+      this.player = new this.player(this.gameContext, this.imageManager, this.stats.gravity, this.winLevel.bind(this), this.loseLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name), this.playerCustomizer.getSkinId());
       this.controller = new this.controller(this.gameContext);
       this.depression = new this.depression(this.gameContext, this.stats.gravity, this.imageManager.changeImage('depression'), this.loseLevel.bind(this));
       this.sprites = [this.player.getSprite(), this.depression.getSprite()];
@@ -892,12 +906,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/intro/wingame.jpg */ "./src/img/intro/wingame.jpg");
 /* harmony import */ var _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/intro/winlevel.jpg */ "./src/img/intro/winlevel.jpg");
 /* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
-/* harmony import */ var _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/player/normalPlayer.png */ "./src/img/player/normalPlayer.png");
-/* harmony import */ var _img_player_dimaPlayer_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/player/dimaPlayer.png */ "./src/img/player/dimaPlayer.png");
-/* harmony import */ var _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/creatures/depression.png */ "./src/img/creatures/depression.png");
+/* harmony import */ var _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/player/normalPlayerR.png */ "./src/img/player/normalPlayerR.png");
+/* harmony import */ var _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/player/dimaPlayerR.png */ "./src/img/player/dimaPlayerR.png");
+/* harmony import */ var _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/player/dimaPlayerL.png */ "./src/img/player/dimaPlayerL.png");
+/* harmony import */ var _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/creatures/depression.png */ "./src/img/creatures/depression.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 
 
 
@@ -974,13 +990,17 @@ var ImageManager = /*#__PURE__*/function () {
           image.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
           break;
         case 'Дима':
-          image.src = _img_player_dimaPlayer_png__WEBPACK_IMPORTED_MODULE_12__["default"];
+        case 'dimaPlayerR':
+          image.src = _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_12__["default"];
+          break;
+        case 'dimaPlayerL':
+          image.src = _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_13__["default"];
           break;
         case 'Имя':
-          image.src = _img_player_normalPlayer_png__WEBPACK_IMPORTED_MODULE_11__["default"];
+          image.src = _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_11__["default"];
           break;
         case 'depression':
-          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_13__["default"];
+          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
           break;
         default:
       }
@@ -1093,7 +1113,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Player = /*#__PURE__*/function () {
-  function Player(context, gravity, winCallback, loseCallback, img) {
+  function Player(context, imageManager, gravity, winCallback, loseCallback, img, skinId) {
     _classCallCheck(this, Player);
     this.position = {
       x: 100,
@@ -1115,8 +1135,11 @@ var Player = /*#__PURE__*/function () {
     this.height = 240;
     this.awaited = 0;
     this.activated = 0;
+    this.velocityRatio = 5;
     this.context = context;
+    this.imageManager = imageManager;
     this.gravity = gravity;
+    this.skin = skinId;
     this.winCallback = winCallback;
     this.loseCallback = loseCallback;
     this.spriteImg = img;
@@ -1125,6 +1148,7 @@ var Player = /*#__PURE__*/function () {
   _createClass(Player, [{
     key: "start",
     value: function start() {
+      console.log('this.skin', this.skin);
       this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
   }, {
@@ -1143,10 +1167,10 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "animate",
     value: function animate() {
+      var _this = this;
       this.update();
 
       //console.log('________', this.position)
-
       //console.log('!!!,', this.dependent, typeof this.dependent)
 
       if (this.keys.left.pressed && this.position.x > 799) {
@@ -1157,8 +1181,7 @@ var Player = /*#__PURE__*/function () {
           // 88 console.log(this.dependent)
           this.dependent.forEach(function (element) {
             // element.moveRight(this.velocity.x);
-            //console.log(this.velocity)
-            element.moveRight(5);
+            element.moveRight(_this.velocityRatio);
           });
         }
       } else if (this.keys.right.pressed && this.position.x < 800) {
@@ -1169,7 +1192,7 @@ var Player = /*#__PURE__*/function () {
           // 88 console.log(this.dependent)
           this.dependent.forEach(function (element) {
             //element.moveLeft(this.velocity.x);
-            element.moveLeft(5);
+            element.moveLeft(_this.velocityRatio);
           });
         }
       } else {
@@ -1179,13 +1202,13 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "jump",
     value: function jump() {
-      var _this = this;
+      var _this2 = this;
       var jumpCondition = this.velocity.y === 0 && this.position.y + this.height + this.velocity.y >= this.context.canvas.height;
       if (jumpCondition) {
         this.jumping = true;
         this.velocity.y -= 15;
         setTimeout(function () {
-          _this.jumping = false;
+          _this2.jumping = false;
         }, 500);
       }
       this.activate();
@@ -1201,12 +1224,15 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "goLeft",
     value: function goLeft() {
-      this.velocity.x = -5;
+      this.velocity.x = -this.velocityRatio;
+      console.log('go left', "".concat(this.skin, "L"));
+      this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skin, "L")));
     }
   }, {
     key: "goRight",
     value: function goRight() {
-      this.velocity.x = 5;
+      this.velocity.x = this.velocityRatio;
+      this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skin, "R")));
     }
   }, {
     key: "stop",
@@ -1239,6 +1265,7 @@ var Player = /*#__PURE__*/function () {
       this.stop();
       this.keys.left.pressed = false;
       this.keys.right.pressed = false;
+      this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skin, "R")));
       this.position.x = 800;
       this.position.y = 100;
       this.velocity.y = 0;
@@ -1247,6 +1274,11 @@ var Player = /*#__PURE__*/function () {
     key: "setDependentEntities",
     value: function setDependentEntities(args) {
       this.dependent = args;
+    }
+  }, {
+    key: "setVelocityRatio",
+    value: function setVelocityRatio(x) {
+      this.velocityRatio = x;
     }
   }, {
     key: "die",
@@ -1277,6 +1309,7 @@ var PlayerCustomizer = /*#__PURE__*/function () {
   function PlayerCustomizer(imageManager) {
     _classCallCheck(this, PlayerCustomizer);
     this.imageManager = imageManager;
+    this.skinId = null;
   }
   _createClass(PlayerCustomizer, [{
     key: "getPlayerName",
@@ -1310,18 +1343,33 @@ var PlayerCustomizer = /*#__PURE__*/function () {
   }, {
     key: "setPlayerSkin",
     value: function setPlayerSkin(name) {
-      switch (name) {
-        case 'Андрей':
+      var universalName = name.toLowerCase();
+      console.log(313131, universalName);
+      switch (universalName) {
+        case 'андрей':
+        case 'кобец':
+        case 'кобеза':
+        case 'kobezzza':
+          this.skinId = 'andreyPlayer';
           return this.imageManager.changeImage('Андрей');
-        case 'Дима':
-        case 'Дмитрий':
-        case 'Димас':
-        case 'Димон':
-        case 'Димочка':
+        case 'дима':
+        case 'дмитрий':
+        case 'димас':
+        case 'димон':
+        case 'димочка':
+          this.skinId = 'dimaPlayer';
+          console.log('!!!!!!!!!!!!!!!!', this.skinId);
           return this.imageManager.changeImage('Дима');
         default:
+          this.skinId = 'normalPlayer';
           return this.imageManager.changeImage('Имя');
       }
+    }
+  }, {
+    key: "getSkinId",
+    value: function getSkinId() {
+      console.log('getSkinId', this.skinId);
+      return this.skinId;
     }
   }]);
   return PlayerCustomizer;

@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Player {
-    constructor(context, gravity, winCallback, loseCallback, img) {
+    constructor(context, imageManager, gravity, winCallback, loseCallback, img, skinId) {
         this.position = {
             x: 100,
             y: 100,
@@ -27,8 +27,12 @@ export default class Player {
         this.awaited = 0;
         this.activated = 0;
 
+        this.velocityRatio = 5;
+
         this.context = context;
+        this.imageManager = imageManager;
         this.gravity = gravity;
+        this.skin = skinId;
 
         this.winCallback = winCallback;
         this.loseCallback = loseCallback;
@@ -38,6 +42,7 @@ export default class Player {
     }
 
     start() {
+        console.log('this.skin', this.skin)
         this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
@@ -62,7 +67,6 @@ export default class Player {
         this.update();
 
         //console.log('________', this.position)
-
         //console.log('!!!,', this.dependent, typeof this.dependent)
 
         if (this.keys.left.pressed && this.position.x > 799) {
@@ -75,8 +79,7 @@ export default class Player {
                 // 88 console.log(this.dependent)
                 this.dependent.forEach(element => {
                    // element.moveRight(this.velocity.x);
-                   //console.log(this.velocity)
-                   element.moveRight(5);
+                   element.moveRight(this.velocityRatio);
                 });
             }
         }
@@ -91,7 +94,7 @@ export default class Player {
                 // 88 console.log(this.dependent)
                 this.dependent.forEach(element => {
                     //element.moveLeft(this.velocity.x);
-                    element.moveLeft(5);
+                    element.moveLeft(this.velocityRatio);
                 });
             }
         }
@@ -123,11 +126,21 @@ export default class Player {
     }
 
     goLeft() {
-        this.velocity.x = -5;
+        this.velocity.x = -this.velocityRatio;
+
+        console.log('go left', `${this.skin}L`)
+        
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skin}L`)
+        )
     }
 
     goRight() {
-        this.velocity.x = 5;
+        this.velocity.x = this.velocityRatio;
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skin}R`)
+        )
     }
 
     stop() {
@@ -157,6 +170,10 @@ export default class Player {
 
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skin}R`)
+        )
         
         this.position.x = 800
         this.position.y = 100
@@ -167,7 +184,11 @@ export default class Player {
         this.dependent = args;
     }
 
-    die () {
+    setVelocityRatio(x) {
+        this.velocityRatio = x
+    }
+
+    die() {
         this.loseCallback();
     }
 }

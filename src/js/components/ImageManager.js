@@ -11,8 +11,10 @@ import wingame from "../../img/intro/wingame.jpg";
 import winlevel from "../../img/intro/winlevel.jpg";
 import bugs from "../../img/intro/bugs.jpg";
 
-import normalPlayer from "../../img/player/normalPlayer.png";
-import dimaPlayer from "../../img/player/dimaPlayer.png"
+import normalPlayerR from "../../img/player/normalPlayerR.png";
+
+import dimaPlayerR from "../../img/player/dimaPlayerR.png"
+import dimaPlayerL from "../../img/player/dimaPlayerL.png"
 
 import depression from "../../img/creatures/depression.png"
 
@@ -79,10 +81,14 @@ export default class ImageManager {
                 image.src = wingame;
                 break;
             case 'Дима':
-                image.src = dimaPlayer;
+            case 'dimaPlayerR':
+                image.src = dimaPlayerR;
+                break;
+            case 'dimaPlayerL':
+                image.src = dimaPlayerL;
                 break;
             case 'Имя':
-                image.src = normalPlayer;
+                image.src = normalPlayerR;
                 break;
             case 'depression':
                 image.src = depression;
