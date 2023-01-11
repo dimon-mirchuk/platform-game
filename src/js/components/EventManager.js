@@ -55,7 +55,9 @@ export default class EventManager {
         switch(code) {
             case 'ArrowUp':
             case 'KeyW':
-                if (this.time === 'playtime') this.object.jump(); 
+                if (this.time === 'playtime') {
+                    this.object.jumping ? this.object.doubleJump() : this.object.jump();
+                }
                 break;
             case 'ArrowRight':
             case 'KeyD':

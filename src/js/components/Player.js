@@ -62,6 +62,8 @@ export default class Player {
     animate() {
         this.update();
 
+        console.log('________', this.position)
+
         if (this.keys.left.pressed) {
             this.goLeft();
         }
@@ -75,10 +77,25 @@ export default class Player {
         const jumpCondition = this.velocity.y === 0 && (this.position.y + this.height + this.velocity.y >= this.context.canvas.height);
 
         if (jumpCondition) {
+            this.jumping = true;
             this.velocity.y -= 15;
+
+            setTimeout(() => {
+                this.jumping = false;
+            }, 500);
+
         }
 
         this.activate();
+    }
+
+    doubleJump() {
+
+        if (this.jumping) {
+            this.velocity.y -= 10;
+            this.jumping = false;
+        }
+        
     }
 
     goLeft() {

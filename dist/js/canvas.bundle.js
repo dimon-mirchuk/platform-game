@@ -502,7 +502,9 @@ var EventManager = /*#__PURE__*/function () {
       switch (code) {
         case 'ArrowUp':
         case 'KeyW':
-          if (this.time === 'playtime') this.object.jump();
+          if (this.time === 'playtime') {
+            this.object.jumping ? this.object.doubleJump() : this.object.jump();
+          }
           break;
         case 'ArrowRight':
         case 'KeyD':
@@ -1006,6 +1008,7 @@ var Player = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       this.update();
+      console.log('________', this.position);
       if (this.keys.left.pressed) {
         this.goLeft();
       } else if (this.keys.right.pressed) {
@@ -1015,11 +1018,24 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "jump",
     value: function jump() {
+      var _this = this;
       var jumpCondition = this.velocity.y === 0 && this.position.y + this.height + this.velocity.y >= this.context.canvas.height;
       if (jumpCondition) {
+        this.jumping = true;
         this.velocity.y -= 15;
+        setTimeout(function () {
+          _this.jumping = false;
+        }, 500);
       }
       this.activate();
+    }
+  }, {
+    key: "doubleJump",
+    value: function doubleJump() {
+      if (this.jumping) {
+        this.velocity.y -= 10;
+        this.jumping = false;
+      }
     }
   }, {
     key: "goLeft",
