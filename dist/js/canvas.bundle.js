@@ -687,16 +687,21 @@ var Game = /*#__PURE__*/function () {
     key: "winLevel",
     value: function winLevel() {
       //console.log('STAGE:', 'выиграли уровень')
-      this.showLevelResult();
+      this.showLevelResult(false);
+    }
+  }, {
+    key: "loseLevel",
+    value: function loseLevel() {
+      this.showLevelResult(true);
     }
   }, {
     key: "showLevelResult",
-    value: function showLevelResult() {
+    value: function showLevelResult(dead) {
       this.setShowTime();
-      if (this.player.awaited === this.player.activated) {
+      if (this.player.awaited === this.player.activated && !dead) {
         this.imageManager.showImage('winlevel');
         //console.log('STAGE:', 'выиграли уровень - молдец')
-      } else {
+      } else if (dead) {
         this.imageManager.showImage('nevergiveup');
         //console.log('STAGE:', 'выиграли уровень - не молдец')
       }
@@ -717,7 +722,7 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "startGame",
     value: function startGame() {
-      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name));
+      this.player = new this.player(this.gameContext, this.stats.gravity, this.winLevel.bind(this), this.loseLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name));
       this.controller = new this.controller(this.gameContext);
       this.sprites = [this.player.getSprite()];
       this.startNewLevel();
@@ -965,7 +970,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Player = /*#__PURE__*/function () {
-  function Player(context, gravity, winCallback, img) {
+  function Player(context, gravity, winCallback, loseCallback, img) {
     _classCallCheck(this, Player);
     this.position = {
       x: 100,
@@ -990,6 +995,7 @@ var Player = /*#__PURE__*/function () {
     this.context = context;
     this.gravity = gravity;
     this.winCallback = winCallback;
+    this.loseCallback = loseCallback;
     this.spriteImg = img;
     this.start();
   }
@@ -1018,9 +1024,9 @@ var Player = /*#__PURE__*/function () {
 
       //console.log('________', this.position)
 
-      if (this.keys.left.pressed && this.position.x > 300) {
+      if (this.keys.left.pressed && this.position.x > 799) {
         this.goLeft();
-      } else if (this.keys.left.pressed && this.position.x <= 300) {
+      } else if (this.keys.left.pressed && this.position.x <= 799) {
         this.stop();
         if (this.keys.left.pressed) {
           console.log(this.dependent);
@@ -1084,7 +1090,8 @@ var Player = /*#__PURE__*/function () {
     value: function activate() {
       this.activated = this.activated + 1;
       if (this.awaited === this.activated) {
-        this.winCallback();
+        //this.winCallback();
+        this.loseCallback();
       }
     }
   }, {
@@ -1104,14 +1111,19 @@ var Player = /*#__PURE__*/function () {
       this.stop();
       this.keys.left.pressed = false;
       this.keys.right.pressed = false;
-      this.position.x = 400;
-      this.position.y = 400;
+      this.position.x = 800;
+      this.position.y = 100;
       this.velocity.y = 0;
     }
   }, {
     key: "setDependentEntities",
     value: function setDependentEntities(args) {
       this.dependent = args;
+    }
+  }, {
+    key: "die",
+    value: function die() {
+      this.loseCallback();
     }
   }]);
   return Player;

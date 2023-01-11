@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Player {
-    constructor(context, gravity, winCallback, img) {
+    constructor(context, gravity, winCallback, loseCallback, img) {
         this.position = {
             x: 100,
             y: 100,
@@ -31,6 +31,7 @@ export default class Player {
         this.gravity = gravity;
 
         this.winCallback = winCallback;
+        this.loseCallback = loseCallback;
         this.spriteImg = img;
 
         this.start();
@@ -62,10 +63,10 @@ export default class Player {
 
         //console.log('________', this.position)
 
-        if (this.keys.left.pressed && this.position.x > 300) {
+        if (this.keys.left.pressed && this.position.x > 799) {
             this.goLeft();
         }
-        else if (this.keys.left.pressed && this.position.x <= 300) {
+        else if (this.keys.left.pressed && this.position.x <= 799) {
             this.stop();
 
             if (this.keys.left.pressed) {
@@ -132,31 +133,36 @@ export default class Player {
         this.activated = this.activated + 1;
 
         if (this.awaited === this.activated) {
-            this.winCallback();
+            //this.winCallback();
+            this.loseCallback();
         } 
     }
 
-    setLevelConditions(awaited){
+    setLevelConditions(awaited) {
         this.activated = 0;
         this.awaited = awaited;
     }
 
-    getSprite(){
+    getSprite() {
         return this.sprite.get();
     }
 
-    begin(){
+    begin() {
         this.stop();
 
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;
         
-        this.position.x = 400
-        this.position.y = 400
+        this.position.x = 800
+        this.position.y = 100
         this.velocity.y = 0;
     }
 
     setDependentEntities(args) {
         this.dependent = args;
+    }
+
+    die () {
+        this.loseCallback();
     }
 }

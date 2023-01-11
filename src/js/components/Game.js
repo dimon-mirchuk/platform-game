@@ -114,17 +114,21 @@ export default class Game {
 
     winLevel() {
         //console.log('STAGE:', 'выиграли уровень')
-        this.showLevelResult();
+        this.showLevelResult(false);
     }
 
-    showLevelResult() {
+    loseLevel() {
+        this.showLevelResult(true);
+    }
+
+    showLevelResult(dead) {
         this.setShowTime();
 
-        if (this.player.awaited === this.player.activated) {
+        if (this.player.awaited === this.player.activated && !dead) {
             this.imageManager.showImage('winlevel')
             //console.log('STAGE:', 'выиграли уровень - молдец')
         }
-        else {
+        else if (dead) {
             this.imageManager.showImage('nevergiveup')
             //console.log('STAGE:', 'выиграли уровень - не молдец')
         }
@@ -149,6 +153,7 @@ export default class Game {
             this.gameContext, 
             this.stats.gravity,
             this.winLevel.bind(this),
+            this.loseLevel.bind(this),
             this.playerCustomizer.setPlayerSkin(this.stats.name)
         );
 
