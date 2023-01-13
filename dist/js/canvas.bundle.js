@@ -375,7 +375,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Bug = /*#__PURE__*/function () {
-  function Bug(context, x, y, img, skinId) {
+  function Bug(context, x, y, img, skinId, magnet) {
     _classCallCheck(this, Bug);
     this.position = {
       x: x,
@@ -390,7 +390,9 @@ var Bug = /*#__PURE__*/function () {
       y: 0
     };
     this.skinId = skinId;
-    this.rotate = false;
+    this.path = 0;
+    this.magnet = magnet;
+    this.magnet2 = this.magnet;
     console.log('баг создан');
     this.start();
   }
@@ -402,20 +404,20 @@ var Bug = /*#__PURE__*/function () {
   }, {
     key: "update",
     value: function update() {
-      console.log('Баг позишн', this.position);
+      if (this.path !== this.magnet && this.path > this.magnet) {
+        this.path = this.path - 1;
+        this.goLeft();
+      } else {
+        this.magnet = this.magnet2;
+      }
+      if (this.path !== this.magnet && this.path < this.magnet) {
+        this.path = this.path + 1;
+        this.goRight();
+      } else {
+        this.magnet = -this.magnet2;
+      }
       this.sprite.update();
       this.sprite.updatePosition(this.position.x, this.position.y);
-
-      //this.position.y += this.velocity.y;
-      //this.position.x = this.position.x + this.velocity.x;
-
-      // if (this.position.y + this.height + this.velocity.y <= 
-      //     this.context.canvas.height) {
-      //         this.velocity.y += this.gravity;
-      //     }
-      // else {
-      //     this.velocity.y = 0;
-      // }    
     }
   }, {
     key: "animate",
@@ -432,13 +434,19 @@ var Bug = /*#__PURE__*/function () {
     value: function beKilled() {}
   }, {
     key: "stop",
-    value: function stop() {}
+    value: function stop() {
+      this.velocity.x = 0;
+    }
   }, {
     key: "goLeft",
-    value: function goLeft() {}
+    value: function goLeft() {
+      this.position.x -= this.velocity.x;
+    }
   }, {
     key: "goRight",
-    value: function goRight() {}
+    value: function goRight() {
+      this.position.x += this.velocity.x;
+    }
   }, {
     key: "moveRight",
     value: function moveRight(v) {
@@ -449,6 +457,9 @@ var Bug = /*#__PURE__*/function () {
     value: function moveLeft(v) {
       this.position.x = this.position.x - v;
     }
+  }, {
+    key: "rotate",
+    value: function rotate() {}
   }]);
   return Bug;
 }();
@@ -1231,7 +1242,7 @@ var Game = /*#__PURE__*/function () {
       });
       var bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["BugsMap"][this.stats.lvl].map(function (element) {
         console.log('+++++++++', element);
-        return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name);
+        return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name, element.magnet);
       });
       var bugSprites = bugs.map(function (element) {
         return element.getSprite();
@@ -2072,7 +2083,8 @@ var BugsMap = {
   3: [{
     x: 1000,
     y: 200,
-    name: "bug"
+    name: "bug",
+    magnet: 100
   }]
   //{x: 800, y: 600, name: "bug"},
 };
@@ -2081,7 +2093,7 @@ var BoosterMap = {
   0: [{}, {}, {}]
 };
 var ConditionMap = {
-  3: 3,
+  3: 30,
   5: 10,
   8: 20,
   9: 3

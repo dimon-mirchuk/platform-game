@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Bug {
-    constructor(context, x, y, img, skinId) {
+    constructor(context, x, y, img, skinId, magnet) {
         this.position = {
             x,
             y,
@@ -20,7 +20,10 @@ export default class Bug {
         }
 
         this.skinId = skinId;
-        this.rotate = false;
+
+        this.path = 0;
+        this.magnet = magnet
+        this.magnet2 = this.magnet;
 
         console.log('баг создан')
 
@@ -32,21 +35,23 @@ export default class Bug {
     }
 
     update() {
-        console.log('Баг позишн', this.position)
+
+        if (this.path !== this.magnet && this.path > this.magnet) {
+            this.path = this.path - 1;
+            this.goLeft();
+        } else {
+            this.magnet = this.magnet2;
+        }
+
+        if (this.path !== this.magnet && this.path < this.magnet) {
+            this.path = this.path + 1;
+            this.goRight();
+        } else {
+            this.magnet = -this.magnet2;
+        }
 
         this.sprite.update();
         this.sprite.updatePosition(this.position.x, this.position.y);
-
-        //this.position.y += this.velocity.y;
-        //this.position.x = this.position.x + this.velocity.x;
-
-        // if (this.position.y + this.height + this.velocity.y <= 
-        //     this.context.canvas.height) {
-        //         this.velocity.y += this.gravity;
-        //     }
-        // else {
-        //     this.velocity.y = 0;
-        // }    
         
     }
 
@@ -63,12 +68,16 @@ export default class Bug {
     }
 
     stop() {
-
+        this.velocity.x = 0;
     }
 
-    goLeft() {}
+    goLeft() {
+        this.position.x -= this.velocity.x;
+    }
 
-    goRight() {}
+    goRight() {
+        this.position.x += this.velocity.x;
+    }
 
     moveRight(v) {
         this.position.x = this.position.x + v;
@@ -77,4 +86,8 @@ export default class Bug {
     moveLeft(v) {
         this.position.x = this.position.x - v;
     } 
+
+    rotate() {
+
+    }
 }

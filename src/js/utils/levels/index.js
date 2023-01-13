@@ -7,7 +7,7 @@ export const PlatformMap = {
 };
 
 export const BugsMap = {
-    3: [ {x: 1000, y: 200, name: "bug"}],
+    3: [ {x: 1000, y: 200, name: "bug", magnet: 100}],
     //{x: 800, y: 600, name: "bug"},
 };
 
@@ -17,7 +17,7 @@ export const BoosterMap = {
 };
 
 export const ConditionMap = {
-    3: 3,
+    3: 30,
     5: 10,
     8: 20,
     9: 3
