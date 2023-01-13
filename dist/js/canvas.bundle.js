@@ -375,7 +375,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Bug = /*#__PURE__*/function () {
-  function Bug(context, x, y, img, skinId, magnet) {
+  function Bug(context, x, y, img, skinId, magnet, gravity) {
     _classCallCheck(this, Bug);
     this.position = {
       x: x,
@@ -393,7 +393,8 @@ var Bug = /*#__PURE__*/function () {
     this.path = 0;
     this.magnet = magnet;
     this.magnet2 = this.magnet;
-    console.log('баг создан');
+    this.gravity = gravity;
+    this.killed = false;
     this.start();
   }
   _createClass(Bug, [{
@@ -416,6 +417,10 @@ var Bug = /*#__PURE__*/function () {
       } else {
         this.magnet = -this.magnet2;
       }
+      if (this.killed) {
+        this.stop();
+        this.beKilled();
+      }
       this.sprite.update();
       this.sprite.updatePosition(this.position.x, this.position.y);
     }
@@ -431,7 +436,9 @@ var Bug = /*#__PURE__*/function () {
     }
   }, {
     key: "beKilled",
-    value: function beKilled() {}
+    value: function beKilled() {
+      this.position.y = this.position.y + 10;
+    }
   }, {
     key: "stop",
     value: function stop() {
@@ -457,9 +464,6 @@ var Bug = /*#__PURE__*/function () {
     value: function moveLeft(v) {
       this.position.x = this.position.x - v;
     }
-  }, {
-    key: "rotate",
-    value: function rotate() {}
   }]);
   return Bug;
 }();
@@ -1242,7 +1246,7 @@ var Game = /*#__PURE__*/function () {
       });
       var bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["BugsMap"][this.stats.lvl].map(function (element) {
         console.log('+++++++++', element);
-        return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name, element.magnet);
+        return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name, element.magnet, _this.stats.gravity);
       });
       var bugSprites = bugs.map(function (element) {
         return element.getSprite();

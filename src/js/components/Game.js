@@ -232,7 +232,7 @@ export default class Game {
 
         const bugs = BugsMap[this.stats.lvl].map(element => {
             console.log('+++++++++',element)
-            return new this.bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet)
+            return new this.bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet, this.stats.gravity)
         });
 
         const bugSprites = bugs.map((element)=>{

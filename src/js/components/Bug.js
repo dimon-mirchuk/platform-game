@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Bug {
-    constructor(context, x, y, img, skinId, magnet) {
+    constructor(context, x, y, img, skinId, magnet, gravity) {
         this.position = {
             x,
             y,
@@ -25,7 +25,9 @@ export default class Bug {
         this.magnet = magnet
         this.magnet2 = this.magnet;
 
-        console.log('баг создан')
+        this.gravity = gravity;
+
+        this.killed = false;
 
         this.start();
     }
@@ -50,6 +52,11 @@ export default class Bug {
             this.magnet = -this.magnet2;
         }
 
+        if (this.killed) {
+            this.stop();
+            this.beKilled();
+        }
+
         this.sprite.update();
         this.sprite.updatePosition(this.position.x, this.position.y);
         
@@ -64,7 +71,7 @@ export default class Bug {
     }
 
     beKilled() {
-        
+        this.position.y = this.position.y + 10
     }
 
     stop() {
@@ -86,8 +93,4 @@ export default class Bug {
     moveLeft(v) {
         this.position.x = this.position.x - v;
     } 
-
-    rotate() {
-
-    }
 }
