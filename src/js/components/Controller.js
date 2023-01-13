@@ -20,6 +20,9 @@ export default class Controller {
         this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
 
         this.collisionManager.checkPlatformCollision();
+        this.collisionManager.checkBugCollision();
+        //this.collisionManager.checkDepressionCollision();
+        // this.collisionManager.checkCollectableCollision();
 
         args.forEach(el => el.animate())      
     }

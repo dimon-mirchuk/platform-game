@@ -241,7 +241,9 @@ export default class Game {
 
         this.sprites = [...this.sprites, ...bugSprites]
 
-        this.collisionManager.setData(this.player, platforms);
+
+        // + collectable
+        this.collisionManager.setData(this.player, platforms, bugs, this.depression);
 
         this.player.setDependentEntities([...platforms, this.depression, ...bugs]);
 

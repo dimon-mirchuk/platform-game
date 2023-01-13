@@ -44,6 +44,8 @@ export default class Player {
         this.loseCallback = loseCallback;
         this.spriteImg = img;
 
+        this.bugsFixed = 0;
+
 
         this.horizon = this.context.canvas.height;
 
@@ -129,17 +131,22 @@ export default class Player {
 
             setTimeout(() => {
                 this.jumping = false;
-            }, 500);
+            }, 1000);
         }
 
         this.activate();
     }
 
-    doubleJump() {
+    doubleJump(forced, param) {
+
         if (this.jumping && !this.keys.up.pressed) {
             this.velocity.y -= 10;
             this.jumping = false;
         }    
+
+        if(forced) {
+            this.velocity.y -= param;
+        }
     }
 
     goLeft() {
@@ -165,7 +172,7 @@ export default class Player {
     }
 
     stopY() {
-        this.velocity.y = 0
+        this.velocity.y = 0        
     }
 
     activate() {
@@ -191,6 +198,10 @@ export default class Player {
 
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;
+        this.keys.up.pressed = false;
+
+        this.bugsFixed = 0;
+
 
         this.sprite.updateImage(
             this.imageManager.changeImage(`${this.skin}R`)
@@ -201,12 +212,26 @@ export default class Player {
         this.velocity.y = 0;
     }
 
+    // bounce() {
+    //     this.stopY();
+    //     this.velocity.y = this.velocity.y - 5;
+    // }
+
+    fixBug() {
+        console.log('FIXED A BUG')
+        this.bugsFixed = this.bugsFixed + 1; 
+    }
+
     setDependentEntities(args) {
         this.dependent = args;
     }
 
     setVelocityRatio(x) {
         this.velocityRatio = x
+    }
+
+    getVelocityRatio(x) {
+        return this.velocityRatio;
     }
 
     die() {

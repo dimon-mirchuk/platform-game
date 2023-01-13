@@ -4,14 +4,14 @@ export default class Depression {
     constructor(context, gravity, img, loseCallback) {
         this.position = {
             x: 100,
-            y: 100,
+            y: 300,
         }
 
         this.width = 240;
         this.height = 240;
 
         this.context = context;
-        this.gravity = gravity;
+        //this.gravity = gravity;
 
         this.spriteImg = img;
         this.loseCallback = loseCallback;
@@ -32,18 +32,18 @@ export default class Depression {
         this.sprite.update();
         this.sprite.updatePosition(this.position.x, this.position.y);
 
-        this.position.y += this.velocity.y;
+        //this.position.y += this.velocity.y;
         this.position.x = this.position.x + this.velocity.x;
 
         //console.log('depression апдейт', this.position.x)
 
-        if (this.position.y + this.height + this.velocity.y <= 
-            this.context.canvas.height) {
-                this.velocity.y += this.gravity;
-            }
-        else {
-            this.velocity.y = 0;
-        }    
+        // if (this.position.y + this.height + this.velocity.y <= 
+        //     this.context.canvas.height) {
+        //         this.velocity.y += this.gravity;
+        //     }
+        // else {
+        //     this.velocity.y = 0;
+        // }    
         
     }
 
@@ -57,7 +57,7 @@ export default class Depression {
 
     begin() {      
         this.position.x = 100
-        this.position.y = 100
+        this.position.y = 300
         this.velocity.x = 3; 
 
         // СУПЕР ВАЖНО

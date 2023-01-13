@@ -417,6 +417,7 @@ var Bug = /*#__PURE__*/function () {
       } else {
         this.magnet = -this.magnet2;
       }
+      console.log('BUUUUUG', this.killed);
       if (this.killed) {
         this.stop();
         this.beKilled();
@@ -552,16 +553,19 @@ var CollisionManager = /*#__PURE__*/function () {
   //setData(player, platforms, depression, bugs, finish, hw) {
   _createClass(CollisionManager, [{
     key: "setData",
-    value: function setData(player, platforms) {
+    value: function setData(player, platforms, bugs, depression, collectable) {
       this.player = player;
       this.platforms = platforms;
+      this.bugs = bugs;
+      this.depression = depression;
+      this.collectable = collectable;
     }
   }, {
     key: "findNearest",
-    value: function findNearest() {
+    value: function findNearest(arr) {
       var _this = this;
       this.nearest = [];
-      this.platforms.forEach(function (element) {
+      arr.forEach(function (element) {
         if (_this.player.position.x + _this.player.width >= element.position.x && !(_this.player.position.x > element.position.x + element.width)) {
           _this.nearest.push(element);
         }
@@ -571,44 +575,110 @@ var CollisionManager = /*#__PURE__*/function () {
     key: "checkPlatformCollision",
     value: function checkPlatformCollision() {
       var _this2 = this;
+      var velocityRatio = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
       this.findNearest(this.platforms);
-      this.nearest.forEach(function (element) {
-        if (element.position.y + 5 < _this2.player.position.y + _this2.player.height && element.position.x > _this2.player.position.x) {
-          console.log(1);
-          if (_this2.player.keys.right.pressed && element.position.y + element.height >= _this2.player.position.y) {
-            _this2.player.setVelocityRatio(0);
-            console.log(2);
+      if (this.nearest.length > 0) {
+        this.nearest.forEach(function (element) {
+          if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x > _this2.player.position.x) {
+            //console.log(1)
+            if (_this2.player.keys.right.pressed && element.position.y + element.height >= _this2.player.position.y) {
+              _this2.player.setVelocityRatio(0);
+              //console.log(2)
+            } else {
+              _this2.player.setVelocityRatio(velocityRatio);
+              //console.log(3)
+            }
+          } else if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x < _this2.player.position.x) {
+            //console.log(4)
+            if (_this2.player.keys.left.pressed && element.position.y + element.height >= _this2.player.position.y) {
+              _this2.player.setVelocityRatio(0);
+              //console.log(5)
+            } else {
+              _this2.player.setVelocityRatio(velocityRatio);
+              //console.log(6)
+            }
           } else {
-            _this2.player.setVelocityRatio(5);
-            console.log(3);
+            //console.log(8)
+            _this2.player.setVelocityRatio(velocityRatio);
+            _this2.player.horizon = element.position.y;
           }
-        } else if (element.position.y + 5 < _this2.player.position.y + _this2.player.height && element.position.x < _this2.player.position.x) {
-          console.log(4);
-          if (_this2.player.keys.left.pressed && element.position.y + element.height >= _this2.player.position.y) {
-            _this2.player.setVelocityRatio(0);
-            console.log(5);
-          } else {
-            _this2.player.setVelocityRatio(5);
-            console.log(6);
-          }
-        }
-        // else if (this.player.position.x + this.player.width > element.position.x && this.player.position.x < element.position.x + element.width && this.player.position.y === element.position.y + element.height) {
-        //     console.log(7)
-        //     this.player.die()
-        // }
-        else {
-          console.log(8);
-          _this2.player.setVelocityRatio(5);
-          _this2.player.horizon = element.position.y;
-        }
-      });
+        });
+      }
       if (this.nearest.length === 0) {
         this.player.horizon = this.player.context.canvas.height + 500;
       }
     }
   }, {
-    key: "handleCollision",
-    value: function handleCollision() {}
+    key: "checkBugCollision",
+    value: function checkBugCollision() {
+      var _this3 = this;
+      this.findNearest(this.bugs);
+
+      //console.log('this.nearest',this.nearest)
+
+      if (this.nearest.length > 0) {
+        this.nearest.forEach(function (element) {
+          // console.log('this.player.position.y',this.player.position.y)
+          // console.log('element.position.y', element.position.y)
+          // console.log('this.nearest', this.nearest)
+
+          //if (this.player.position.y + this.player.height == element.position.y) {
+          if (_this3.player.position.y + _this3.player.height - element.position.y <= 80 && _this3.player.position.y + _this3.player.height - element.position.y >= 60) {
+            // console.log('element.killed', element.killed)
+            // console.log('element',element)
+
+            //this.player.horizon = element.position.y;
+            console.log('____________________________this.player.position.y', _this3.player.position.y, _this3.player.height);
+            console.log('_________________________________element.position.y', element.position.y);
+            console.log('this.player.position.y + this.player.height - element.position.y', _this3.player.position.y + _this3.player.height - element.position.y);
+            _this3.player.horizon = element.position.y;
+            _this3.player.doubleJump(true, 5);
+            element.killed = true;
+            _this3.player.fixBug();
+            _this3.player.horizon = _this3.player.context.canvas.height;
+
+            // console.log('element.killed',element.killed)
+            //this.player.bounce();
+
+            //this.player.doubleJump(true, this.player.position.y + this.player.height);this.player
+            // this.player.gravity = 0; 
+            // this.player.stopY();
+            // this.player.jump();
+            //this.player.fixBug();
+            //this.player.gravity = 0.5; 
+            // console.log('this.player.bugsFixed', this.player.bugsFixed)
+
+            //console.log('||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||')
+          } else {
+            console.log('я туууууууууууууууууууут');
+          }
+        });
+      }
+    }
+  }, {
+    key: "checkDepressionCollision",
+    value: function checkDepressionCollision() {
+      if (this.depression.position.x + this.depression.width >= this.player.position.x) {
+        this.player.die();
+      }
+    }
+  }, {
+    key: "checkCollectableCollision",
+    value: function checkCollectableCollision() {
+      var _this4 = this;
+      this.findNearest(this.collectable);
+      if (this.nearest.length > 0) {
+        this.nearest.forEach(function (element) {
+          if (element.finish) {
+            _this4.player.winLevel();
+          } else {
+            // element.beCollected();
+            var prevV = _this4.player.getVelocityRatio();
+            _this4.player.setVelocityRatio(prevV + 5);
+          }
+        });
+      }
+    }
   }]);
   return CollisionManager;
 }();
@@ -732,6 +802,10 @@ var Controller = /*#__PURE__*/function () {
       this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
       this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.collisionManager.checkPlatformCollision();
+      this.collisionManager.checkBugCollision();
+      //this.collisionManager.checkDepressionCollision();
+      // this.collisionManager.checkCollectableCollision();
+
       args.forEach(function (el) {
         return el.animate();
       });
@@ -776,12 +850,13 @@ var Depression = /*#__PURE__*/function () {
     _classCallCheck(this, Depression);
     this.position = {
       x: 100,
-      y: 100
+      y: 300
     };
     this.width = 240;
     this.height = 240;
     this.context = context;
-    this.gravity = gravity;
+    //this.gravity = gravity;
+
     this.spriteImg = img;
     this.loseCallback = loseCallback;
     this.velocity = {
@@ -800,16 +875,19 @@ var Depression = /*#__PURE__*/function () {
     value: function update() {
       this.sprite.update();
       this.sprite.updatePosition(this.position.x, this.position.y);
-      this.position.y += this.velocity.y;
+
+      //this.position.y += this.velocity.y;
       this.position.x = this.position.x + this.velocity.x;
 
       //console.log('depression апдейт', this.position.x)
 
-      if (this.position.y + this.height + this.velocity.y <= this.context.canvas.height) {
-        this.velocity.y += this.gravity;
-      } else {
-        this.velocity.y = 0;
-      }
+      // if (this.position.y + this.height + this.velocity.y <= 
+      //     this.context.canvas.height) {
+      //         this.velocity.y += this.gravity;
+      //     }
+      // else {
+      //     this.velocity.y = 0;
+      // }    
     }
   }, {
     key: "animate",
@@ -825,7 +903,7 @@ var Depression = /*#__PURE__*/function () {
     key: "begin",
     value: function begin() {
       this.position.x = 100;
-      this.position.y = 100;
+      this.position.y = 300;
       this.velocity.x = 3;
 
       // СУПЕР ВАЖНО
@@ -923,90 +1001,98 @@ var EventManager = /*#__PURE__*/function () {
     key: "checkerDown",
     value: function checkerDown(_ref) {
       var code = _ref.code;
-      switch (code) {
-        case 'ArrowUp':
-        case 'KeyW':
-          if (this.time === 'playtime') {
-            this.object.keys.up.pressed = true;
-            this.object.jumping ? this.object.doubleJump() : this.object.jump();
-          }
-          break;
-        case 'ArrowRight':
-        case 'KeyD':
-          if (this.time === 'playtime') this.object.keys.right.pressed = true;
-          break;
-        case 'ArrowLeft':
-        case 'KeyA':
-          if (this.time === 'playtime') this.object.keys.left.pressed = true;
-          break;
-        default:
+      try {
+        switch (code) {
+          case 'ArrowUp':
+          case 'KeyW':
+            if (this.time === 'playtime') {
+              this.object.jumping ? this.object.doubleJump() : this.object.jump();
+              this.object.keys.up.pressed = true;
+            }
+            break;
+          case 'ArrowRight':
+          case 'KeyD':
+            if (this.time === 'playtime') this.object.keys.right.pressed = true;
+            break;
+          case 'ArrowLeft':
+          case 'KeyA':
+            if (this.time === 'playtime') this.object.keys.left.pressed = true;
+            break;
+          default:
+        }
+      } catch (err) {
+        console.log('Ну а вы что хотели, это же демо:', err);
       }
     }
   }, {
     key: "checkerUp",
     value: function checkerUp(_ref2) {
       var code = _ref2.code;
-      switch (code) {
-        case 'ArrowUp':
-        case 'KeyW':
-          if (this.time === 'playtime') this.object.keys.up.pressed = false;
-          break;
-        case 'ArrowRight':
-        case 'KeyD':
-          if (this.time === 'playtime') this.object.keys.right.pressed = false;
-          break;
-        case 'ArrowLeft':
-        case 'KeyA':
-          if (this.time === 'playtime') this.object.keys.left.pressed = false;
-          break;
-        case 'Space':
-          console.log(111111111111);
-          if (this.time === 'showtime' && !this.pause) {
-            //if (this.time === 'showtime') {
-            console.log(222222222222);
-            if (this.object.intro && !this.object.input) {
-              console.log(33333333333333);
-              console.log('this.object.last ', this.object.last);
-              if (this.object.last === 'win') {
-                this.object.levelup();
-                this.object.startIntro();
-                console.log(444444444444444);
-              } else {
-                this.object.startIntro();
-                console.log(5555555555555555);
-              }
+      try {
+        switch (code) {
+          case 'ArrowUp':
+          case 'KeyW':
+            if (this.time === 'playtime') this.object.keys.up.pressed = false;
+            break;
+          case 'ArrowRight':
+          case 'KeyD':
+            if (this.time === 'playtime') this.object.keys.right.pressed = false;
+            break;
+          case 'ArrowLeft':
+          case 'KeyA':
+            if (this.time === 'playtime') this.object.keys.left.pressed = false;
+            break;
+          case 'Space':
+            console.log(111111111111);
+            if (this.time === 'showtime' && !this.pause) {
+              //if (this.time === 'showtime') {
+              console.log(222222222222);
+              if (this.object.intro && !this.object.input) {
+                console.log(33333333333333);
+                console.log('this.object.last ', this.object.last);
+                if (this.object.last === 'win') {
+                  this.object.levelup();
+                  this.object.startIntro();
+                  console.log(444444444444444);
+                } else {
+                  this.object.startIntro();
+                  console.log(5555555555555555);
+                }
 
-              // this.object.levelup();
-              // this.object.startIntro();
-            } else if (!this.object.intro && !this.object.input) {
-              if (this.object.last === 'win') {
-                this.object.levelup();
-                this.object.startNewLevel();
-              } else {
-                this.object.startNewLevel();
+                // this.object.levelup();
+                // this.object.startIntro();
+              } else if (!this.object.intro && !this.object.input) {
+                if (this.object.last === 'win') {
+                  this.object.levelup();
+                  this.object.startNewLevel();
+                } else {
+                  this.object.startNewLevel();
+                }
+                // this.object.levelup();
+                // this.object.startNewLevel();
+              } else if (this.object.input) {
+                this.object.playerCustomizer.setPlayerName(this.object.setStats.bind(this.object), this.object.levelup.bind(this.object), this.object.startIntro.bind(this.object));
               }
-              // this.object.levelup();
-              // this.object.startNewLevel();
-            } else if (this.object.input) {
-              this.object.playerCustomizer.setPlayerName(this.object.setStats.bind(this.object), this.object.levelup.bind(this.object), this.object.startIntro.bind(this.object));
             }
-          }
-          break;
-        case 'Escape':
-          console.log("ESC");
-          //console.log(this.menu)
-          //if (this.menu) {
-          console.log('this.time', this.time);
-          if (this.time === 'playtime') {
-            this.pause = true;
-            this.pause = this.menu.changePause(this.time);
-            console.log('this.pause', this.pause);
-          }
+            break;
+          case 'Escape':
+            console.log("ESC");
+            //console.log(this.menu)
+            //if (this.menu) {
+            console.log('this.time', this.time);
+            if (this.time === 'playtime') {
+              this.pause = true;
+              this.pause = this.menu.changePause(this.time);
+              console.log('this.pause', this.pause);
+            }
 
-          //}
+            //}
 
-          break;
-        default:
+            break;
+          default:
+        }
+      } catch (err) {
+        console.log('Ну а вы что хотели, это же демо:', err);
       }
     }
   }]);
@@ -1252,7 +1338,9 @@ var Game = /*#__PURE__*/function () {
         return element.getSprite();
       });
       this.sprites = [].concat(_toConsumableArray(this.sprites), _toConsumableArray(bugSprites));
-      this.collisionManager.setData(this.player, platforms);
+
+      // + collectable
+      this.collisionManager.setData(this.player, platforms, bugs, this.depression);
       this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression], _toConsumableArray(bugs)));
       this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(bugs), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
@@ -1676,6 +1764,7 @@ var Player = /*#__PURE__*/function () {
     this.winCallback = winCallback;
     this.loseCallback = loseCallback;
     this.spriteImg = img;
+    this.bugsFixed = 0;
     this.horizon = this.context.canvas.height;
 
     //this.id = 'player';
@@ -1750,16 +1839,19 @@ var Player = /*#__PURE__*/function () {
         this.velocity.y -= 15;
         setTimeout(function () {
           _this2.jumping = false;
-        }, 500);
+        }, 1000);
       }
       this.activate();
     }
   }, {
     key: "doubleJump",
-    value: function doubleJump() {
+    value: function doubleJump(forced, param) {
       if (this.jumping && !this.keys.up.pressed) {
         this.velocity.y -= 10;
         this.jumping = false;
+      }
+      if (forced) {
+        this.velocity.y -= param;
       }
     }
   }, {
@@ -1813,10 +1905,23 @@ var Player = /*#__PURE__*/function () {
       this.stopX();
       this.keys.left.pressed = false;
       this.keys.right.pressed = false;
+      this.keys.up.pressed = false;
+      this.bugsFixed = 0;
       this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skin, "R")));
       this.position.x = 800;
       this.position.y = 100;
       this.velocity.y = 0;
+    }
+
+    // bounce() {
+    //     this.stopY();
+    //     this.velocity.y = this.velocity.y - 5;
+    // }
+  }, {
+    key: "fixBug",
+    value: function fixBug() {
+      console.log('FIXED A BUG');
+      this.bugsFixed = this.bugsFixed + 1;
     }
   }, {
     key: "setDependentEntities",
@@ -1827,6 +1932,11 @@ var Player = /*#__PURE__*/function () {
     key: "setVelocityRatio",
     value: function setVelocityRatio(x) {
       this.velocityRatio = x;
+    }
+  }, {
+    key: "getVelocityRatio",
+    value: function getVelocityRatio(x) {
+      return this.velocityRatio;
     }
   }, {
     key: "die",
@@ -2085,8 +2195,8 @@ var PlatformMap = {
 };
 var BugsMap = {
   3: [{
-    x: 1000,
-    y: 200,
+    x: 100,
+    y: 560,
     name: "bug",
     magnet: 100
   }]
