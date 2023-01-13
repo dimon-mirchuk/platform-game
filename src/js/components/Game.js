@@ -1,5 +1,6 @@
 // entities
 import Platform from "./Platform";
+import Platforma from "./Platforma";
 
 
 // maps
@@ -10,7 +11,7 @@ import { introData } from "../utils/levels";
 // resources
 
 export default class Game {
-    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression ) {
+    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression, collisionManager, menu ) {
         this.player = player;
         this.playerCustomizer = playerCustom;
         this.controller = controller;
@@ -18,6 +19,8 @@ export default class Game {
         this.imageManager = imageManager;
         this.eventManager = eventManager;
         this.depression = depression;
+        this.collisionManager = collisionManager;
+        this.menu = menu;
 
         this.stats = {
             name: undefined,
@@ -27,6 +30,8 @@ export default class Game {
 
         this.intro = true;
         this.input = false;
+
+        this.last = 'win';
 
         this.setup();
     }
@@ -38,6 +43,11 @@ export default class Game {
         this.imageManager = new this.imageManager(this.managerContext);
         this.eventManager = new this.eventManager();
         this.playerCustomizer = new this.playerCustomizer(this.imageManager);
+
+        this.collisionManager = new this.collisionManager();
+
+        this.menu = new this.menu(this.imageManager);
+        this.eventManager.setMenu(this.menu);
 
         this.setShowTime();
 
@@ -114,21 +124,28 @@ export default class Game {
 
     winLevel() {
         //console.log('STAGE:', 'выиграли уровень')
-        this.showLevelResult(false);
+        this.last = 'win';
+        console.log(this.last, '________________this.last')
+        this.showLevelResult();
+
+
     }
 
     loseLevel() {
-        this.showLevelResult(true);
+        this.last = 'lose';
+
+        console.log(this.last, '________________this.last')
+        this.showLevelResult();
     }
 
-    showLevelResult(dead) {
+    showLevelResult() {
         this.setShowTime();
 
-        if (this.player.awaited === this.player.activated && !dead) {
+        if (this.last === 'win') {
             this.imageManager.showImage('winlevel')
             //console.log('STAGE:', 'выиграли уровень - молдец')
         }
-        else if (dead) {
+        else if (this.last === 'lose') {
             this.imageManager.showImage('nevergiveup')
             //console.log('STAGE:', 'выиграли уровень - не молдец')
         }
@@ -138,7 +155,24 @@ export default class Game {
         }
 
     }
+    
+    // showLevelResult(dead) {
+    //     this.setShowTime();
 
+    //     if (this.player.awaited === this.player.activated && !dead) {
+    //         this.imageManager.showImage('winlevel')
+    //         //console.log('STAGE:', 'выиграли уровень - молдец')
+    //     }
+    //     else if (dead) {
+    //         this.imageManager.showImage('nevergiveup')
+    //         //console.log('STAGE:', 'выиграли уровень - не молдец')
+    //     }
+
+    //     if (introData[this.stats.lvl+1].finish) {
+    //         this.winGame();
+    //     }
+
+    // }
     winGame() {
         this.setShowTime();
         this.imageManager.showImage('wingame');
@@ -160,7 +194,12 @@ export default class Game {
             this.playerCustomizer.getSkinId(),
         );
 
-        this.controller = new this.controller(this.gameContext);
+        this.controller = new this.controller(this.gameContext, this.collisionManager);
+        
+        this.menu.setCallbacks(this.controller.stop.bind(this.controller),this.controller.continue.bind(this.controller))
+        //this.eventManager.setControllerStop(this.controller.stop.bind(this.controller));
+        //this.eventManager.setControllerStart(this.controller.continue.bind(this.controller));
+
 
         this.depression = new this.depression(
             this.gameContext, 
@@ -181,9 +220,15 @@ export default class Game {
         this.depression.begin();
         this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
+        // const platforms = PlatformMap[this.stats.lvl].map(element => {
+        //     return new Platform(this.gameContext, element.x, element.y, element.name)
+        // });
+
         const platforms = PlatformMap[this.stats.lvl].map(element => {
-            return new Platform(this.gameContext, element.x, element.y, element.name)
+            return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
         });
+
+        this.collisionManager.setData(this.player, platforms);
 
         this.player.setDependentEntities([...platforms, this.depression]);
 

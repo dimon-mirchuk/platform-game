@@ -8,6 +8,11 @@ import PlayerCustomizer from "./components/PlayerCustomizer";
 
 import Depression from "./components/Depression";
 
+import CollisionManager from "./components/CollisionManager";
+//import CollisionM from "./components/CollisionM"
+
+import Menu from "./components/Menu"
+
 let currentGame = new Game (
     Player,
     PlayerCustomizer,
@@ -16,5 +21,8 @@ let currentGame = new Game (
     ImageManager,
     EventManager,
     Depression,
+    CollisionManager,
+    //CollisionM,
+    Menu,
 );
 

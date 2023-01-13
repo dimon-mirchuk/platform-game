@@ -5,10 +5,18 @@ export default class EventManager {
        this.time = null;
        this.functionUp = null;
        this.functionDown = null;
+
+
+       this.pause = false 
+    }
+
+    setMenu(menu) {
+        this.menu = menu;
     }
 
     addListener(obj, event) {
         this.object = obj;
+        
         this.time = this.object.keys ? 'playtime' : 'showtime';
 
         if (this.time === 'showtime') {
@@ -56,6 +64,7 @@ export default class EventManager {
             case 'ArrowUp':
             case 'KeyW':
                 if (this.time === 'playtime') {
+                    this.object.keys.up.pressed = true;
                     this.object.jumping ? this.object.doubleJump() : this.object.jump();
                 }
                 break;
@@ -73,6 +82,10 @@ export default class EventManager {
 
     checkerUp({ code }) {
         switch(code) {
+            case 'ArrowUp':
+            case 'KeyW':
+                if (this.time === 'playtime') this.object.keys.up.pressed = false;
+            break;
             case 'ArrowRight':
             case 'KeyD':
                 if (this.time === 'playtime') this.object.keys.right.pressed = false;
@@ -82,14 +95,36 @@ export default class EventManager {
                 if (this.time === 'playtime') this.object.keys.left.pressed = false;        
                 break;
             case 'Space':
-                if (this.time === 'showtime') {
+                console.log(111111111111)
+                if (this.time === 'showtime' && !this.pause) {
+                //if (this.time === 'showtime') {
+                    console.log(222222222222)
                     if (this.object.intro && !this.object.input) {
-                        this.object.levelup();
-                        this.object.startIntro();
+                        console.log(33333333333333)
+                        console.log('this.object.last ',this.object.last )
+                        if (this.object.last === 'win') {
+                            this.object.levelup();
+                            this.object.startIntro();
+                            console.log(444444444444444)
+                        } else {
+                            this.object.startIntro();
+                            console.log(5555555555555555)
+                        }
+
+                        // this.object.levelup();
+                        // this.object.startIntro();
+
                     } 
                     else if (!this.object.intro && !this.object.input) {
-                        this.object.levelup();
-                        this.object.startNewLevel();
+
+                        if (this.object.last === 'win') {
+                            this.object.levelup();
+                            this.object.startNewLevel();
+                        } else {
+                            this.object.startNewLevel();
+                        }
+                        // this.object.levelup();
+                        // this.object.startNewLevel();
                     } 
                     else if (this.object.input) {
                         this.object.playerCustomizer.setPlayerName(
@@ -99,6 +134,22 @@ export default class EventManager {
                         );
                     }      
                 }
+                break;
+            case 'Escape':
+                console.log("ESC")
+                //console.log(this.menu)
+                //if (this.menu) {
+                    console.log('this.time',this.time)
+                if (this.time === 'playtime') {
+
+                    this.pause = true; 
+                    this.pause = this.menu.changePause(this.time);
+
+                    console.log('this.pause',this.pause)
+                }
+                    
+                //}
+                
                 break;
             default:
         }

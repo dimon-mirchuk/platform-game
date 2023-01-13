@@ -1,5 +1,5 @@
 export default class Sprite {
-    constructor(context, image, ticksPerFrame, numberOfFrames, width, height, positionX, positionY, ratio) {
+    constructor(context, image, ticksPerFrame, numberOfFrames, width, height, positionX, positionY, ratio, id='not important') {
         this.context = context;
 
         this.image = image;
@@ -15,7 +15,9 @@ export default class Sprite {
         this.positionX = positionX;
         this.positionY = positionY;
 
-        this.ratio = ratio;
+        this.ratio = ratio; 
+
+        this.id = id;
     }
 
     update() {
@@ -52,8 +54,16 @@ export default class Sprite {
     }
 
     updatePosition(posX, posY) {
-        this.positionX = posX;
-        this.positionY = posY;
+
+        if (this.id = 'player') {
+            this.positionX = posX - 70;
+            this.positionY = posY;
+        } else {
+            this.positionX = posX;
+            this.positionY = posY;
+        }
+
+        
     } 
 
     updateImage(newImage) {

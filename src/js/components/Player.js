@@ -19,9 +19,15 @@ export default class Player {
             left: {
                 pressed: false,
             },
+            up: {
+                pressed: false,
+            }
         }
 
-        this.width = 240;
+        //66
+        //this.width = 240;
+        // ! this.width = 220;
+        this.width = 110;
         this.height = 240;
 
         this.awaited = 0;
@@ -38,6 +44,11 @@ export default class Player {
         this.loseCallback = loseCallback;
         this.spriteImg = img;
 
+
+        this.horizon = this.context.canvas.height;
+
+        //this.id = 'player';
+
         this.start();
     }
 
@@ -46,7 +57,7 @@ export default class Player {
         this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
-    update() {
+    update(horizon) {
         this.sprite.update();
         this.sprite.updatePosition(this.position.x, this.position.y);
 
@@ -54,7 +65,7 @@ export default class Player {
         this.position.x += this.velocity.x;
 
         if (this.position.y + this.height + this.velocity.y <= 
-            this.context.canvas.height) {
+            horizon) {
                 this.velocity.y += this.gravity;
             }
         else {
@@ -64,16 +75,21 @@ export default class Player {
     }
 
     animate() {
-        this.update();
+        this.update(this.horizon);
 
-        //console.log('________', this.position)
+        if (this.position.y > this.context.canvas.height + this.height) {
+            this.die();
+        }
+
+        //console.log('________ this.position', this.position)
+        //console.log('________ this.horizon', this.horizon)
         //console.log('!!!,', this.dependent, typeof this.dependent)
 
         if (this.keys.left.pressed && this.position.x > 799) {
             this.goLeft();
         }
         else if (this.keys.left.pressed && this.position.x <= 799) {
-            this.stop();
+            this.stopX();
 
             if (this.keys.left.pressed) {
                 // 88 console.log(this.dependent)
@@ -88,7 +104,7 @@ export default class Player {
         }
         else if (this.keys.right.pressed && this.position.x >= 800) {
 
-            this.stop();
+            this.stopX();
 
             if (this.keys.right.pressed) {
                 // 88 console.log(this.dependent)
@@ -99,12 +115,13 @@ export default class Player {
             }
         }
         else {
-            this.stop();
+            this.stopX();
         }
     }
 
     jump() {
-        const jumpCondition = this.velocity.y === 0 && (this.position.y + this.height + this.velocity.y >= this.context.canvas.height);
+
+        const jumpCondition = this.position.y + this.height + this.velocity.y >= this.horizon;
 
         if (jumpCondition) {
             this.jumping = true;
@@ -119,7 +136,7 @@ export default class Player {
     }
 
     doubleJump() {
-        if (this.jumping) {
+        if (this.jumping && !this.keys.up.pressed) {
             this.velocity.y -= 10;
             this.jumping = false;
         }    
@@ -128,7 +145,7 @@ export default class Player {
     goLeft() {
         this.velocity.x = -this.velocityRatio;
 
-        console.log('go left', `${this.skin}L`)
+        //console.log('go left', `${this.skin}L`)
         
         this.sprite.updateImage(
             this.imageManager.changeImage(`${this.skin}L`)
@@ -143,16 +160,20 @@ export default class Player {
         )
     }
 
-    stop() {
+    stopX() {
         this.velocity.x = 0
+    }
+
+    stopY() {
+        this.velocity.y = 0
     }
 
     activate() {
         this.activated = this.activated + 1;
 
         if (this.awaited === this.activated) {
-            //this.winCallback();
-            this.loseCallback();
+            this.winCallback();
+            //this.loseCallback();
         } 
     }
 
@@ -166,7 +187,7 @@ export default class Player {
     }
 
     begin() {
-        this.stop();
+        this.stopX();
 
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;

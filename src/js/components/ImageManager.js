@@ -41,7 +41,7 @@ export default class ImageManager {
 
         let image = new Image();
 
-        console.log(name)
+        console.log('__________________________',name)
 
         switch(name) {
             case 'intro0':
@@ -88,6 +88,8 @@ export default class ImageManager {
                 image.src = dimaPlayerL;
                 break;
             case 'Имя':
+            case 'normalPlayerR':
+            case 'normalPlayerL':
                 image.src = normalPlayerR;
                 break;
             case 'depression':
@@ -97,5 +99,9 @@ export default class ImageManager {
         }
 
         return image;
+    }
+
+    hideImage() {
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
     }
 }

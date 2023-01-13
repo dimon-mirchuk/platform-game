@@ -15,6 +15,8 @@ export default class Platform {
         this.height = 270;
 
         this.start();
+
+        this.id = 'platform';
     }
 
     start() {
