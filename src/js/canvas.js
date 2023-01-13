@@ -1,17 +1,30 @@
 import Game from "./components/Game";
 import Player from "./components/Player";
 import Controller from "./components/Controller";
+import ContextManager from "./components/ContextManager";
+import ImageManager from "./components/ImageManager";
+import EventManager from "./components/EventManager";
+import PlayerCustomizer from "./components/PlayerCustomizer";
 
-import { addListenersKeyDown } from "./utils/listeners";
-import { addListenersKeyUp } from "./utils/listeners";
+import Depression from "./components/Depression";
+import Bug from "./components/Bug"
 
+import CollisionManager from "./components/CollisionManager";
+//import CollisionM from "./components/CollisionM"
 
+import Menu from "./components/Menu"
 
-let currentGame = new Game(
+let currentGame = new Game (
     Player,
+    PlayerCustomizer,
     Controller,
-    addListenersKeyUp, 
-    addListenersKeyDown
+    ContextManager,
+    ImageManager,
+    EventManager,
+    Depression,
+    Bug,
+    CollisionManager,
+    //CollisionM,
+    Menu,
 );
 
-currentGame.setup();

@@ -1,5 +1,7 @@
+import Sprite from "./Sprite";
+
 export default class Player {
-    constructor(context, gravity, winCallback) {
+    constructor(context, imageManager, gravity, winCallback, loseCallback, img, skinId) {
         this.position = {
             x: 100,
             y: 100,
@@ -17,38 +19,55 @@ export default class Player {
             left: {
                 pressed: false,
             },
+            up: {
+                pressed: false,
+            }
         }
 
-        this.width = 100;
-        this.height = 100;
+        //66
+        //this.width = 240;
+        // ! this.width = 220;
+        this.width = 110;
+        this.height = 240;
 
         this.awaited = 0;
         this.activated = 0;
 
+        this.velocityRatio = 5;
+
         this.context = context;
+        this.imageManager = imageManager;
         this.gravity = gravity;
+        this.skin = skinId;
 
         this.winCallback = winCallback;
+        this.loseCallback = loseCallback;
+        this.spriteImg = img;
+
+        this.bugsFixed = 0;
+
+
+        this.horizon = this.context.canvas.height;
+
+        //this.id = 'player';
+
+        this.start();
     }
 
-    draw() {
-        this.context.fillStyle = 'blue';
-        this.context.fillRect(
-            this.position.x, 
-            this.position.y, 
-            this.width,
-            this.height
-        )
+    start() {
+        console.log('this.skin', this.skin)
+        this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
-    update() {
-        this.draw();
+    update(horizon) {
+        this.sprite.update();
+        this.sprite.updatePosition(this.position.x, this.position.y);
 
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
 
         if (this.position.y + this.height + this.velocity.y <= 
-            this.context.canvas.height) {
+            horizon) {
                 this.velocity.y += this.gravity;
             }
         else {
@@ -58,37 +77,102 @@ export default class Player {
     }
 
     animate() {
-        this.update();
+        this.update(this.horizon);
 
-        if (this.keys.left.pressed) {
+        if (this.position.y > this.context.canvas.height + this.height) {
+            this.die();
+        }
+
+        //console.log('________ this.position', this.position)
+        //console.log('________ this.horizon', this.horizon)
+        //console.log('!!!,', this.dependent, typeof this.dependent)
+
+        if (this.keys.left.pressed && this.position.x > 799) {
             this.goLeft();
         }
-        else if (this.keys.right.pressed) {
+        else if (this.keys.left.pressed && this.position.x <= 799) {
+            this.stopX();
+
+            if (this.keys.left.pressed) {
+                // 88 console.log(this.dependent)
+                this.dependent.forEach(element => {
+                   // element.moveRight(this.velocity.x);
+                   element.moveRight(this.velocityRatio);
+                });
+            }
+        }
+        else if (this.keys.right.pressed && this.position.x < 800) {
             this.goRight();
         }
-        else this.stop();
+        else if (this.keys.right.pressed && this.position.x >= 800) {
+
+            this.stopX();
+
+            if (this.keys.right.pressed) {
+                // 88 console.log(this.dependent)
+                this.dependent.forEach(element => {
+                    //element.moveLeft(this.velocity.x);
+                    element.moveLeft(this.velocityRatio);
+                });
+            }
+        }
+        else {
+            this.stopX();
+        }
     }
 
     jump() {
-        const jumpCondition = this.velocity.y === 0 && (this.position.y + this.height + this.velocity.y >= this.context.canvas.height);
+
+        const jumpCondition = this.position.y + this.height + this.velocity.y >= this.horizon;
 
         if (jumpCondition) {
+            this.jumping = true;
             this.velocity.y -= 15;
+
+            setTimeout(() => {
+                this.jumping = false;
+            }, 1000);
         }
 
         this.activate();
     }
 
+    doubleJump(forced, param) {
+
+        if (this.jumping && !this.keys.up.pressed) {
+            this.velocity.y -= 10;
+            this.jumping = false;
+        }    
+
+        if(forced) {
+            this.velocity.y -= param;
+        }
+    }
+
     goLeft() {
-        this.velocity.x = -5;
+        this.velocity.x = -this.velocityRatio;
+
+        //console.log('go left', `${this.skin}L`)
+        
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skin}L`)
+        )
     }
 
     goRight() {
-        this.velocity.x = 5;
+        this.velocity.x = this.velocityRatio;
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skin}R`)
+        )
     }
 
-    stop() {
+    stopX() {
         this.velocity.x = 0
+    }
+
+    stopY() {
+        this.velocity.y = 0        
     }
 
     activate() {
@@ -96,12 +180,61 @@ export default class Player {
 
         if (this.awaited === this.activated) {
             this.winCallback();
+            //this.loseCallback();
         } 
     }
 
-    setLevelConditions(awaited){
+    setLevelConditions(awaited) {
         this.activated = 0;
         this.awaited = awaited;
     }
 
+    getSprite() {
+        return this.sprite.get();
+    }
+
+    begin() {
+        this.stopX();
+
+        this.keys.left.pressed = false;
+        this.keys.right.pressed = false;
+        this.keys.up.pressed = false;
+
+        this.bugsFixed = 0;
+
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skin}R`)
+        )
+        
+        this.position.x = 800
+        this.position.y = 100
+        this.velocity.y = 0;
+    }
+
+    // bounce() {
+    //     this.stopY();
+    //     this.velocity.y = this.velocity.y - 5;
+    // }
+
+    fixBug() {
+        console.log('FIXED A BUG')
+        this.bugsFixed = this.bugsFixed + 1; 
+    }
+
+    setDependentEntities(args) {
+        this.dependent = args;
+    }
+
+    setVelocityRatio(x) {
+        this.velocityRatio = x
+    }
+
+    getVelocityRatio(x) {
+        return this.velocityRatio;
+    }
+
+    die() {
+        this.loseCallback();
+    }
 }
