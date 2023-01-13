@@ -86,6 +86,19 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/creatures/bug.png":
+/*!***********************************!*\
+  !*** ./src/img/creatures/bug.png ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "dbe21763294f170a733d914e7dcdbb2f.png");
+
+/***/ }),
+
 /***/ "./src/img/creatures/depression.png":
 /*!******************************************!*\
   !*** ./src/img/creatures/depression.png ***!
@@ -324,8 +337,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_EventManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EventManager */ "./src/js/components/EventManager.js");
 /* harmony import */ var _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/PlayerCustomizer */ "./src/js/components/PlayerCustomizer.js");
 /* harmony import */ var _components_Depression__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Depression */ "./src/js/components/Depression.js");
-/* harmony import */ var _components_CollisionManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/CollisionManager */ "./src/js/components/CollisionManager.js");
-/* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Menu */ "./src/js/components/Menu.js");
+/* harmony import */ var _components_Bug__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Bug */ "./src/js/components/Bug.js");
+/* harmony import */ var _components_CollisionManager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/CollisionManager */ "./src/js/components/CollisionManager.js");
+/* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Menu */ "./src/js/components/Menu.js");
+
 
 
 
@@ -338,9 +353,106 @@ __webpack_require__.r(__webpack_exports__);
 //import CollisionM from "./components/CollisionM"
 
 
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"], _components_Depression__WEBPACK_IMPORTED_MODULE_7__["default"], _components_CollisionManager__WEBPACK_IMPORTED_MODULE_8__["default"],
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"], _components_Depression__WEBPACK_IMPORTED_MODULE_7__["default"], _components_Bug__WEBPACK_IMPORTED_MODULE_8__["default"], _components_CollisionManager__WEBPACK_IMPORTED_MODULE_9__["default"],
 //CollisionM,
-_components_Menu__WEBPACK_IMPORTED_MODULE_9__["default"]);
+_components_Menu__WEBPACK_IMPORTED_MODULE_10__["default"]);
+
+/***/ }),
+
+/***/ "./src/js/components/Bug.js":
+/*!**********************************!*\
+  !*** ./src/js/components/Bug.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Bug; });
+/* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Bug = /*#__PURE__*/function () {
+  function Bug(context, x, y, img, skinId) {
+    _classCallCheck(this, Bug);
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.width = 240;
+    this.height = 240;
+    this.context = context;
+    this.spriteImg = img;
+    this.velocity = {
+      x: 3,
+      y: 0
+    };
+    this.skinId = skinId;
+    this.rotate = false;
+    console.log('баг создан');
+    this.start();
+  }
+  _createClass(Bug, [{
+    key: "start",
+    value: function start() {
+      this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
+    }
+  }, {
+    key: "update",
+    value: function update() {
+      console.log('Баг позишн', this.position);
+      this.sprite.update();
+      this.sprite.updatePosition(this.position.x, this.position.y);
+
+      //this.position.y += this.velocity.y;
+      //this.position.x = this.position.x + this.velocity.x;
+
+      // if (this.position.y + this.height + this.velocity.y <= 
+      //     this.context.canvas.height) {
+      //         this.velocity.y += this.gravity;
+      //     }
+      // else {
+      //     this.velocity.y = 0;
+      // }    
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      this.update();
+    }
+  }, {
+    key: "getSprite",
+    value: function getSprite() {
+      return this.sprite.get();
+    }
+  }, {
+    key: "beKilled",
+    value: function beKilled() {}
+  }, {
+    key: "stop",
+    value: function stop() {}
+  }, {
+    key: "goLeft",
+    value: function goLeft() {}
+  }, {
+    key: "goRight",
+    value: function goRight() {}
+  }, {
+    key: "moveRight",
+    value: function moveRight(v) {
+      this.position.x = this.position.x + v;
+    }
+  }, {
+    key: "moveLeft",
+    value: function moveLeft(v) {
+      this.position.x = this.position.x - v;
+    }
+  }]);
+  return Bug;
+}();
+
 
 /***/ }),
 
@@ -920,9 +1032,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 // resources
 var Game = /*#__PURE__*/function () {
-  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager, depression, collisionManager, menu) {
+  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager, depression, bug, collisionManager, menu) {
     _classCallCheck(this, Game);
     this.player = player;
     this.playerCustomizer = playerCustom;
@@ -931,6 +1044,7 @@ var Game = /*#__PURE__*/function () {
     this.imageManager = imageManager;
     this.eventManager = eventManager;
     this.depression = depression;
+    this.bug = bug;
     this.collisionManager = collisionManager;
     this.menu = menu;
     this.stats = {
@@ -1115,9 +1229,17 @@ var Game = /*#__PURE__*/function () {
       var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platforma__WEBPACK_IMPORTED_MODULE_1__["default"](_this.gameContext, element.x, element.y, element.w, element.h);
       });
+      var bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["BugsMap"][this.stats.lvl].map(function (element) {
+        console.log('+++++++++', element);
+        return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name);
+      });
+      var bugSprites = bugs.map(function (element) {
+        return element.getSprite();
+      });
+      this.sprites = [].concat(_toConsumableArray(this.sprites), _toConsumableArray(bugSprites));
       this.collisionManager.setData(this.player, platforms);
-      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression]));
-      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(this.sprites)), this.stats.lvl);
+      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression], _toConsumableArray(bugs)));
+      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(bugs), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
     key: "setStats",
@@ -1157,9 +1279,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/player/dimaPlayerR.png */ "./src/img/player/dimaPlayerR.png");
 /* harmony import */ var _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/player/dimaPlayerL.png */ "./src/img/player/dimaPlayerL.png");
 /* harmony import */ var _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/creatures/depression.png */ "./src/img/creatures/depression.png");
+/* harmony import */ var _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../img/creatures/bug.png */ "./src/img/creatures/bug.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 
 
 
@@ -1249,6 +1373,16 @@ var ImageManager = /*#__PURE__*/function () {
           image.src = _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_11__["default"];
           break;
         case 'depression':
+          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
+          break;
+        case 'bugL':
+          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
+          break;
+        case 'bug':
+        case 'bugR':
+          image.src = _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_15__["default"];
+          break;
+        case 'bugDead':
           image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
           break;
         default:
@@ -1858,13 +1992,13 @@ var Sprite = /*#__PURE__*/function () {
 /*!**************************************!*\
   !*** ./src/js/utils/levels/index.js ***!
   \**************************************/
-/*! exports provided: PlatformMap, EnemyMap, BoosterMap, ConditionMap, introData */
+/*! exports provided: PlatformMap, BugsMap, BoosterMap, ConditionMap, introData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlatformMap", function() { return PlatformMap; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnemyMap", function() { return EnemyMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BugsMap", function() { return BugsMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConditionMap", function() { return ConditionMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "introData", function() { return introData; });
@@ -1934,9 +2068,15 @@ var PlatformMap = {
     url: "tile1"
   }]
 };
-var EnemyMap = {
-  0: [{}, {}, {}]
+var BugsMap = {
+  3: [{
+    x: 1000,
+    y: 200,
+    name: "bug"
+  }]
+  //{x: 800, y: 600, name: "bug"},
 };
+
 var BoosterMap = {
   0: [{}, {}, {}]
 };

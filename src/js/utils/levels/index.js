@@ -6,9 +6,9 @@ export const PlatformMap = {
 
 };
 
-export const EnemyMap = {
-    0: [{},{},{}],
-    
+export const BugsMap = {
+    3: [ {x: 1000, y: 200, name: "bug"}],
+    //{x: 800, y: 600, name: "bug"},
 };
 
 export const BoosterMap = {

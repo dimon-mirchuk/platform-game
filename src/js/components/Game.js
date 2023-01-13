@@ -5,13 +5,14 @@ import Platforma from "./Platforma";
 
 // maps
 import { PlatformMap } from "../utils/levels";
+import { BugsMap } from "../utils/levels";
 import { ConditionMap } from "../utils/levels";
 import { introData } from "../utils/levels";
 
 // resources
 
 export default class Game {
-    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression, collisionManager, menu ) {
+    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression, bug, collisionManager, menu ) {
         this.player = player;
         this.playerCustomizer = playerCustom;
         this.controller = controller;
@@ -19,6 +20,7 @@ export default class Game {
         this.imageManager = imageManager;
         this.eventManager = eventManager;
         this.depression = depression;
+        this.bug = bug;
         this.collisionManager = collisionManager;
         this.menu = menu;
 
@@ -228,11 +230,22 @@ export default class Game {
             return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
         });
 
+        const bugs = BugsMap[this.stats.lvl].map(element => {
+            console.log('+++++++++',element)
+            return new this.bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name)
+        });
+
+        const bugSprites = bugs.map((element)=>{
+            return element.getSprite();
+        })
+
+        this.sprites = [...this.sprites, ...bugSprites]
+
         this.collisionManager.setData(this.player, platforms);
 
-        this.player.setDependentEntities([...platforms, this.depression]);
+        this.player.setDependentEntities([...platforms, this.depression, ...bugs]);
 
-        this.controller.animate([this.player, this.depression, ...platforms, ...this.sprites], this.stats.lvl);
+        this.controller.animate([this.player, this.depression, ...platforms, ...bugs, ...this.sprites], this.stats.lvl);
     }
     
     setStats(name) {    

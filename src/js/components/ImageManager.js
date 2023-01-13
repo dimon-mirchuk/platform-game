@@ -17,6 +17,7 @@ import dimaPlayerR from "../../img/player/dimaPlayerR.png"
 import dimaPlayerL from "../../img/player/dimaPlayerL.png"
 
 import depression from "../../img/creatures/depression.png"
+import bug from "../../img/creatures/bug.png"
 
 export default class ImageManager {
     constructor ( managerContext ) {
@@ -93,6 +94,16 @@ export default class ImageManager {
                 image.src = normalPlayerR;
                 break;
             case 'depression':
+                image.src = depression;
+                break;
+            case 'bugL':
+                image.src = depression;
+                break;
+            case 'bug':
+            case 'bugR':
+                image.src = bug;
+                break;
+            case 'bugDead':
                 image.src = depression;
                 break;
             default:
