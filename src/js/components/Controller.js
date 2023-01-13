@@ -22,7 +22,7 @@ export default class Controller {
         this.collisionManager.checkPlatformCollision();
         this.collisionManager.checkBugCollision();
         //this.collisionManager.checkDepressionCollision();
-        // this.collisionManager.checkCollectableCollision();
+        this.collisionManager.checkCollectableCollision();
 
         args.forEach(el => el.animate())      
     }

@@ -1,12 +1,14 @@
 // entities
 import Platform from "./Platform";
 import Platforma from "./Platforma";
+import Collectable from "./Collectable";
 
 
 // maps
 import { PlatformMap } from "../utils/levels";
 import { BugsMap } from "../utils/levels";
 import { ConditionMap } from "../utils/levels";
+import { BoosterMap } from "../utils/levels";
 import { introData } from "../utils/levels";
 
 // resources
@@ -198,7 +200,7 @@ export default class Game {
 
         this.controller = new this.controller(this.gameContext, this.collisionManager);
         
-        this.menu.setCallbacks(this.controller.stop.bind(this.controller),this.controller.continue.bind(this.controller))
+        this.menu.setCallbacks(this.controller.stop.bind(this.controller), this.controller.continue.bind(this.controller))
         //this.eventManager.setControllerStop(this.controller.stop.bind(this.controller));
         //this.eventManager.setControllerStart(this.controller.continue.bind(this.controller));
 
@@ -230,8 +232,12 @@ export default class Game {
             return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
         });
 
+        const collectable = BoosterMap[this.stats.lvl].map(element => {
+            return new Collectable(this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish)
+        });
+
         const bugs = BugsMap[this.stats.lvl].map(element => {
-            console.log('+++++++++',element)
+            //console.log('+++++++++',element)
             return new this.bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet, this.stats.gravity)
         });
 
@@ -243,11 +249,11 @@ export default class Game {
 
 
         // + collectable
-        this.collisionManager.setData(this.player, platforms, bugs, this.depression);
+        this.collisionManager.setData(this.player, platforms, bugs, this.depression, collectable);
 
-        this.player.setDependentEntities([...platforms, this.depression, ...bugs]);
+        this.player.setDependentEntities([...platforms, this.depression, ...bugs, ...collectable]);
 
-        this.controller.animate([this.player, this.depression, ...platforms, ...bugs, ...this.sprites], this.stats.lvl);
+        this.controller.animate([this.player, this.depression, ...platforms, ...bugs, ...collectable, ...this.sprites], this.stats.lvl);
     }
     
     setStats(name) {    

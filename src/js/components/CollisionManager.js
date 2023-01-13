@@ -179,9 +179,9 @@ export default class CollisionManager {
                     // console.log('element',element)
 
                     //this.player.horizon = element.position.y;
-                    console.log('____________________________this.player.position.y',this.player.position.y, this.player.height)
-                    console.log('_________________________________element.position.y', element.position.y)
-                    console.log('this.player.position.y + this.player.height - element.position.y', this.player.position.y + this.player.height - element.position.y)
+                    //console.log('____________________________this.player.position.y',this.player.position.y, this.player.height)
+                    //console.log('_________________________________element.position.y', element.position.y)
+                    //console.log('this.player.position.y + this.player.height - element.position.y', this.player.position.y + this.player.height - element.position.y)
 
                     this.player.horizon = element.position.y;
                     this.player.doubleJump(true, 5)
@@ -207,7 +207,7 @@ export default class CollisionManager {
 
                     //console.log('||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||')
                 }else {
-                     console.log('я туууууууууууууууууууут')
+                    //console.log('я туууууууууууууууууууут')
                 }
             }) 
             
@@ -220,29 +220,29 @@ export default class CollisionManager {
             this.player.die()
         }
     }
-
+    
     checkCollectableCollision() {
 
         this.findNearest(this.collectable);
-            
+
+        console.log('this.nearest', this.nearest)
+
         if (this.nearest.length > 0) {
             this.nearest.forEach(( element ) => {
-                if(element.finish) {
+                if (element.finish) {
                     this.player.winLevel();
                 }
-                else {
-                    // element.beCollected();
+
+                if ((this.player.position.y <= element.position.y && element.position.y <= this.player.position.y + this.player.height)||
+                (this.player.position.y <= element.position.y + element.height && element.position.y + element.height <= this.player.position.y + this.player.hight)) {
+
+                    element.beCollected();
+
                     const prevV = this.player.getVelocityRatio();
-                    this.player.setVelocityRatio(prevV + 5)
-                }
+                    this.player.setVelocityRatio(prevV + 5);
+                    
+                } 
             })
         }
-            
-
-
     }
-
-
-
-
 }

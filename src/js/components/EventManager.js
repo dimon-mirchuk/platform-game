@@ -10,7 +10,7 @@ export default class EventManager {
        this.pause = false 
     }
 
-    setMenu(menu) {
+    setMenu (menu) {
         this.menu = menu;
     }
 

@@ -86,6 +86,19 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/collectable/lafore.png":
+/*!****************************************!*\
+  !*** ./src/img/collectable/lafore.png ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "50b3aa617838831d6dcfb9a8f99abaf4.png");
+
+/***/ }),
+
 /***/ "./src/img/creatures/bug.png":
 /*!***********************************!*\
   !*** ./src/img/creatures/bug.png ***!
@@ -417,7 +430,8 @@ var Bug = /*#__PURE__*/function () {
       } else {
         this.magnet = -this.magnet2;
       }
-      console.log('BUUUUUG', this.killed);
+
+      //console.log('BUUUUUG',this.killed)
       if (this.killed) {
         this.stop();
         this.beKilled();
@@ -467,6 +481,101 @@ var Bug = /*#__PURE__*/function () {
     }
   }]);
   return Bug;
+}();
+
+
+/***/ }),
+
+/***/ "./src/js/components/Collectable.js":
+/*!******************************************!*\
+  !*** ./src/js/components/Collectable.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Collectable; });
+/* harmony import */ var _img_collectable_lafore_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/collectable/lafore.png */ "./src/img/collectable/lafore.png");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Collectable = /*#__PURE__*/function () {
+  function Collectable(context, x, y, w, h, name, finish) {
+    _classCallCheck(this, Collectable);
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.width = w;
+    this.height = h;
+    this.context = context;
+    this.name = name;
+    this.finish = finish;
+    this.collected = false;
+    this.start();
+  }
+  _createClass(Collectable, [{
+    key: "start",
+    value: function start() {
+      this.image = new Image();
+      this.changeDecor();
+    }
+  }, {
+    key: "draw",
+    value: function draw() {
+      var _this = this;
+      if (this.image.src) {
+        if (this.image.complete) {
+          this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          this.image.onload = function () {
+            _this.context.drawImage(_this.image, _this.position.x, _this.position.y, _this.width, _this.height);
+          };
+        }
+      }
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      if (!this.collected) {
+        this.draw();
+      }
+    }
+  }, {
+    key: "changeDecor",
+    value: function changeDecor() {
+      switch (this.name) {
+        case 'deadline':
+          this.image.src = deadline;
+          break;
+        case 'lafore':
+          this.image.src = _img_collectable_lafore_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+          break;
+        default:
+          this.image.src = null;
+      }
+    }
+  }, {
+    key: "beCollected",
+    value: function beCollected() {
+      this.position.x = 0;
+      this.position.y = 0;
+      this.collected = true;
+    }
+  }, {
+    key: "moveRight",
+    value: function moveRight(v) {
+      this.position.x = this.position.x + v;
+    }
+  }, {
+    key: "moveLeft",
+    value: function moveLeft(v) {
+      this.position.x = this.position.x - v;
+    }
+  }]);
+  return Collectable;
 }();
 
 
@@ -628,9 +737,10 @@ var CollisionManager = /*#__PURE__*/function () {
             // console.log('element',element)
 
             //this.player.horizon = element.position.y;
-            console.log('____________________________this.player.position.y', _this3.player.position.y, _this3.player.height);
-            console.log('_________________________________element.position.y', element.position.y);
-            console.log('this.player.position.y + this.player.height - element.position.y', _this3.player.position.y + _this3.player.height - element.position.y);
+            //console.log('____________________________this.player.position.y',this.player.position.y, this.player.height)
+            //console.log('_________________________________element.position.y', element.position.y)
+            //console.log('this.player.position.y + this.player.height - element.position.y', this.player.position.y + this.player.height - element.position.y)
+
             _this3.player.horizon = element.position.y;
             _this3.player.doubleJump(true, 5);
             element.killed = true;
@@ -650,7 +760,7 @@ var CollisionManager = /*#__PURE__*/function () {
 
             //console.log('||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||')
           } else {
-            console.log('я туууууууууууууууууууут');
+            //console.log('я туууууууууууууууууууут')
           }
         });
       }
@@ -667,12 +777,14 @@ var CollisionManager = /*#__PURE__*/function () {
     value: function checkCollectableCollision() {
       var _this4 = this;
       this.findNearest(this.collectable);
+      console.log('this.nearest', this.nearest);
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.finish) {
             _this4.player.winLevel();
-          } else {
-            // element.beCollected();
+          }
+          if (_this4.player.position.y <= element.position.y && element.position.y <= _this4.player.position.y + _this4.player.height || _this4.player.position.y <= element.position.y + element.height && element.position.y + element.height <= _this4.player.position.y + _this4.player.hight) {
+            element.beCollected();
             var prevV = _this4.player.getVelocityRatio();
             _this4.player.setVelocityRatio(prevV + 5);
           }
@@ -804,8 +916,7 @@ var Controller = /*#__PURE__*/function () {
       this.collisionManager.checkPlatformCollision();
       this.collisionManager.checkBugCollision();
       //this.collisionManager.checkDepressionCollision();
-      // this.collisionManager.checkCollectableCollision();
-
+      this.collisionManager.checkCollectableCollision();
       args.forEach(function (el) {
         return el.animate();
       });
@@ -1114,7 +1225,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
 /* harmony import */ var _Platforma__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Platforma */ "./src/js/components/Platforma.js");
-/* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
+/* harmony import */ var _Collectable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Collectable */ "./src/js/components/Collectable.js");
+/* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1128,7 +1240,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 // maps
+
 
 
 
@@ -1217,21 +1331,21 @@ var Game = /*#__PURE__*/function () {
 
       //console.log('STAGE:', 'зашли в интро')
 
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].introDone) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].introDone) {
         this.intro = false;
         //console.log('STAGE:', 'закончили интро')
       }
 
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].input) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].input) {
         //take name
         //console.log('STAGE:', 'зашли в инпут')
 
         this.input = true;
         this.playerCustomizer.getPlayerName();
       }
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].srcName && this.intro) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].srcName && this.intro) {
         //console.log('STAGE:', 'показываем интро')
-        this.imageManager.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].srcName);
+        this.imageManager.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].srcName);
       } else {
         if (this.player.gravity) {
           //console.log('STAGE:', 'начинаем уровень')
@@ -1269,7 +1383,7 @@ var Game = /*#__PURE__*/function () {
         //console.log('STAGE:', 'выиграли уровень - не молдец')
       }
 
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl + 1].finish) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl + 1].finish) {
         this.winGame();
       }
     }
@@ -1321,17 +1435,20 @@ var Game = /*#__PURE__*/function () {
       this.setPlayTime();
       this.player.begin();
       this.depression.begin();
-      this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_2__["ConditionMap"][this.stats.lvl]);
+      this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_3__["ConditionMap"][this.stats.lvl]);
 
       // const platforms = PlatformMap[this.stats.lvl].map(element => {
       //     return new Platform(this.gameContext, element.x, element.y, element.name)
       // });
 
-      var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["PlatformMap"][this.stats.lvl].map(function (element) {
+      var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platforma__WEBPACK_IMPORTED_MODULE_1__["default"](_this.gameContext, element.x, element.y, element.w, element.h);
       });
-      var bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["BugsMap"][this.stats.lvl].map(function (element) {
-        console.log('+++++++++', element);
+      var collectable = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["BoosterMap"][this.stats.lvl].map(function (element) {
+        return new _Collectable__WEBPACK_IMPORTED_MODULE_2__["default"](_this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish);
+      });
+      var bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["BugsMap"][this.stats.lvl].map(function (element) {
+        //console.log('+++++++++',element)
         return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name, element.magnet, _this.stats.gravity);
       });
       var bugSprites = bugs.map(function (element) {
@@ -1340,9 +1457,9 @@ var Game = /*#__PURE__*/function () {
       this.sprites = [].concat(_toConsumableArray(this.sprites), _toConsumableArray(bugSprites));
 
       // + collectable
-      this.collisionManager.setData(this.player, platforms, bugs, this.depression);
-      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression], _toConsumableArray(bugs)));
-      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(bugs), _toConsumableArray(this.sprites)), this.stats.lvl);
+      this.collisionManager.setData(this.player, platforms, bugs, this.depression, collectable);
+      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression], _toConsumableArray(bugs), _toConsumableArray(collectable)));
+      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(bugs), _toConsumableArray(collectable), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
     key: "setStats",
@@ -2135,10 +2252,10 @@ var PlatformMap = {
     w: 200,
     h: 200
   }, {
-    x: 200,
+    x: 0,
     y: 800,
     name: "tile1",
-    w: 3000,
+    w: 5000,
     h: 200
   }, {
     x: 1200,
@@ -2199,12 +2316,88 @@ var BugsMap = {
     y: 560,
     name: "bug",
     magnet: 100
+  }],
+  5: [{
+    x: 100,
+    y: 560,
+    name: "bug",
+    magnet: 100
+  }],
+  8: [{
+    x: 100,
+    y: 560,
+    name: "bug",
+    magnet: 100
+  }],
+  9: [{
+    x: 100,
+    y: 560,
+    name: "bug",
+    magnet: 100
   }]
-  //{x: 800, y: 600, name: "bug"},
 };
-
 var BoosterMap = {
-  0: [{}, {}, {}]
+  3: [{
+    x: 100,
+    y: 300,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }, {
+    x: 500,
+    y: 700,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }, {
+    x: 1200,
+    y: 400,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }],
+  5: [{
+    x: 400,
+    y: 300,
+    url: "tile2"
+  }, {
+    x: 400,
+    y: 100,
+    url: "tile2"
+  }, {
+    x: 400,
+    y: 500,
+    url: "tile2"
+  }],
+  8: [{
+    x: 0,
+    y: 100,
+    url: "tile1"
+  }, {
+    x: 0,
+    y: 200,
+    url: "tile2"
+  }, {
+    x: 0,
+    y: 300,
+    url: "tile1"
+  }],
+  9: [{
+    x: 200,
+    y: 100,
+    url: "tile2"
+  }, {
+    x: 300,
+    y: 200,
+    url: "tile2"
+  }, {
+    x: 400,
+    y: 300,
+    url: "tile1"
+  }]
 };
 var ConditionMap = {
   3: 30,
@@ -2243,27 +2436,6 @@ var introData = {
   },
   11: {}
 };
-
-// if (this.player.keys.right.pressed) {
-
-//     this.platforms.forEach(( element ) => {
-
-//         if (element.position.x - this.player.width === 800 && element.position.y <= this.player.position.y + this.player.height) {
-
-//             if (element.position.y <= this.player.position.y + this.player.height && ) {
-//                 this.player.stopY();
-//             } 
-
-//             this.player.setVelocityRatio(0);
-//         }
-
-//         // else if () {
-
-//         // }
-
-//     })
-
-// }
 
 /***/ })
 

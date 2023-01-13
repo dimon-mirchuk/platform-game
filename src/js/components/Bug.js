@@ -52,7 +52,7 @@ export default class Bug {
             this.magnet = -this.magnet2;
         }
 
-        console.log('BUUUUUG',this.killed)
+        //console.log('BUUUUUG',this.killed)
         if (this.killed) {
             this.stop();
             this.beKilled();
