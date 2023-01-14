@@ -1306,7 +1306,7 @@ var Game = /*#__PURE__*/function () {
         this.imageManager.showImage('nevergiveup');
       }
 
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl + 1].finish) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl + 1].last && this.last === 'win') {
         this.winGame();
       }
     }
