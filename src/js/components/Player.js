@@ -24,15 +24,13 @@ export default class Player {
             }
         }
 
-        //66
-        //this.width = 240;
-        // ! this.width = 220;
         this.width = 110;
         this.height = 240;
 
         this.awaited = 0;
         this.activated = 0;
 
+        this.prevVelocityRatio = 5;
         this.velocityRatio = 5;
 
         this.context = context;
@@ -46,16 +44,12 @@ export default class Player {
 
         this.bugsFixed = 0;
 
-
         this.horizon = this.context.canvas.height;
-
-        //this.id = 'player';
 
         this.start();
     }
 
     start() {
-        console.log('this.skin', this.skin)
         this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
 
@@ -66,38 +60,27 @@ export default class Player {
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
 
-        if (this.position.y + this.height + this.velocity.y <= 
-            horizon) {
-                this.velocity.y += this.gravity;
-            }
-        else {
+        if (this.position.y + this.height + this.velocity.y <= horizon) {
+            this.velocity.y += this.gravity;
+        } else {
             this.velocity.y = 0;
         }    
-        
     }
 
     animate() {
         this.update(this.horizon);
 
-        if (this.position.y > this.context.canvas.height + this.height) {
-            this.die();
-        }
-
-        //console.log('________ this.position', this.position)
-        //console.log('________ this.horizon', this.horizon)
-        //console.log('!!!,', this.dependent, typeof this.dependent)
+        if (this.position.y > this.context.canvas.height + this.height) this.die();
 
         if (this.keys.left.pressed && this.position.x > 799) {
             this.goLeft();
-        }
-        else if (this.keys.left.pressed && this.position.x <= 799) {
+
+        } else if (this.keys.left.pressed && this.position.x <= 799) {
             this.stopX();
 
             if (this.keys.left.pressed) {
-                // 88 console.log(this.dependent)
                 this.dependent.forEach(element => {
-                   // element.moveRight(this.velocity.x);
-                   element.moveRight(this.velocityRatio);
+                    element.moveRight(this.velocityRatio);
                 });
             }
         }
@@ -105,13 +88,10 @@ export default class Player {
             this.goRight();
         }
         else if (this.keys.right.pressed && this.position.x >= 800) {
-
             this.stopX();
 
             if (this.keys.right.pressed) {
-                // 88 console.log(this.dependent)
                 this.dependent.forEach(element => {
-                    //element.moveLeft(this.velocity.x);
                     element.moveLeft(this.velocityRatio);
                 });
             }
@@ -122,7 +102,6 @@ export default class Player {
     }
 
     jump() {
-
         const jumpCondition = this.position.y + this.height + this.velocity.y >= this.horizon;
 
         if (jumpCondition) {
@@ -133,26 +112,21 @@ export default class Player {
                 this.jumping = false;
             }, 1000);
         }
-
-        this.activate();
     }
 
     doubleJump(forced, param) {
-
         if (this.jumping && !this.keys.up.pressed) {
             this.velocity.y -= 10;
             this.jumping = false;
         }    
 
-        if(forced) {
+        if (forced) {
             this.velocity.y -= param;
         }
     }
 
     goLeft() {
         this.velocity.x = -this.velocityRatio;
-
-        //console.log('go left', `${this.skin}L`)
         
         this.sprite.updateImage(
             this.imageManager.changeImage(`${this.skin}L`)
@@ -180,7 +154,6 @@ export default class Player {
 
         if (this.awaited === this.activated) {
             this.winCallback();
-            //this.loseCallback();
         } 
     }
 
@@ -199,6 +172,7 @@ export default class Player {
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;
         this.keys.up.pressed = false;
+        this.setVelocityRatio(5);
 
         this.bugsFixed = 0;
 
@@ -212,13 +186,7 @@ export default class Player {
         this.velocity.y = 0;
     }
 
-    // bounce() {
-    //     this.stopY();
-    //     this.velocity.y = this.velocity.y - 5;
-    // }
-
     fixBug() {
-        console.log('FIXED A BUG')
         this.bugsFixed = this.bugsFixed + 1; 
     }
 
@@ -227,10 +195,15 @@ export default class Player {
     }
 
     setVelocityRatio(x) {
-        this.velocityRatio = x
+        if (x === 0 && this.velocityRatio !== 0) {
+            this.prevVelocityRatio = this.velocityRatio;
+            this.velocityRatio = x
+        } else {
+            this.velocityRatio = x
+        }
     }
 
-    getVelocityRatio(x) {
+    getVelocityRatio() {
         return this.velocityRatio;
     }
 

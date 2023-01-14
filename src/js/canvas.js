@@ -5,14 +5,9 @@ import ContextManager from "./components/ContextManager";
 import ImageManager from "./components/ImageManager";
 import EventManager from "./components/EventManager";
 import PlayerCustomizer from "./components/PlayerCustomizer";
-
 import Depression from "./components/Depression";
-import Bug from "./components/Bug"
-
 import CollisionManager from "./components/CollisionManager";
-//import CollisionM from "./components/CollisionM"
-
-import Menu from "./components/Menu"
+import Menu from "./components/Menu";
 
 let currentGame = new Game (
     Player,
@@ -22,9 +17,7 @@ let currentGame = new Game (
     ImageManager,
     EventManager,
     Depression,
-    Bug,
     CollisionManager,
-    //CollisionM,
     Menu,
 );
 

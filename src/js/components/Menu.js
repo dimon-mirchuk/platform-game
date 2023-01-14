@@ -9,29 +9,16 @@ export default class Menu {
     changePause(stateTime) {
         if (this.pause && stateTime === 'playtime') {
             this.imageManager.hideImage();
-
             this.controllerStart();
-
             this.pause = false;
+
         } else if (!this.pause && stateTime === 'playtime'){
-        //} else {
-            //this.controllerStop();
-            // let f = this.contextManager.showManageContext.bind(this.contextManager);
-            // f();
-
-            // this.setshow();
-            // this.imageManager.showImage('intro0')
-            // this.pause = true;
-
             this.controllerStop();
-
             this.imageManager.showImage('intro0')
             this.pause = true;
         } 
 
         return this.pause;
-
-
     }
 
     changeMusic() {

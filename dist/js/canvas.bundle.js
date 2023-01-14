@@ -86,6 +86,45 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/img/background.png":
+/*!********************************!*\
+  !*** ./src/img/background.png ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "82be28fdb9782baa37f05ac62415dc67.png");
+
+/***/ }),
+
+/***/ "./src/img/collectable/deadline.png":
+/*!******************************************!*\
+  !*** ./src/img/collectable/deadline.png ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "f17908a1053119c17be35641bb5abf95.png");
+
+/***/ }),
+
+/***/ "./src/img/collectable/lafore.png":
+/*!****************************************!*\
+  !*** ./src/img/collectable/lafore.png ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "50b3aa617838831d6dcfb9a8f99abaf4.png");
+
+/***/ }),
+
 /***/ "./src/img/creatures/bug.png":
 /*!***********************************!*\
   !*** ./src/img/creatures/bug.png ***!
@@ -96,6 +135,32 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "dbe21763294f170a733d914e7dcdbb2f.png");
+
+/***/ }),
+
+/***/ "./src/img/creatures/bugL.png":
+/*!************************************!*\
+  !*** ./src/img/creatures/bugL.png ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "85bd8ad81260bf03a646f04868504386.png");
+
+/***/ }),
+
+/***/ "./src/img/creatures/deadBug.png":
+/*!***************************************!*\
+  !*** ./src/img/creatures/deadBug.png ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "34aedc9680efee8a09e313b2b8afda5b.png");
 
 /***/ }),
 
@@ -112,146 +177,94 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/img/intro/bugs.jpg":
-/*!********************************!*\
-  !*** ./src/img/intro/bugs.jpg ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "a58b32ae36ab93e87c491c327a44acbd.jpg");
-
-/***/ }),
-
-/***/ "./src/img/intro/intro1.jpg":
+/***/ "./src/img/intro/intro1.png":
 /*!**********************************!*\
-  !*** ./src/img/intro/intro1.jpg ***!
+  !*** ./src/img/intro/intro1.png ***!
   \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "3f6d0a6d65f84b5055c09fd5f46fab51.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "d3347997970e24c5555977e94b508c8d.png");
 
 /***/ }),
 
-/***/ "./src/img/intro/intro2.jpg":
+/***/ "./src/img/intro/intro2.png":
 /*!**********************************!*\
-  !*** ./src/img/intro/intro2.jpg ***!
+  !*** ./src/img/intro/intro2.png ***!
   \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "c201e1a24a03d654799ca2fa21482f06.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "f9fec4c0c34305e8384db34cbe662a16.png");
 
 /***/ }),
 
-/***/ "./src/img/intro/intro3.jpg":
+/***/ "./src/img/intro/intro3.png":
 /*!**********************************!*\
-  !*** ./src/img/intro/intro3.jpg ***!
+  !*** ./src/img/intro/intro3.png ***!
   \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "909c4e3ab10cd202cdff8c579564f037.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "9a3746a8fdacd6cedc7f42d0b0968e45.png");
 
 /***/ }),
 
-/***/ "./src/img/intro/intro5.jpg":
+/***/ "./src/img/intro/intro5.png":
 /*!**********************************!*\
-  !*** ./src/img/intro/intro5.jpg ***!
+  !*** ./src/img/intro/intro5.png ***!
   \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "3f7e550bf527ef79c9f62f8aed3b121c.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "b6faafa67bac44a8057325626d38f881.png");
 
 /***/ }),
 
-/***/ "./src/img/intro/intro6.jpg":
-/*!**********************************!*\
-  !*** ./src/img/intro/intro6.jpg ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "67f5ecedb48c0be5370848b17c4c745a.jpg");
-
-/***/ }),
-
-/***/ "./src/img/intro/intro7.jpg":
-/*!**********************************!*\
-  !*** ./src/img/intro/intro7.jpg ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "1fef0561948f630376c3098a80527e59.jpg");
-
-/***/ }),
-
-/***/ "./src/img/intro/nevergiveup.jpg":
+/***/ "./src/img/intro/nevergiveup.png":
 /*!***************************************!*\
-  !*** ./src/img/intro/nevergiveup.jpg ***!
+  !*** ./src/img/intro/nevergiveup.png ***!
   \***************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "d2e901d97d4b214bb43bffaf79e7cd19.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "a1a6fde196eb029c0900477cfe8aa8b3.png");
 
 /***/ }),
 
-/***/ "./src/img/intro/timeout.jpg":
+/***/ "./src/img/intro/wingame.png":
 /*!***********************************!*\
-  !*** ./src/img/intro/timeout.jpg ***!
+  !*** ./src/img/intro/wingame.png ***!
   \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2181fad9028d3f87bfb83111195a4f7c.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "7ece00cbf98ce909d3befef6df1b0b41.png");
 
 /***/ }),
 
-/***/ "./src/img/intro/wingame.jpg":
-/*!***********************************!*\
-  !*** ./src/img/intro/wingame.jpg ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "01585ba7f81753b8d5c9d854e0defd33.jpg");
-
-/***/ }),
-
-/***/ "./src/img/intro/winlevel.jpg":
+/***/ "./src/img/intro/winlevel.png":
 /*!************************************!*\
-  !*** ./src/img/intro/winlevel.jpg ***!
+  !*** ./src/img/intro/winlevel.png ***!
   \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "0329abc04609b758174b756c319e8217.jpg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "8cf6a6b61afdf3045094febeb31a21d6.png");
 
 /***/ }),
 
@@ -281,6 +294,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/img/player/normalPlayerL.png":
+/*!******************************************!*\
+  !*** ./src/img/player/normalPlayerL.png ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "c69a875858b87424222616e6d8563549.png");
+
+/***/ }),
+
 /***/ "./src/img/player/normalPlayerR.png":
 /*!******************************************!*\
   !*** ./src/img/player/normalPlayerR.png ***!
@@ -290,7 +316,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "115ce22ca5d749ba67a1a75d87e4d7df.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "749d4df5acc6df96479e6040ef2363cc.png");
 
 /***/ }),
 
@@ -303,20 +329,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "27bc0f442bd71760b9a4681459f647aa.png");
-
-/***/ }),
-
-/***/ "./src/img/surface/default/tile02.png":
-/*!********************************************!*\
-  !*** ./src/img/surface/default/tile02.png ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "2b2853e7885e7d8ad524a629af838530.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "e599983cf8d0fa0a3cc0b6a021798505.png");
 
 /***/ }),
 
@@ -337,9 +350,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_EventManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EventManager */ "./src/js/components/EventManager.js");
 /* harmony import */ var _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/PlayerCustomizer */ "./src/js/components/PlayerCustomizer.js");
 /* harmony import */ var _components_Depression__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Depression */ "./src/js/components/Depression.js");
-/* harmony import */ var _components_Bug__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Bug */ "./src/js/components/Bug.js");
-/* harmony import */ var _components_CollisionManager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/CollisionManager */ "./src/js/components/CollisionManager.js");
-/* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Menu */ "./src/js/components/Menu.js");
+/* harmony import */ var _components_CollisionManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/CollisionManager */ "./src/js/components/CollisionManager.js");
+/* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Menu */ "./src/js/components/Menu.js");
 
 
 
@@ -350,12 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//import CollisionM from "./components/CollisionM"
-
-
-var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"], _components_Depression__WEBPACK_IMPORTED_MODULE_7__["default"], _components_Bug__WEBPACK_IMPORTED_MODULE_8__["default"], _components_CollisionManager__WEBPACK_IMPORTED_MODULE_9__["default"],
-//CollisionM,
-_components_Menu__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var currentGame = new _components_Game__WEBPACK_IMPORTED_MODULE_0__["default"](_components_Player__WEBPACK_IMPORTED_MODULE_1__["default"], _components_PlayerCustomizer__WEBPACK_IMPORTED_MODULE_6__["default"], _components_Controller__WEBPACK_IMPORTED_MODULE_2__["default"], _components_ContextManager__WEBPACK_IMPORTED_MODULE_3__["default"], _components_ImageManager__WEBPACK_IMPORTED_MODULE_4__["default"], _components_EventManager__WEBPACK_IMPORTED_MODULE_5__["default"], _components_Depression__WEBPACK_IMPORTED_MODULE_7__["default"], _components_CollisionManager__WEBPACK_IMPORTED_MODULE_8__["default"], _components_Menu__WEBPACK_IMPORTED_MODULE_9__["default"]);
 
 /***/ }),
 
@@ -375,7 +382,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Bug = /*#__PURE__*/function () {
-  function Bug(context, x, y, img, skinId, magnet, gravity) {
+  function Bug(context, x, y, img, skinId, magnet, gravity, imageManager) {
     _classCallCheck(this, Bug);
     this.position = {
       x: x,
@@ -383,6 +390,7 @@ var Bug = /*#__PURE__*/function () {
     };
     this.width = 240;
     this.height = 240;
+    this.gravity = gravity;
     this.context = context;
     this.spriteImg = img;
     this.velocity = {
@@ -393,8 +401,8 @@ var Bug = /*#__PURE__*/function () {
     this.path = 0;
     this.magnet = magnet;
     this.magnet2 = this.magnet;
-    this.gravity = gravity;
     this.killed = false;
+    this.imageManager = imageManager;
     this.start();
   }
   _createClass(Bug, [{
@@ -417,7 +425,6 @@ var Bug = /*#__PURE__*/function () {
       } else {
         this.magnet = -this.magnet2;
       }
-      console.log('BUUUUUG', this.killed);
       if (this.killed) {
         this.stop();
         this.beKilled();
@@ -439,6 +446,7 @@ var Bug = /*#__PURE__*/function () {
     key: "beKilled",
     value: function beKilled() {
       this.position.y = this.position.y + 10;
+      this.sprite.updateImage(this.imageManager.changeImage("bugDead"));
     }
   }, {
     key: "stop",
@@ -449,11 +457,13 @@ var Bug = /*#__PURE__*/function () {
     key: "goLeft",
     value: function goLeft() {
       this.position.x -= this.velocity.x;
+      this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skinId, "L")));
     }
   }, {
     key: "goRight",
     value: function goRight() {
       this.position.x += this.velocity.x;
+      this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skinId, "R")));
     }
   }, {
     key: "moveRight",
@@ -472,6 +482,100 @@ var Bug = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/js/components/Collectable.js":
+/*!******************************************!*\
+  !*** ./src/js/components/Collectable.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Collectable; });
+/* harmony import */ var _img_collectable_lafore_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/collectable/lafore.png */ "./src/img/collectable/lafore.png");
+/* harmony import */ var _img_collectable_deadline_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/collectable/deadline.png */ "./src/img/collectable/deadline.png");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+
+var Collectable = /*#__PURE__*/function () {
+  function Collectable(context, x, y, w, h, name, finish) {
+    _classCallCheck(this, Collectable);
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.width = w;
+    this.height = h;
+    this.context = context;
+    this.name = name;
+    this.finish = finish;
+    this.collected = false;
+    this.start();
+  }
+  _createClass(Collectable, [{
+    key: "start",
+    value: function start() {
+      this.image = new Image();
+      this.changeDecor();
+    }
+  }, {
+    key: "draw",
+    value: function draw() {
+      var _this = this;
+      if (this.image.src) {
+        if (this.image.complete) {
+          this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          this.image.onload = function () {
+            _this.context.drawImage(_this.image, _this.position.x, _this.position.y, _this.width, _this.height);
+          };
+        }
+      }
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      if (!this.collected) this.draw();
+    }
+  }, {
+    key: "changeDecor",
+    value: function changeDecor() {
+      switch (this.name) {
+        case 'deadline':
+          this.image.src = _img_collectable_deadline_png__WEBPACK_IMPORTED_MODULE_1__["default"];
+          break;
+        case 'lafore':
+          this.image.src = _img_collectable_lafore_png__WEBPACK_IMPORTED_MODULE_0__["default"];
+          break;
+        default:
+      }
+    }
+  }, {
+    key: "beCollected",
+    value: function beCollected() {
+      this.position.x = 0;
+      this.position.y = 0;
+      this.collected = true;
+    }
+  }, {
+    key: "moveRight",
+    value: function moveRight(v) {
+      this.position.x = this.position.x + v;
+    }
+  }, {
+    key: "moveLeft",
+    value: function moveLeft(v) {
+      this.position.x = this.position.x - v;
+    }
+  }]);
+  return Collectable;
+}();
+
+
+/***/ }),
+
 /***/ "./src/js/components/CollisionManager.js":
 /*!***********************************************!*\
   !*** ./src/js/components/CollisionManager.js ***!
@@ -485,72 +589,11 @@ __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-// export default class CollisionManager {
-//     constructor() {
-//         this.nearest = [];
-//     }
-//     //setData(player, platforms, depression, bugs, finish, hw) {
-//     setData(player, platforms) {
-//         this.player = player;
-//         this.platforms = platforms;
-//     }
-//     findNearest() {
-//         this.nearest = [];
-//         this.platforms.forEach(( element ) => {
-//             if (this.player.position.x + this.player.width >= element.position.x &&
-//                 !(this.player.position.x > element.position.x + element.width)) {
-//                 this.nearest.push(element);
-//             }
-//         })
-//     }
-//     checkPlatformCollision() { 
-//         this.findNearest(this.platforms);
-//         console.log(this.nearest)
-//         this.nearest.forEach(( element ) => {
-//             console.log('ЗАШЛИ')
-//             // касается сверху ???
-//             if (this.player.position.y === element.position.y + element.height) {
-//                 console.log('________веерх')
-//             }
-//             // касается справа 
-//             if (this.player.position.x + this.player.width === element.position.x) {
-//                 //if (this.player.keys.right.pressed && element.position.y + element.height >= this.player.position.y) {
-//                 if (this.player.keys.right.pressed) {
-//                     this.player.setVelocityRatio(0);
-//                 }
-//                 else {
-//                     this.player.setVelocityRatio(5);
-//                 }
-//                 console.log('________справа ')
-//             }
-//             // касается снизу
-//             if (this.player.position.y + this.player.height + 5 <= element.position.y) {
-//                 this.player.horizon = element.position.y;
-//                 console.log('________снизу ')
-//             }
-//             // касается слева
-//             if (this.player.position.x  === element.position.x + element.width) {
-//                 if (this.player.keys.left.pressed) {
-//                     this.player.setVelocityRatio(0);
-//                 }
-//                 else {
-//                     this.player.setVelocityRatio(5);
-//                 }
-//                 console.log('________сktdf ')
-//             }
-//         })
-//     }
-//     handleCollision() {
-//     }
-// }
-//Работает (можно отключить)
 var CollisionManager = /*#__PURE__*/function () {
   function CollisionManager() {
     _classCallCheck(this, CollisionManager);
     this.nearest = [];
   }
-
-  //setData(player, platforms, depression, bugs, finish, hw) {
   _createClass(CollisionManager, [{
     key: "setData",
     value: function setData(player, platforms, bugs, depression, collectable) {
@@ -580,25 +623,18 @@ var CollisionManager = /*#__PURE__*/function () {
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x > _this2.player.position.x) {
-            //console.log(1)
             if (_this2.player.keys.right.pressed && element.position.y + element.height >= _this2.player.position.y) {
               _this2.player.setVelocityRatio(0);
-              //console.log(2)
-            } else {
-              _this2.player.setVelocityRatio(velocityRatio);
-              //console.log(3)
+            } else if (!_this2.player.keys.right.pressed) {
+              _this2.player.setVelocityRatio(_this2.player.prevVelocityRatio);
             }
           } else if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x < _this2.player.position.x) {
-            //console.log(4)
             if (_this2.player.keys.left.pressed && element.position.y + element.height >= _this2.player.position.y) {
               _this2.player.setVelocityRatio(0);
-              //console.log(5)
-            } else {
-              _this2.player.setVelocityRatio(velocityRatio);
-              //console.log(6)
+            } else if (!_this2.player.keys.left.pressed) {
+              _this2.player.setVelocityRatio(_this2.player.prevVelocityRatio);
             }
           } else {
-            //console.log(8)
             _this2.player.setVelocityRatio(velocityRatio);
             _this2.player.horizon = element.position.y;
           }
@@ -613,44 +649,14 @@ var CollisionManager = /*#__PURE__*/function () {
     value: function checkBugCollision() {
       var _this3 = this;
       this.findNearest(this.bugs);
-
-      //console.log('this.nearest',this.nearest)
-
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
-          // console.log('this.player.position.y',this.player.position.y)
-          // console.log('element.position.y', element.position.y)
-          // console.log('this.nearest', this.nearest)
-
-          //if (this.player.position.y + this.player.height == element.position.y) {
           if (_this3.player.position.y + _this3.player.height - element.position.y <= 80 && _this3.player.position.y + _this3.player.height - element.position.y >= 60) {
-            // console.log('element.killed', element.killed)
-            // console.log('element',element)
-
-            //this.player.horizon = element.position.y;
-            console.log('____________________________this.player.position.y', _this3.player.position.y, _this3.player.height);
-            console.log('_________________________________element.position.y', element.position.y);
-            console.log('this.player.position.y + this.player.height - element.position.y', _this3.player.position.y + _this3.player.height - element.position.y);
             _this3.player.horizon = element.position.y;
             _this3.player.doubleJump(true, 5);
             element.killed = true;
             _this3.player.fixBug();
             _this3.player.horizon = _this3.player.context.canvas.height;
-
-            // console.log('element.killed',element.killed)
-            //this.player.bounce();
-
-            //this.player.doubleJump(true, this.player.position.y + this.player.height);this.player
-            // this.player.gravity = 0; 
-            // this.player.stopY();
-            // this.player.jump();
-            //this.player.fixBug();
-            //this.player.gravity = 0.5; 
-            // console.log('this.player.bugsFixed', this.player.bugsFixed)
-
-            //console.log('||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||')
-          } else {
-            console.log('я туууууууууууууууууууут');
           }
         });
       }
@@ -670,11 +676,12 @@ var CollisionManager = /*#__PURE__*/function () {
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.finish) {
-            _this4.player.winLevel();
-          } else {
-            // element.beCollected();
+            _this4.player.winCallback();
+          }
+          if (_this4.player.position.y <= element.position.y && element.position.y <= _this4.player.position.y + _this4.player.height || _this4.player.position.y <= element.position.y + element.height && element.position.y + element.height <= _this4.player.position.y + _this4.player.hight) {
+            element.beCollected();
             var prevV = _this4.player.getVelocityRatio();
-            _this4.player.setVelocityRatio(prevV + 5);
+            _this4.player.setVelocityRatio(prevV + 3);
           }
         });
       }
@@ -702,30 +709,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var ContextManager = /*#__PURE__*/function () {
   function ContextManager() {
     _classCallCheck(this, ContextManager);
-    //ссылки на объекты контекста
     this.gameContext = null;
     this.managerContext = null;
-
-    //ссылка на объект текущ контекста (один из двух)
     this.activeContext = null;
     this.setupContexts();
   }
   _createClass(ContextManager, [{
     key: "setupContexts",
     value: function setupContexts() {
-      //нода
       this.gameNode = document.getElementById('gameplay');
       if (this.gameNode.getContext('2d')) {
         this.gameContext = this.gameNode.getContext('2d');
-        this.gameNode.width = window.innerWidth;
-        this.gameNode.height = window.innerHeight;
+        this.gameNode.width = 1920;
+        this.gameNode.height = 1080;
         this.gameNode.setAttribute('style', 'z-index:0; position:absolute;');
         this.gameContext.fillStyle = "blue";
         this.gameContext.fillRect(0, 0, this.gameNode.width, this.gameNode.height);
         this.managerNode = document.getElementById('management');
         this.managerContext = this.managerNode.getContext('2d');
-        this.managerNode.width = window.innerWidth;
-        this.managerNode.height = window.innerHeight;
+        this.managerNode.width = 1920;
+        this.managerNode.height = 1080;
         this.managerNode.setAttribute('style', 'z-index:0; position:absolute;');
         this.managerContext.fillStyle = "yellow";
         this.managerContext.fillRect(0, 0, this.managerNode.width, this.managerNode.height);
@@ -784,11 +787,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 var Controller = /*#__PURE__*/function () {
-  function Controller(context, collisionManager) {
+  function Controller(context, collisionManager, imageManager) {
     _classCallCheck(this, Controller);
     this.context = context;
     this.lvl = 0;
     this.currAnimId = null;
+    this.imageManager = imageManager;
     this.collisionManager = collisionManager;
   }
   _createClass(Controller, [{
@@ -801,11 +805,11 @@ var Controller = /*#__PURE__*/function () {
       }
       this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
       this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-      this.collisionManager.checkPlatformCollision();
+      this.imageManager.showImage('background');
+      this.collisionManager.checkPlatformCollision(args[0].getVelocityRatio());
       this.collisionManager.checkBugCollision();
-      //this.collisionManager.checkDepressionCollision();
-      // this.collisionManager.checkCollectableCollision();
-
+      this.collisionManager.checkDepressionCollision();
+      this.collisionManager.checkCollectableCollision();
       args.forEach(function (el) {
         return el.animate();
       });
@@ -813,10 +817,7 @@ var Controller = /*#__PURE__*/function () {
   }, {
     key: "stop",
     value: function stop() {
-      console.log('++++++++++++++++++++');
-      if (this.currAnimId) {
-        cancelAnimationFrame(this.currAnimId);
-      }
+      if (this.currAnimId) cancelAnimationFrame(this.currAnimId);
     }
   }, {
     key: "continue",
@@ -846,7 +847,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 var Depression = /*#__PURE__*/function () {
-  function Depression(context, gravity, img, loseCallback) {
+  function Depression(context, img, loseCallback) {
     _classCallCheck(this, Depression);
     this.position = {
       x: 100,
@@ -855,12 +856,10 @@ var Depression = /*#__PURE__*/function () {
     this.width = 240;
     this.height = 240;
     this.context = context;
-    //this.gravity = gravity;
-
     this.spriteImg = img;
     this.loseCallback = loseCallback;
     this.velocity = {
-      x: 3,
+      x: 2,
       y: 0
     };
     this.start();
@@ -868,26 +867,23 @@ var Depression = /*#__PURE__*/function () {
   _createClass(Depression, [{
     key: "start",
     value: function start() {
+      var _this = this;
       this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
+      setInterval(function () {
+        _this.velocity.x = _this.velocity.x + 2;
+      }, 4000);
     }
   }, {
     key: "update",
     value: function update() {
       this.sprite.update();
       this.sprite.updatePosition(this.position.x, this.position.y);
-
-      //this.position.y += this.velocity.y;
       this.position.x = this.position.x + this.velocity.x;
-
-      //console.log('depression апдейт', this.position.x)
-
-      // if (this.position.y + this.height + this.velocity.y <= 
-      //     this.context.canvas.height) {
-      //         this.velocity.y += this.gravity;
-      //     }
-      // else {
-      //     this.velocity.y = 0;
-      // }    
+    }
+  }, {
+    key: "killHuman",
+    value: function killHuman() {
+      this.loseCallback();
     }
   }, {
     key: "animate",
@@ -904,19 +900,7 @@ var Depression = /*#__PURE__*/function () {
     value: function begin() {
       this.position.x = 100;
       this.position.y = 300;
-      this.velocity.x = 3;
-
-      // СУПЕР ВАЖНО
-      // 3
-      // 5
-      // setInterval(()=>{ 
-      //     this.velocity.x = this.velocity.x + 1; 
-      // }, 3000)
-    }
-  }, {
-    key: "killHuman",
-    value: function killHuman() {
-      this.loseCallback();
+      this.velocity.x = 1;
     }
   }, {
     key: "moveRight",
@@ -972,7 +956,6 @@ var EventManager = /*#__PURE__*/function () {
         this.event = event;
         this.functionUp = this.checkerUp.bind(this);
         addEventListener(this.event, this.functionUp);
-        console.log('___EventManager___', 'listener added:', this.time, this.event);
       } else if (this.time === 'playtime') {
         this.event = {
           0: 'keyup',
@@ -982,7 +965,6 @@ var EventManager = /*#__PURE__*/function () {
         this.functionDown = this.checkerDown.bind(this);
         addEventListener(this.event[0], this.functionUp);
         addEventListener(this.event[1], this.functionDown);
-        console.log('___EventManager___', 'listenerS added:', this.time, this.event);
       }
     }
   }, {
@@ -990,11 +972,9 @@ var EventManager = /*#__PURE__*/function () {
     value: function removeListener() {
       if (this.time === 'showtime') {
         removeEventListener(this.event, this.functionUp);
-        console.log('___EventManager___', 'listener removed');
       } else if (this.time === 'playtime') {
         removeEventListener(this.event[0], this.functionUp);
         removeEventListener(this.event[1], this.functionDown);
-        console.log('___EventManager___', 'listenerS removed');
       }
     }
   }, {
@@ -1043,24 +1023,14 @@ var EventManager = /*#__PURE__*/function () {
             if (this.time === 'playtime') this.object.keys.left.pressed = false;
             break;
           case 'Space':
-            console.log(111111111111);
             if (this.time === 'showtime' && !this.pause) {
-              //if (this.time === 'showtime') {
-              console.log(222222222222);
               if (this.object.intro && !this.object.input) {
-                console.log(33333333333333);
-                console.log('this.object.last ', this.object.last);
                 if (this.object.last === 'win') {
                   this.object.levelup();
                   this.object.startIntro();
-                  console.log(444444444444444);
                 } else {
                   this.object.startIntro();
-                  console.log(5555555555555555);
                 }
-
-                // this.object.levelup();
-                // this.object.startIntro();
               } else if (!this.object.intro && !this.object.input) {
                 if (this.object.last === 'win') {
                   this.object.levelup();
@@ -1068,26 +1038,16 @@ var EventManager = /*#__PURE__*/function () {
                 } else {
                   this.object.startNewLevel();
                 }
-                // this.object.levelup();
-                // this.object.startNewLevel();
               } else if (this.object.input) {
                 this.object.playerCustomizer.setPlayerName(this.object.setStats.bind(this.object), this.object.levelup.bind(this.object), this.object.startIntro.bind(this.object));
               }
             }
             break;
           case 'Escape':
-            console.log("ESC");
-            //console.log(this.menu)
-            //if (this.menu) {
-            console.log('this.time', this.time);
             if (this.time === 'playtime') {
               this.pause = true;
               this.pause = this.menu.changePause(this.time);
-              console.log('this.pause', this.pause);
             }
-
-            //}
-
             break;
           default:
         }
@@ -1113,8 +1073,9 @@ var EventManager = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Game; });
 /* harmony import */ var _Platform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Platform */ "./src/js/components/Platform.js");
-/* harmony import */ var _Platforma__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Platforma */ "./src/js/components/Platforma.js");
-/* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
+/* harmony import */ var _Collectable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Collectable */ "./src/js/components/Collectable.js");
+/* harmony import */ var _Bug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Bug */ "./src/js/components/Bug.js");
+/* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1128,15 +1089,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 // maps
 
 
 
 
-
-// resources
 var Game = /*#__PURE__*/function () {
-  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager, depression, bug, collisionManager, menu) {
+  function Game(player, playerCustom, controller, contextManager, imageManager, eventManager, depression, collisionManager, menu) {
     _classCallCheck(this, Game);
     this.player = player;
     this.playerCustomizer = playerCustom;
@@ -1145,7 +1105,6 @@ var Game = /*#__PURE__*/function () {
     this.imageManager = imageManager;
     this.eventManager = eventManager;
     this.depression = depression;
-    this.bug = bug;
     this.collisionManager = collisionManager;
     this.menu = menu;
     this.stats = {
@@ -1181,63 +1140,39 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "setShowTime",
     value: function setShowTime() {
-      console.log('___setShowTime___');
-
-      // глушим движок
       if (this.controller.currAnimId) this.controller.stop();
-      // удалить старые листенеры 
       this.eventManager.removeListener();
-      // отчистить все контексты
-      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-      // переключить на менежера
       this.contextManager.showManagerContext();
-      // повесить один листенер
+      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
       this.eventManager.addListener(this, 'keyup');
     }
   }, {
     key: "setPlayTime",
     value: function setPlayTime() {
-      console.log('___setPlayTime___');
-
-      // удалить старые листенеры 
       this.eventManager.removeListener();
-      // отчистить все контексты
-      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
-      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-      // переключить на игру
       this.contextManager.showGameContext();
-      // повесить листенеры
+      this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+      this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
       this.eventManager.addListener(this.player, 'keyup');
     }
   }, {
     key: "startIntro",
     value: function startIntro() {
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-
-      //console.log('STAGE:', 'зашли в интро')
-
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].introDone) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].introDone) {
         this.intro = false;
-        //console.log('STAGE:', 'закончили интро')
       }
-
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].input) {
-        //take name
-        //console.log('STAGE:', 'зашли в инпут')
-
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].input) {
         this.input = true;
         this.playerCustomizer.getPlayerName();
       }
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].srcName && this.intro) {
-        //console.log('STAGE:', 'показываем интро')
-        this.imageManager.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl].srcName);
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].srcName && this.intro) {
+        this.imageManager.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].srcName);
       } else {
         if (this.player.gravity) {
-          //console.log('STAGE:', 'начинаем уровень')
           this.startNewLevel();
         } else {
-          //console.log('STAGE:', 'начинаем игру')
           this.startGame();
         }
       }
@@ -1245,16 +1180,13 @@ var Game = /*#__PURE__*/function () {
   }, {
     key: "winLevel",
     value: function winLevel() {
-      //console.log('STAGE:', 'выиграли уровень')
       this.last = 'win';
-      console.log(this.last, '________________this.last');
       this.showLevelResult();
     }
   }, {
     key: "loseLevel",
     value: function loseLevel() {
       this.last = 'lose';
-      console.log(this.last, '________________this.last');
       this.showLevelResult();
     }
   }, {
@@ -1263,86 +1195,67 @@ var Game = /*#__PURE__*/function () {
       this.setShowTime();
       if (this.last === 'win') {
         this.imageManager.showImage('winlevel');
-        //console.log('STAGE:', 'выиграли уровень - молдец')
       } else if (this.last === 'lose') {
         this.imageManager.showImage('nevergiveup');
-        //console.log('STAGE:', 'выиграли уровень - не молдец')
       }
-
-      if (_utils_levels__WEBPACK_IMPORTED_MODULE_2__["introData"][this.stats.lvl + 1].finish) {
+      if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl + 1].finish) {
         this.winGame();
       }
     }
-
-    // showLevelResult(dead) {
-    //     this.setShowTime();
-
-    //     if (this.player.awaited === this.player.activated && !dead) {
-    //         this.imageManager.showImage('winlevel')
-    //         //console.log('STAGE:', 'выиграли уровень - молдец')
-    //     }
-    //     else if (dead) {
-    //         this.imageManager.showImage('nevergiveup')
-    //         //console.log('STAGE:', 'выиграли уровень - не молдец')
-    //     }
-
-    //     if (introData[this.stats.lvl+1].finish) {
-    //         this.winGame();
-    //     }
-
-    // }
   }, {
     key: "winGame",
     value: function winGame() {
       this.setShowTime();
       this.imageManager.showImage('wingame');
-
-      // удалить листенеры
       this.eventManager.removeListener();
     }
   }, {
     key: "startGame",
     value: function startGame() {
-      console.log('START', this.stats);
       this.player = new this.player(this.gameContext, this.imageManager, this.stats.gravity, this.winLevel.bind(this), this.loseLevel.bind(this), this.playerCustomizer.setPlayerSkin(this.stats.name), this.playerCustomizer.getSkinId());
-      this.controller = new this.controller(this.gameContext, this.collisionManager);
+      this.controller = new this.controller(this.gameContext, this.collisionManager, this.imageManager);
       this.menu.setCallbacks(this.controller.stop.bind(this.controller), this.controller["continue"].bind(this.controller));
-      //this.eventManager.setControllerStop(this.controller.stop.bind(this.controller));
-      //this.eventManager.setControllerStart(this.controller.continue.bind(this.controller));
-
-      this.depression = new this.depression(this.gameContext, this.stats.gravity, this.imageManager.changeImage('depression'), this.loseLevel.bind(this));
-      this.sprites = [this.player.getSprite(), this.depression.getSprite()];
+      this.depression = new this.depression(this.gameContext, this.imageManager.changeImage('depression'), this.loseLevel.bind(this));
+      this.gameSprites = [this.player.getSprite(), this.depression.getSprite()];
       this.startNewLevel();
     }
   }, {
     key: "startNewLevel",
     value: function startNewLevel() {
       var _this = this;
+      console.log('___________________________________________this.stats.lvl', this.stats.lvl);
+      var bugs = [];
+      var collectable = [];
+      var bugSprites = [];
+      var platforms = [];
+      this.sprites = [];
       this.setPlayTime();
       this.player.begin();
       this.depression.begin();
-      this.player.setLevelConditions(_utils_levels__WEBPACK_IMPORTED_MODULE_2__["ConditionMap"][this.stats.lvl]);
+      //this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
-      // const platforms = PlatformMap[this.stats.lvl].map(element => {
-      //     return new Platform(this.gameContext, element.x, element.y, element.name)
+      platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["PlatformMap"][this.stats.lvl].map(function (element) {
+        return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
+      });
+
+      // platforms = PlatformMap[this.stats.lvl].map(element => {
+      //     return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
       // });
 
-      var platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["PlatformMap"][this.stats.lvl].map(function (element) {
-        return new _Platforma__WEBPACK_IMPORTED_MODULE_1__["default"](_this.gameContext, element.x, element.y, element.w, element.h);
+      collectable = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["BoosterMap"][this.stats.lvl].map(function (element) {
+        console.log(element);
+        return new _Collectable__WEBPACK_IMPORTED_MODULE_1__["default"](_this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish);
       });
-      var bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_2__["BugsMap"][this.stats.lvl].map(function (element) {
-        console.log('+++++++++', element);
-        return new _this.bug(_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name, element.magnet, _this.stats.gravity);
+      bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["BugsMap"][this.stats.lvl].map(function (element) {
+        return new _Bug__WEBPACK_IMPORTED_MODULE_2__["default"](_this.gameContext, element.x, element.y, _this.imageManager.changeImage(element.name), element.name, element.magnet, _this.stats.gravity, _this.imageManager);
       });
-      var bugSprites = bugs.map(function (element) {
+      bugSprites = bugs.map(function (element) {
         return element.getSprite();
       });
-      this.sprites = [].concat(_toConsumableArray(this.sprites), _toConsumableArray(bugSprites));
-
-      // + collectable
-      this.collisionManager.setData(this.player, platforms, bugs, this.depression);
-      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression], _toConsumableArray(bugs)));
-      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(bugs), _toConsumableArray(this.sprites)), this.stats.lvl);
+      this.sprites = [].concat(_toConsumableArray(this.gameSprites), _toConsumableArray(bugSprites));
+      this.collisionManager.setData(this.player, platforms, bugs, this.depression, collectable);
+      this.player.setDependentEntities([].concat(_toConsumableArray(platforms), [this.depression], _toConsumableArray(bugs), _toConsumableArray(collectable)));
+      this.controller.animate([this.player, this.depression].concat(_toConsumableArray(platforms), _toConsumableArray(bugs), _toConsumableArray(collectable), _toConsumableArray(this.sprites)), this.stats.lvl);
     }
   }, {
     key: "setStats",
@@ -1367,22 +1280,22 @@ var Game = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ImageManager; });
-/* harmony import */ var _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/intro/intro1.jpg */ "./src/img/intro/intro1.jpg");
-/* harmony import */ var _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/intro/intro2.jpg */ "./src/img/intro/intro2.jpg");
-/* harmony import */ var _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/intro/intro3.jpg */ "./src/img/intro/intro3.jpg");
-/* harmony import */ var _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/intro5.jpg */ "./src/img/intro/intro5.jpg");
-/* harmony import */ var _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/intro/intro6.jpg */ "./src/img/intro/intro6.jpg");
-/* harmony import */ var _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../img/intro/intro7.jpg */ "./src/img/intro/intro7.jpg");
-/* harmony import */ var _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../img/intro/nevergiveup.jpg */ "./src/img/intro/nevergiveup.jpg");
-/* harmony import */ var _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../img/intro/timeout.jpg */ "./src/img/intro/timeout.jpg");
-/* harmony import */ var _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/intro/wingame.jpg */ "./src/img/intro/wingame.jpg");
-/* harmony import */ var _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/intro/winlevel.jpg */ "./src/img/intro/winlevel.jpg");
-/* harmony import */ var _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/intro/bugs.jpg */ "./src/img/intro/bugs.jpg");
-/* harmony import */ var _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/player/normalPlayerR.png */ "./src/img/player/normalPlayerR.png");
-/* harmony import */ var _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/player/dimaPlayerR.png */ "./src/img/player/dimaPlayerR.png");
-/* harmony import */ var _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/player/dimaPlayerL.png */ "./src/img/player/dimaPlayerL.png");
-/* harmony import */ var _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/creatures/depression.png */ "./src/img/creatures/depression.png");
-/* harmony import */ var _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../img/creatures/bug.png */ "./src/img/creatures/bug.png");
+/* harmony import */ var _img_intro_intro1_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/intro/intro1.png */ "./src/img/intro/intro1.png");
+/* harmony import */ var _img_intro_intro2_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/intro/intro2.png */ "./src/img/intro/intro2.png");
+/* harmony import */ var _img_intro_intro3_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../img/intro/intro3.png */ "./src/img/intro/intro3.png");
+/* harmony import */ var _img_intro_intro5_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../img/intro/intro5.png */ "./src/img/intro/intro5.png");
+/* harmony import */ var _img_intro_nevergiveup_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../img/intro/nevergiveup.png */ "./src/img/intro/nevergiveup.png");
+/* harmony import */ var _img_intro_wingame_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../img/intro/wingame.png */ "./src/img/intro/wingame.png");
+/* harmony import */ var _img_intro_winlevel_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../img/intro/winlevel.png */ "./src/img/intro/winlevel.png");
+/* harmony import */ var _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../img/player/normalPlayerR.png */ "./src/img/player/normalPlayerR.png");
+/* harmony import */ var _img_player_normalPlayerL_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../img/player/normalPlayerL.png */ "./src/img/player/normalPlayerL.png");
+/* harmony import */ var _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../img/player/dimaPlayerR.png */ "./src/img/player/dimaPlayerR.png");
+/* harmony import */ var _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../img/player/dimaPlayerL.png */ "./src/img/player/dimaPlayerL.png");
+/* harmony import */ var _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../img/creatures/depression.png */ "./src/img/creatures/depression.png");
+/* harmony import */ var _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../img/creatures/bug.png */ "./src/img/creatures/bug.png");
+/* harmony import */ var _img_creatures_bugL_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../img/creatures/bugL.png */ "./src/img/creatures/bugL.png");
+/* harmony import */ var _img_creatures_deadBug_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/creatures/deadBug.png */ "./src/img/creatures/deadBug.png");
+/* harmony import */ var _img_background_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../img/background.png */ "./src/img/background.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -1413,80 +1326,74 @@ var ImageManager = /*#__PURE__*/function () {
       var _this = this;
       var image = this.changeImage(name);
       if (image.complete) {
-        this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);
+        this.managerContext.drawImage(image, 0, 0, 1920, 1080);
       } else {
         image.onload = function () {
-          _this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight);
+          _this.managerContext.drawImage(image, 0, 0, 1920, 1080);
         };
       }
-      this.managerContext.globalAlpha = 0.5;
     }
   }, {
     key: "changeImage",
     value: function changeImage(name) {
       var image = new Image();
-      console.log('__________________________', name);
       switch (name) {
         case 'intro0':
-          image.src = _img_intro_intro1_jpg__WEBPACK_IMPORTED_MODULE_0__["default"];
+          image.src = _img_intro_intro1_png__WEBPACK_IMPORTED_MODULE_0__["default"];
           break;
         case 'intro1':
-          image.src = _img_intro_intro2_jpg__WEBPACK_IMPORTED_MODULE_1__["default"];
+          image.src = _img_intro_intro2_png__WEBPACK_IMPORTED_MODULE_1__["default"];
           break;
         case 'intro2':
-          image.src = _img_intro_intro3_jpg__WEBPACK_IMPORTED_MODULE_2__["default"];
+          image.src = _img_intro_intro3_png__WEBPACK_IMPORTED_MODULE_2__["default"];
           break;
         case 'intro4':
-          image.src = _img_intro_intro5_jpg__WEBPACK_IMPORTED_MODULE_3__["default"];
+          image.src = _img_intro_intro5_png__WEBPACK_IMPORTED_MODULE_3__["default"];
           break;
         case 'intro6':
-          image.src = _img_intro_intro6_jpg__WEBPACK_IMPORTED_MODULE_4__["default"];
+          image.src = intro6;
           break;
         case 'intro7':
-          image.src = _img_intro_intro7_jpg__WEBPACK_IMPORTED_MODULE_5__["default"];
-          break;
-        case 'bugs':
-          image.src = _img_intro_bugs_jpg__WEBPACK_IMPORTED_MODULE_10__["default"];
-          break;
-        case 'timeout':
-          image.src = _img_intro_timeout_jpg__WEBPACK_IMPORTED_MODULE_7__["default"];
+          image.src = intro7;
           break;
         case 'nevergiveup':
-          image.src = _img_intro_nevergiveup_jpg__WEBPACK_IMPORTED_MODULE_6__["default"];
+          image.src = _img_intro_nevergiveup_png__WEBPACK_IMPORTED_MODULE_4__["default"];
           break;
         case 'winlevel':
-          image.src = _img_intro_winlevel_jpg__WEBPACK_IMPORTED_MODULE_9__["default"];
+          image.src = _img_intro_winlevel_png__WEBPACK_IMPORTED_MODULE_6__["default"];
           break;
         case 'wingame':
-          image.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
-          break;
-        case 'Андрей':
-          image.src = _img_intro_wingame_jpg__WEBPACK_IMPORTED_MODULE_8__["default"];
+          image.src = _img_intro_wingame_png__WEBPACK_IMPORTED_MODULE_5__["default"];
           break;
         case 'Дима':
         case 'dimaPlayerR':
-          image.src = _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_12__["default"];
+          image.src = _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_9__["default"];
           break;
         case 'dimaPlayerL':
-          image.src = _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_13__["default"];
+          image.src = _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_10__["default"];
           break;
         case 'Имя':
         case 'normalPlayerR':
+          image.src = _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_7__["default"];
+          break;
         case 'normalPlayerL':
-          image.src = _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_11__["default"];
+          image.src = _img_player_normalPlayerL_png__WEBPACK_IMPORTED_MODULE_8__["default"];
           break;
         case 'depression':
-          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
+          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_11__["default"];
           break;
         case 'bugL':
-          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
+          image.src = _img_creatures_bugL_png__WEBPACK_IMPORTED_MODULE_13__["default"];
           break;
         case 'bug':
         case 'bugR':
-          image.src = _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_15__["default"];
+          image.src = _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_12__["default"];
           break;
         case 'bugDead':
-          image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_14__["default"];
+          image.src = _img_creatures_deadBug_png__WEBPACK_IMPORTED_MODULE_14__["default"];
+          break;
+        case 'background':
+          image.src = _img_background_png__WEBPACK_IMPORTED_MODULE_15__["default"];
           break;
         default:
       }
@@ -1532,15 +1439,6 @@ var Menu = /*#__PURE__*/function () {
         this.controllerStart();
         this.pause = false;
       } else if (!this.pause && stateTime === 'playtime') {
-        //} else {
-        //this.controllerStop();
-        // let f = this.contextManager.showManageContext.bind(this.contextManager);
-        // f();
-
-        // this.setshow();
-        // this.imageManager.showImage('intro0')
-        // this.pause = true;
-
         this.controllerStop();
         this.imageManager.showImage('intro0');
         this.pause = true;
@@ -1580,11 +1478,9 @@ var Menu = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Platform; });
 /* harmony import */ var _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/surface/default/tile01.png */ "./src/img/surface/default/tile01.png");
-/* harmony import */ var _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/surface/default/tile02.png */ "./src/img/surface/default/tile02.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
 
 var Platform = /*#__PURE__*/function () {
   function Platform(context, x, y, name) {
@@ -1631,7 +1527,7 @@ var Platform = /*#__PURE__*/function () {
           this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
           break;
         case 'tile2':
-          this.image.src = _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__["default"];
+          this.image.src = tile2;
           break;
         default:
           this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
@@ -1649,63 +1545,6 @@ var Platform = /*#__PURE__*/function () {
     }
   }]);
   return Platform;
-}();
-
-
-/***/ }),
-
-/***/ "./src/js/components/Platforma.js":
-/*!****************************************!*\
-  !*** ./src/js/components/Platforma.js ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Platforma; });
-/* harmony import */ var _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/surface/default/tile01.png */ "./src/img/surface/default/tile01.png");
-/* harmony import */ var _img_surface_default_tile02_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/surface/default/tile02.png */ "./src/img/surface/default/tile02.png");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-
-var Platforma = /*#__PURE__*/function () {
-  function Platforma(context, x, y, width, height) {
-    _classCallCheck(this, Platforma);
-    this.position = {
-      x: x,
-      y: y
-    };
-    this.width = width;
-    this.height = height;
-    this.context = context;
-    this.id = 'platform';
-  }
-  _createClass(Platforma, [{
-    key: "draw",
-    value: function draw() {
-      this.context.fillStyle = 'red';
-      this.context.fillRect(this.position.x, this.position.y, this.width, this.height);
-    }
-  }, {
-    key: "animate",
-    value: function animate() {
-      this.draw();
-    }
-  }, {
-    key: "moveRight",
-    value: function moveRight(v) {
-      this.position.x = this.position.x + v;
-    }
-  }, {
-    key: "moveLeft",
-    value: function moveLeft(v) {
-      this.position.x = this.position.x - v;
-    }
-  }]);
-  return Platforma;
 }();
 
 
@@ -1748,14 +1587,11 @@ var Player = /*#__PURE__*/function () {
         pressed: false
       }
     };
-
-    //66
-    //this.width = 240;
-    // ! this.width = 220;
     this.width = 110;
     this.height = 240;
     this.awaited = 0;
     this.activated = 0;
+    this.prevVelocityRatio = 5;
     this.velocityRatio = 5;
     this.context = context;
     this.imageManager = imageManager;
@@ -1766,15 +1602,11 @@ var Player = /*#__PURE__*/function () {
     this.spriteImg = img;
     this.bugsFixed = 0;
     this.horizon = this.context.canvas.height;
-
-    //this.id = 'player';
-
     this.start();
   }
   _createClass(Player, [{
     key: "start",
     value: function start() {
-      console.log('this.skin', this.skin);
       this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
     }
   }, {
@@ -1795,22 +1627,13 @@ var Player = /*#__PURE__*/function () {
     value: function animate() {
       var _this = this;
       this.update(this.horizon);
-      if (this.position.y > this.context.canvas.height + this.height) {
-        this.die();
-      }
-
-      //console.log('________ this.position', this.position)
-      //console.log('________ this.horizon', this.horizon)
-      //console.log('!!!,', this.dependent, typeof this.dependent)
-
+      if (this.position.y > this.context.canvas.height + this.height) this.die();
       if (this.keys.left.pressed && this.position.x > 799) {
         this.goLeft();
       } else if (this.keys.left.pressed && this.position.x <= 799) {
         this.stopX();
         if (this.keys.left.pressed) {
-          // 88 console.log(this.dependent)
           this.dependent.forEach(function (element) {
-            // element.moveRight(this.velocity.x);
             element.moveRight(_this.velocityRatio);
           });
         }
@@ -1819,9 +1642,7 @@ var Player = /*#__PURE__*/function () {
       } else if (this.keys.right.pressed && this.position.x >= 800) {
         this.stopX();
         if (this.keys.right.pressed) {
-          // 88 console.log(this.dependent)
           this.dependent.forEach(function (element) {
-            //element.moveLeft(this.velocity.x);
             element.moveLeft(_this.velocityRatio);
           });
         }
@@ -1841,7 +1662,6 @@ var Player = /*#__PURE__*/function () {
           _this2.jumping = false;
         }, 1000);
       }
-      this.activate();
     }
   }, {
     key: "doubleJump",
@@ -1858,9 +1678,6 @@ var Player = /*#__PURE__*/function () {
     key: "goLeft",
     value: function goLeft() {
       this.velocity.x = -this.velocityRatio;
-
-      //console.log('go left', `${this.skin}L`)
-
       this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skin, "L")));
     }
   }, {
@@ -1885,7 +1702,6 @@ var Player = /*#__PURE__*/function () {
       this.activated = this.activated + 1;
       if (this.awaited === this.activated) {
         this.winCallback();
-        //this.loseCallback();
       }
     }
   }, {
@@ -1906,21 +1722,16 @@ var Player = /*#__PURE__*/function () {
       this.keys.left.pressed = false;
       this.keys.right.pressed = false;
       this.keys.up.pressed = false;
+      this.setVelocityRatio(5);
       this.bugsFixed = 0;
       this.sprite.updateImage(this.imageManager.changeImage("".concat(this.skin, "R")));
       this.position.x = 800;
       this.position.y = 100;
       this.velocity.y = 0;
     }
-
-    // bounce() {
-    //     this.stopY();
-    //     this.velocity.y = this.velocity.y - 5;
-    // }
   }, {
     key: "fixBug",
     value: function fixBug() {
-      console.log('FIXED A BUG');
       this.bugsFixed = this.bugsFixed + 1;
     }
   }, {
@@ -1931,11 +1742,16 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "setVelocityRatio",
     value: function setVelocityRatio(x) {
-      this.velocityRatio = x;
+      if (x === 0 && this.velocityRatio !== 0) {
+        this.prevVelocityRatio = this.velocityRatio;
+        this.velocityRatio = x;
+      } else {
+        this.velocityRatio = x;
+      }
     }
   }, {
     key: "getVelocityRatio",
-    value: function getVelocityRatio(x) {
+    value: function getVelocityRatio() {
       return this.velocityRatio;
     }
   }, {
@@ -1974,14 +1790,15 @@ var PlayerCustomizer = /*#__PURE__*/function () {
     value: function getPlayerName() {
       var body = document.getElementById('body');
       var wrapperDiv = document.createElement('div');
-      wrapperDiv.setAttribute('style', 'position:absolute; width:100vw; height:100vh; display:flex;');
+      wrapperDiv.setAttribute('style', 'position: absolute; display: flex; left: 299px; top: 452px;');
       wrapperDiv.setAttribute('id', 'wrapperDiv');
       body.appendChild(wrapperDiv);
       var conteinerDiv = document.createElement('div');
-      conteinerDiv.setAttribute('style', 'width:300px; height:300px; background:black; z-index: 5;');
+      conteinerDiv.setAttribute('style', 'width: 528px; height: 300px; z-index: 5;');
       wrapperDiv.appendChild(conteinerDiv);
       var input = document.createElement('input');
       input.setAttribute('type', 'text');
+      input.setAttribute('style', 'width: 552px; height: 81px; padding: 20px 21px; font-size: 76px;');
       conteinerDiv.appendChild(input);
       input.focus();
     }
@@ -1995,28 +1812,20 @@ var PlayerCustomizer = /*#__PURE__*/function () {
         levelup();
         startIntro();
       } else {
-        inputElement.setAttribute('style', 'border: 2px solid red');
+        inputElement.setAttribute('style', 'width: 552px; height: 81px; padding: 20px 21px; font-size: 76px;border: 2px solid red');
       }
     }
   }, {
     key: "setPlayerSkin",
     value: function setPlayerSkin(name) {
       var universalName = name.toLowerCase();
-      console.log(313131, universalName);
       switch (universalName) {
-        case 'андрей':
-        case 'кобец':
-        case 'кобеза':
-        case 'kobezzza':
-          this.skinId = 'andreyPlayer';
-          return this.imageManager.changeImage('Андрей');
         case 'дима':
         case 'дмитрий':
         case 'димас':
         case 'димон':
         case 'димочка':
           this.skinId = 'dimaPlayer';
-          console.log('!!!!!!!!!!!!!!!!', this.skinId);
           return this.imageManager.changeImage('Дима');
         default:
           this.skinId = 'normalPlayer';
@@ -2026,7 +1835,6 @@ var PlayerCustomizer = /*#__PURE__*/function () {
   }, {
     key: "getSkinId",
     value: function getSkinId() {
-      console.log('getSkinId', this.skinId);
       return this.skinId;
     }
   }]);
@@ -2127,44 +1935,402 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConditionMap", function() { return ConditionMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "introData", function() { return introData; });
+// export const PlatformMap = {
+//     3: [
+//         {x: 200, y: 880, name: "tile1", w: 1800, h: 200},
+
+//         {x: 600, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 800, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 800, y: 480, name: "tile1", w: 200, h: 200},
+
+//         {x: 1600, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 1800, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 1800, y: 480, name: "tile1", w: 200, h: 200},
+
+//         {x: 2250, y: 280, name: "tile1", w: 200, h: 200},
+
+//         {x: 2700, y: 880, name: "tile1", w: 2400, h: 200},
+
+//         {x: 2700, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 2700, y: 480, name: "tile1", w: 200, h: 200},
+
+//         {x: 3180, y: 280, name: "tile1", w: 1580, h: 200},
+
+//         {x: 4780, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 4980, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 4980, y: 480, name: "tile1", w: 200, h: 200},
+
+//         {x: 5480, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 5980, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 6480, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 6980, y: 480, name: "tile1", w: 200, h: 200},
+
+//         {x: 7480, y: 880, name: "tile1", w: 1120, h: 200},
+
+//         {x: 8000, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 8200, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 8400, y: 680, name: "tile1", w: 200, h: 200},
+//         {x: 8200, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 8400, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 8400, y: 280, name: "tile1", w: 200, h: 200},
+
+//         {x: 9000, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 9400, y: 280, name: "tile1", w: 200, h: 200},
+//         {x: 10000, y: 680, name: "tile1", w: 200, h: 200},
+
+//         {x: 11000, y: 80, name: "tile1", w: 200, h: 200},
+//         {x: 10400, y: 480, name: "tile1", w: 600, h: 200},
+//         {x: 11000, y: 480, name: "tile1", w: 200, h: 200},
+//         {x: 11000, y: 280, name: "tile1", w: 200, h: 200},
+//     ],
+//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
+//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
+
+// };
+
+// export const BugsMap = {
+//     3: [
+//         {x: 1250, y: 640, name: "bug", magnet: 55},
+//         {x: 3400, y: 40, name: "bug", magnet: 50},
+//         {x: 4300, y: 40, name: "bug", magnet: 60},
+//         {x: 3450, y: 640, name: "bug", magnet: 100},
+//         {x: 7700, y: 640, name: "bug", magnet: 40},
+//     ],
+//     5: [ {x: 100, y: 560, name: "bug", magnet: 100}],
+//     8: [ {x: 100, y: 560, name: "bug", magnet: 100}],
+//     9: [ {x: 100, y: 560, name: "bug", magnet: 100}],
+
+// };
+
+// export const BoosterMap = {
+//     3: [
+//         {x: 2320, y: 170, w: 70, h: 100, name: "lafore", finish: false},
+//         {x: 3800, y: 150, w: 70, h: 100, name: "lafore", finish: false},
+//         {x: 4000, y: 760, w: 70, h: 100, name: "lafore", finish: false},
+//         {x: 6780, y: 320, w: 70, h: 100, name: "lafore", finish: false},
+//         {x: 10100, y: 110, w: 70, h: 100, name: "lafore", finish: false},
+//     ],
+//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
+//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
+
+// };
+
+// export const ConditionMap = {
+//     3: 3000,
+//     5: 10,
+//     8: 20,
+//     9: 3
+// };
+
+// export const introData = {
+//     0: { srcName: 'intro0'},
+//     1: { srcName: 'intro1', input: true },
+//     2: { srcName: 'intro2'},
+//     3: {},
+//     4: { srcName: 'intro4'},
+//     5: {},
+//     6: { srcName: 'intro6'},
+//     7: { srcName: 'intro7'},
+//     8: { introDone: true },
+//     9: {},
+//     10: {finish: true},
+//     11: {},
+// };
+
+// export const PlatformMap = {
+//     3: [{x: 100, y: 800, name: "tile1", w: 200, h: 200},{x: 0, y: 800, name: "tile1", w: 5000, h: 200}, {x: 1200, y: 600, name: "tile1", w: 200, h: 200},{x: 1800, y: 0, name: "tile1", w: 200, h: 200},],
+//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
+//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
+
+// // };
+
+//----------------------------------------
+
+// export const PlatformMap = {
+//     3: [{x: -540, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: -270, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 0, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 270, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 540, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 810, y: 800, name: "tile1", w: 270, h: 270},
+//         //{x: 1080, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 1350, y: 800, name: "tile1", w: 270, h: 270},
+//         //{x: 1620, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 1890, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2160, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2430, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2700, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
+//     ],
+//     5: [{x: -540, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: -270, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 0, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 270, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 540, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 810, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 1080, y: 800, name: "tile1", w: 270, h: 270},
+//         //{x: 1350, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 1620, y: 800, name: "tile1", w: 270, h: 270},
+//         //{x: 1890, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2160, y: 800, name: "tile1", w: 270, h: 270},
+//         //{x: 2430, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2700, y: 500, name: "tile1", w: 270, h: 270},
+//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 3240, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 3510, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 3780, y: 800, name: "tile1", w: 270, h: 270},
+
+//         {x: 4320, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 4860, y: 500, name: "tile1", w: 270, h: 270},
+//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
+//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
+//     ],
+//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
+
+// };
+
+// export const BugsMap = {
+//     3: [ ],
+//     5: [ {x: 3270, y: 560, name: "bug", magnet: 100} ],
+//     8: [ {x: 100, y: 560, name: "bug", magnet: 100}],
+//     9: [ {x: 100, y: 560, name: "bug", magnet: 100}],
+
+// };
+
+// export const BoosterMap = {
+//     3: [{x: 2500, y: 0, w: 100, h: 700, name: "deadline", finish: true }, {x: 1200, y: 400, w: 70, h: 100, name: "lafore", finish: false}, ],
+//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
+//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
+//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
+
+// };
+
+// export const ConditionMap = {
+//     3: 3,
+//     5: 10,
+//     8: 20,
+//     9: 3
+// };
+
+// export const introData = {
+//     0: { srcName: 'intro0'},
+//     1: { srcName: 'intro1', input: true },
+//     2: { srcName: 'intro2'},
+//     3: {},
+//     4: { srcName: 'intro4', introDone: true},
+//     5: {},
+//     6: { srcName: 'intro6'},
+//     7: { srcName: 'intro7'},
+//     8: { introDone: true },
+//     9: {},
+//     10: {finish: true},
+//     11: {},
+// };
+
+// // 0: { srcName: 'intro0'},
+// // 1: { srcName: 'intro1', input: true },
+// // 2: { srcName: 'intro2'},
+// // 3: {},
+// // 4: { srcName: 'intro4', introDone: true},
+// // 5: {},
+// // 6: {finish: true},
+
 var PlatformMap = {
   3: [{
-    x: 100,
+    x: -540,
     y: 800,
     name: "tile1",
-    w: 200,
-    h: 200
+    w: 270,
+    h: 270
   }, {
-    x: 200,
+    x: -270,
     y: 800,
     name: "tile1",
-    w: 3000,
-    h: 200
+    w: 270,
+    h: 270
   }, {
-    x: 1200,
-    y: 600,
+    x: 0,
+    y: 800,
     name: "tile1",
-    w: 200,
-    h: 200
+    w: 270,
+    h: 270
   }, {
-    x: 1800,
-    y: 0,
+    x: 270,
+    y: 800,
     name: "tile1",
-    w: 200,
-    h: 200
+    w: 270,
+    h: 270
+  }, {
+    x: 540,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 810,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  },
+  //{x: 1080, y: 800, name: "tile1", w: 270, h: 270},
+  {
+    x: 1350,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  },
+  //{x: 1620, y: 800, name: "tile1", w: 270, h: 270},
+  {
+    x: 1890,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2160,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2430,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2700,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2970,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }],
   5: [{
-    x: 400,
-    y: 300,
-    url: "tile2"
+    x: -540,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }, {
-    x: 400,
-    y: 100,
-    url: "tile2"
+    x: -270,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }, {
-    x: 400,
+    x: 0,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 270,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 540,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 810,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 1080,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  },
+  //{x: 1350, y: 800, name: "tile1", w: 270, h: 270},
+  {
+    x: 1620,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  },
+  //{x: 1890, y: 800, name: "tile1", w: 270, h: 270},
+  {
+    x: 2160,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  },
+  //{x: 2430, y: 800, name: "tile1", w: 270, h: 270},
+  {
+    x: 2700,
     y: 500,
-    url: "tile2"
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2970,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 3240,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 3510,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 3780,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 4320,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 4860,
+    y: 500,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2970,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 2970,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }],
   8: [{
     x: 0,
@@ -2194,17 +2360,76 @@ var PlatformMap = {
   }]
 };
 var BugsMap = {
-  3: [{
+  3: [],
+  5: [{
+    x: 3270,
+    y: 560,
+    name: "bug",
+    magnet: 100
+  }],
+  8: [{
+    x: 100,
+    y: 560,
+    name: "bug",
+    magnet: 100
+  }],
+  9: [{
     x: 100,
     y: 560,
     name: "bug",
     magnet: 100
   }]
-  //{x: 800, y: 600, name: "bug"},
 };
-
 var BoosterMap = {
-  0: [{}, {}, {}]
+  3: [{
+    x: 2500,
+    y: 0,
+    w: 100,
+    h: 700,
+    name: "deadline",
+    finish: true
+  }, {
+    x: 1200,
+    y: 400,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }],
+  5: [{
+    x: 4880,
+    y: 300,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }],
+  8: [{
+    x: 0,
+    y: 100,
+    url: "tile1"
+  }, {
+    x: 0,
+    y: 200,
+    url: "tile2"
+  }, {
+    x: 0,
+    y: 300,
+    url: "tile1"
+  }],
+  9: [{
+    x: 200,
+    y: 100,
+    url: "tile2"
+  }, {
+    x: 300,
+    y: 200,
+    url: "tile2"
+  }, {
+    x: 400,
+    y: 300,
+    url: "tile1"
+  }]
 };
 var ConditionMap = {
   3: 30,
@@ -2229,41 +2454,9 @@ var introData = {
   },
   5: {},
   6: {
-    srcName: 'intro6'
-  },
-  7: {
-    srcName: 'intro7'
-  },
-  8: {
-    introDone: true
-  },
-  9: {},
-  10: {
     finish: true
-  },
-  11: {}
+  }
 };
-
-// if (this.player.keys.right.pressed) {
-
-//     this.platforms.forEach(( element ) => {
-
-//         if (element.position.x - this.player.width === 800 && element.position.y <= this.player.position.y + this.player.height) {
-
-//             if (element.position.y <= this.player.position.y + this.player.height && ) {
-//                 this.player.stopY();
-//             } 
-
-//             this.player.setVelocityRatio(0);
-//         }
-
-//         // else if () {
-
-//         // }
-
-//     })
-
-// }
 
 /***/ })
 

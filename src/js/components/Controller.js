@@ -1,14 +1,15 @@
 export default class Controller {
-    constructor(context, collisionManager) {
+    constructor(context, collisionManager, imageManager) {
         this.context = context;
         this.lvl = 0;
         this.currAnimId = null;
+
+        this.imageManager = imageManager;
 
         this.collisionManager = collisionManager;
     }
 
     animate(args, currLvl) {
-
         this.args = args;
 
         if (this.lvl !== currLvl) {
@@ -16,23 +17,23 @@ export default class Controller {
             cancelAnimationFrame(this.currAnimId);
         }
 
+
         this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
         this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
 
-        this.collisionManager.checkPlatformCollision();
+        this.imageManager.showImage('background');
+
+        this.collisionManager.checkPlatformCollision(args[0].getVelocityRatio());
         this.collisionManager.checkBugCollision();
-        //this.collisionManager.checkDepressionCollision();
-        // this.collisionManager.checkCollectableCollision();
+        this.collisionManager.checkDepressionCollision();
+        this.collisionManager.checkCollectableCollision();
+        
 
         args.forEach(el => el.animate())      
     }
 
     stop() {
-        console.log('++++++++++++++++++++')
-        if (this.currAnimId) {
-            cancelAnimationFrame(this.currAnimId);
-        }
-
+        if (this.currAnimId) cancelAnimationFrame(this.currAnimId);
     }
 
     continue() {

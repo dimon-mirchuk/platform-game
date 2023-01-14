@@ -1,5 +1,4 @@
 import tile1 from "../../img/surface/default/tile01.png"
-import tile2 from "../../img/surface/default/tile02.png"
 
 export default class Platform {
     constructor( context, x, y, name ) {
