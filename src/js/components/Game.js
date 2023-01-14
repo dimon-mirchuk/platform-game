@@ -153,7 +153,6 @@ export default class Game {
     }
 
     startNewLevel() {
-        console.log('___________________________________________this.stats.lvl',this.stats.lvl)
 
         let bugs = [];
         let collectable = [];
@@ -176,7 +175,6 @@ export default class Game {
         // });
 
         collectable = BoosterMap[this.stats.lvl].map(element => {
-            console.log(element)
             return new Collectable(this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish)
         });
 

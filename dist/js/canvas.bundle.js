@@ -1332,7 +1332,6 @@ var Game = /*#__PURE__*/function () {
     value: function startNewLevel() {
       var _this = this;
 
-      console.log('___________________________________________this.stats.lvl', this.stats.lvl);
       var bugs = [];
       var collectable = [];
       var bugSprites = [];
@@ -1349,7 +1348,6 @@ var Game = /*#__PURE__*/function () {
       // });
 
       collectable = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["BoosterMap"][this.stats.lvl].map(function (element) {
-        console.log(element);
         return new _Collectable__WEBPACK_IMPORTED_MODULE_1__["default"](_this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish);
       });
       bugs = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["BugsMap"][this.stats.lvl].map(function (element) {
