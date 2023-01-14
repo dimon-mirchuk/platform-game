@@ -378,12 +378,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Bug; });
 /* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Bug = /*#__PURE__*/function () {
   function Bug(context, x, y, img, skinId, magnet, gravity, imageManager) {
     _classCallCheck(this, Bug);
+
     this.position = {
       x: x,
       y: y
@@ -405,6 +410,7 @@ var Bug = /*#__PURE__*/function () {
     this.imageManager = imageManager;
     this.start();
   }
+
   _createClass(Bug, [{
     key: "start",
     value: function start() {
@@ -419,16 +425,19 @@ var Bug = /*#__PURE__*/function () {
       } else {
         this.magnet = this.magnet2;
       }
+
       if (this.path !== this.magnet && this.path < this.magnet) {
         this.path = this.path + 1;
         this.goRight();
       } else {
         this.magnet = -this.magnet2;
       }
+
       if (this.killed) {
         this.stop();
         this.beKilled();
       }
+
       this.sprite.update();
       this.sprite.updatePosition(this.position.x, this.position.y);
     }
@@ -476,8 +485,10 @@ var Bug = /*#__PURE__*/function () {
       this.position.x = this.position.x - v;
     }
   }]);
+
   return Bug;
 }();
+
 
 
 /***/ }),
@@ -495,13 +506,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_collectable_lafore_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/collectable/lafore.png */ "./src/img/collectable/lafore.png");
 /* harmony import */ var _img_collectable_deadline_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../img/collectable/deadline.png */ "./src/img/collectable/deadline.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 
 var Collectable = /*#__PURE__*/function () {
   function Collectable(context, x, y, w, h, name, finish) {
     _classCallCheck(this, Collectable);
+
     this.position = {
       x: x,
       y: y
@@ -514,6 +530,7 @@ var Collectable = /*#__PURE__*/function () {
     this.collected = false;
     this.start();
   }
+
   _createClass(Collectable, [{
     key: "start",
     value: function start() {
@@ -524,6 +541,7 @@ var Collectable = /*#__PURE__*/function () {
     key: "draw",
     value: function draw() {
       var _this = this;
+
       if (this.image.src) {
         if (this.image.complete) {
           this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
@@ -546,9 +564,11 @@ var Collectable = /*#__PURE__*/function () {
         case 'deadline':
           this.image.src = _img_collectable_deadline_png__WEBPACK_IMPORTED_MODULE_1__["default"];
           break;
+
         case 'lafore':
           this.image.src = _img_collectable_lafore_png__WEBPACK_IMPORTED_MODULE_0__["default"];
           break;
+
         default:
       }
     }
@@ -570,8 +590,10 @@ var Collectable = /*#__PURE__*/function () {
       this.position.x = this.position.x - v;
     }
   }]);
+
   return Collectable;
 }();
+
 
 
 /***/ }),
@@ -587,13 +609,18 @@ var Collectable = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CollisionManager; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var CollisionManager = /*#__PURE__*/function () {
   function CollisionManager() {
     _classCallCheck(this, CollisionManager);
+
     this.nearest = [];
   }
+
   _createClass(CollisionManager, [{
     key: "setData",
     value: function setData(player, platforms, bugs, depression, collectable) {
@@ -607,6 +634,7 @@ var CollisionManager = /*#__PURE__*/function () {
     key: "findNearest",
     value: function findNearest(arr) {
       var _this = this;
+
       this.nearest = [];
       arr.forEach(function (element) {
         if (_this.player.position.x + _this.player.width >= element.position.x && !(_this.player.position.x > element.position.x + element.width)) {
@@ -618,8 +646,10 @@ var CollisionManager = /*#__PURE__*/function () {
     key: "checkPlatformCollision",
     value: function checkPlatformCollision() {
       var _this2 = this;
+
       var velocityRatio = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
       this.findNearest(this.platforms);
+
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x > _this2.player.position.x) {
@@ -636,10 +666,12 @@ var CollisionManager = /*#__PURE__*/function () {
             }
           } else {
             _this2.player.setVelocityRatio(velocityRatio);
+
             _this2.player.horizon = element.position.y;
           }
         });
       }
+
       if (this.nearest.length === 0) {
         this.player.horizon = this.player.context.canvas.height + 500;
       }
@@ -648,14 +680,20 @@ var CollisionManager = /*#__PURE__*/function () {
     key: "checkBugCollision",
     value: function checkBugCollision() {
       var _this3 = this;
+
       this.findNearest(this.bugs);
+
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (_this3.player.position.y + _this3.player.height - element.position.y <= 80 && _this3.player.position.y + _this3.player.height - element.position.y >= 60) {
             _this3.player.horizon = element.position.y;
+
             _this3.player.doubleJump(true, 5);
+
             element.killed = true;
+
             _this3.player.fixBug();
+
             _this3.player.horizon = _this3.player.context.canvas.height;
           }
         });
@@ -672,23 +710,30 @@ var CollisionManager = /*#__PURE__*/function () {
     key: "checkCollectableCollision",
     value: function checkCollectableCollision() {
       var _this4 = this;
+
       this.findNearest(this.collectable);
+
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.finish) {
             _this4.player.winCallback();
           }
+
           if (_this4.player.position.y <= element.position.y && element.position.y <= _this4.player.position.y + _this4.player.height || _this4.player.position.y <= element.position.y + element.height && element.position.y + element.height <= _this4.player.position.y + _this4.player.hight) {
             element.beCollected();
+
             var prevV = _this4.player.getVelocityRatio();
+
             _this4.player.setVelocityRatio(prevV + 3);
           }
         });
       }
     }
   }]);
+
   return CollisionManager;
 }();
+
 
 
 /***/ }),
@@ -704,20 +749,26 @@ var CollisionManager = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContextManager; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var ContextManager = /*#__PURE__*/function () {
   function ContextManager() {
     _classCallCheck(this, ContextManager);
+
     this.gameContext = null;
     this.managerContext = null;
     this.activeContext = null;
     this.setupContexts();
   }
+
   _createClass(ContextManager, [{
     key: "setupContexts",
     value: function setupContexts() {
       this.gameNode = document.getElementById('gameplay');
+
       if (this.gameNode.getContext('2d')) {
         this.gameContext = this.gameNode.getContext('2d');
         this.gameNode.width = 1920;
@@ -767,8 +818,10 @@ var ContextManager = /*#__PURE__*/function () {
       this.activeContext = this.managerContext;
     }
   }]);
+
   return ContextManager;
 }();
+
 
 
 /***/ }),
@@ -784,25 +837,32 @@ var ContextManager = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Controller; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var Controller = /*#__PURE__*/function () {
   function Controller(context, collisionManager, imageManager) {
     _classCallCheck(this, Controller);
+
     this.context = context;
     this.lvl = 0;
     this.currAnimId = null;
     this.imageManager = imageManager;
     this.collisionManager = collisionManager;
   }
+
   _createClass(Controller, [{
     key: "animate",
     value: function animate(args, currLvl) {
       this.args = args;
+
       if (this.lvl !== currLvl) {
         this.lvl = currLvl;
         cancelAnimationFrame(this.currAnimId);
       }
+
       this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
       this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
       this.imageManager.showImage('background');
@@ -825,8 +885,10 @@ var Controller = /*#__PURE__*/function () {
       this.animate(this.args, this.lvl);
     }
   }]);
+
   return Controller;
 }();
+
 
 
 /***/ }),
@@ -843,12 +905,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Depression; });
 /* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Depression = /*#__PURE__*/function () {
   function Depression(context, img, loseCallback) {
     _classCallCheck(this, Depression);
+
     this.position = {
       x: 100,
       y: 300
@@ -864,10 +931,12 @@ var Depression = /*#__PURE__*/function () {
     };
     this.start();
   }
+
   _createClass(Depression, [{
     key: "start",
     value: function start() {
       var _this = this;
+
       this.sprite = new _Sprite__WEBPACK_IMPORTED_MODULE_0__["default"](this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
       setInterval(function () {
         _this.velocity.x = _this.velocity.x + 2;
@@ -913,8 +982,10 @@ var Depression = /*#__PURE__*/function () {
       this.position.x = this.position.x - v;
     }
   }]);
+
   return Depression;
 }();
+
 
 
 /***/ }),
@@ -930,11 +1001,15 @@ var Depression = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EventManager; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var EventManager = /*#__PURE__*/function () {
   function EventManager() {
     _classCallCheck(this, EventManager);
+
     this.object = null;
     this.event = null;
     this.time = null;
@@ -942,6 +1017,7 @@ var EventManager = /*#__PURE__*/function () {
     this.functionDown = null;
     this.pause = false;
   }
+
   _createClass(EventManager, [{
     key: "setMenu",
     value: function setMenu(menu) {
@@ -952,6 +1028,7 @@ var EventManager = /*#__PURE__*/function () {
     value: function addListener(obj, event) {
       this.object = obj;
       this.time = this.object.keys ? 'playtime' : 'showtime';
+
       if (this.time === 'showtime') {
         this.event = event;
         this.functionUp = this.checkerUp.bind(this);
@@ -981,6 +1058,7 @@ var EventManager = /*#__PURE__*/function () {
     key: "checkerDown",
     value: function checkerDown(_ref) {
       var code = _ref.code;
+
       try {
         switch (code) {
           case 'ArrowUp':
@@ -989,15 +1067,19 @@ var EventManager = /*#__PURE__*/function () {
               this.object.jumping ? this.object.doubleJump() : this.object.jump();
               this.object.keys.up.pressed = true;
             }
+
             break;
+
           case 'ArrowRight':
           case 'KeyD':
             if (this.time === 'playtime') this.object.keys.right.pressed = true;
             break;
+
           case 'ArrowLeft':
           case 'KeyA':
             if (this.time === 'playtime') this.object.keys.left.pressed = true;
             break;
+
           default:
         }
       } catch (err) {
@@ -1008,20 +1090,24 @@ var EventManager = /*#__PURE__*/function () {
     key: "checkerUp",
     value: function checkerUp(_ref2) {
       var code = _ref2.code;
+
       try {
         switch (code) {
           case 'ArrowUp':
           case 'KeyW':
             if (this.time === 'playtime') this.object.keys.up.pressed = false;
             break;
+
           case 'ArrowRight':
           case 'KeyD':
             if (this.time === 'playtime') this.object.keys.right.pressed = false;
             break;
+
           case 'ArrowLeft':
           case 'KeyA':
             if (this.time === 'playtime') this.object.keys.left.pressed = false;
             break;
+
           case 'Space':
             if (this.time === 'showtime' && !this.pause) {
               if (this.object.intro && !this.object.input) {
@@ -1042,13 +1128,17 @@ var EventManager = /*#__PURE__*/function () {
                 this.object.playerCustomizer.setPlayerName(this.object.setStats.bind(this.object), this.object.levelup.bind(this.object), this.object.startIntro.bind(this.object));
               }
             }
+
             break;
+
           case 'Escape':
             if (this.time === 'playtime') {
               this.pause = true;
               this.pause = this.menu.changePause(this.time);
             }
+
             break;
+
           default:
         }
       } catch (err) {
@@ -1056,8 +1146,10 @@ var EventManager = /*#__PURE__*/function () {
       }
     }
   }]);
+
   return EventManager;
 }();
+
 
 
 /***/ }),
@@ -1077,20 +1169,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Bug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Bug */ "./src/js/components/Bug.js");
 /* harmony import */ var _utils_levels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/levels */ "./src/js/utils/levels/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 // entities
 
 
+ // maps
 
 
-// maps
 
 
 
@@ -1098,6 +1199,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Game = /*#__PURE__*/function () {
   function Game(player, playerCustom, controller, contextManager, imageManager, eventManager, depression, collisionManager, menu) {
     _classCallCheck(this, Game);
+
     this.player = player;
     this.playerCustomizer = playerCustom;
     this.controller = controller;
@@ -1117,6 +1219,7 @@ var Game = /*#__PURE__*/function () {
     this.last = 'win';
     this.setup();
   }
+
   _createClass(Game, [{
     key: "setup",
     value: function setup() {
@@ -1160,13 +1263,16 @@ var Game = /*#__PURE__*/function () {
     key: "startIntro",
     value: function startIntro() {
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].introDone) {
         this.intro = false;
       }
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].input) {
         this.input = true;
         this.playerCustomizer.getPlayerName();
       }
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].srcName && this.intro) {
         this.imageManager.showImage(_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl].srcName);
       } else {
@@ -1193,11 +1299,13 @@ var Game = /*#__PURE__*/function () {
     key: "showLevelResult",
     value: function showLevelResult() {
       this.setShowTime();
+
       if (this.last === 'win') {
         this.imageManager.showImage('winlevel');
       } else if (this.last === 'lose') {
         this.imageManager.showImage('nevergiveup');
       }
+
       if (_utils_levels__WEBPACK_IMPORTED_MODULE_3__["introData"][this.stats.lvl + 1].finish) {
         this.winGame();
       }
@@ -1223,6 +1331,7 @@ var Game = /*#__PURE__*/function () {
     key: "startNewLevel",
     value: function startNewLevel() {
       var _this = this;
+
       console.log('___________________________________________this.stats.lvl', this.stats.lvl);
       var bugs = [];
       var collectable = [];
@@ -1231,14 +1340,11 @@ var Game = /*#__PURE__*/function () {
       this.sprites = [];
       this.setPlayTime();
       this.player.begin();
-      this.depression.begin();
-      //this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
+      this.depression.begin(); //this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
       platforms = _utils_levels__WEBPACK_IMPORTED_MODULE_3__["PlatformMap"][this.stats.lvl].map(function (element) {
         return new _Platform__WEBPACK_IMPORTED_MODULE_0__["default"](_this.gameContext, element.x, element.y, element.name);
-      });
-
-      // platforms = PlatformMap[this.stats.lvl].map(element => {
+      }); // platforms = PlatformMap[this.stats.lvl].map(element => {
       //     return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
       // });
 
@@ -1264,8 +1370,10 @@ var Game = /*#__PURE__*/function () {
       this.stats.name = name;
     }
   }]);
+
   return Game;
 }();
+
 
 
 /***/ }),
@@ -1297,8 +1405,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _img_creatures_deadBug_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../img/creatures/deadBug.png */ "./src/img/creatures/deadBug.png");
 /* harmony import */ var _img_background_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../img/background.png */ "./src/img/background.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 
 
@@ -1318,13 +1430,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var ImageManager = /*#__PURE__*/function () {
   function ImageManager(managerContext) {
     _classCallCheck(this, ImageManager);
+
     this.managerContext = managerContext;
   }
+
   _createClass(ImageManager, [{
     key: "showImage",
     value: function showImage(name) {
       var _this = this;
+
       var image = this.changeImage(name);
+
       if (image.complete) {
         this.managerContext.drawImage(image, 0, 0, 1920, 1080);
       } else {
@@ -1337,66 +1453,86 @@ var ImageManager = /*#__PURE__*/function () {
     key: "changeImage",
     value: function changeImage(name) {
       var image = new Image();
+
       switch (name) {
         case 'intro0':
           image.src = _img_intro_intro1_png__WEBPACK_IMPORTED_MODULE_0__["default"];
           break;
+
         case 'intro1':
           image.src = _img_intro_intro2_png__WEBPACK_IMPORTED_MODULE_1__["default"];
           break;
+
         case 'intro2':
           image.src = _img_intro_intro3_png__WEBPACK_IMPORTED_MODULE_2__["default"];
           break;
+
         case 'intro4':
           image.src = _img_intro_intro5_png__WEBPACK_IMPORTED_MODULE_3__["default"];
           break;
+
         case 'intro6':
           image.src = intro6;
           break;
+
         case 'intro7':
           image.src = intro7;
           break;
+
         case 'nevergiveup':
           image.src = _img_intro_nevergiveup_png__WEBPACK_IMPORTED_MODULE_4__["default"];
           break;
+
         case 'winlevel':
           image.src = _img_intro_winlevel_png__WEBPACK_IMPORTED_MODULE_6__["default"];
           break;
+
         case 'wingame':
           image.src = _img_intro_wingame_png__WEBPACK_IMPORTED_MODULE_5__["default"];
           break;
+
         case 'Дима':
         case 'dimaPlayerR':
           image.src = _img_player_dimaPlayerR_png__WEBPACK_IMPORTED_MODULE_9__["default"];
           break;
+
         case 'dimaPlayerL':
           image.src = _img_player_dimaPlayerL_png__WEBPACK_IMPORTED_MODULE_10__["default"];
           break;
+
         case 'Имя':
         case 'normalPlayerR':
           image.src = _img_player_normalPlayerR_png__WEBPACK_IMPORTED_MODULE_7__["default"];
           break;
+
         case 'normalPlayerL':
           image.src = _img_player_normalPlayerL_png__WEBPACK_IMPORTED_MODULE_8__["default"];
           break;
+
         case 'depression':
           image.src = _img_creatures_depression_png__WEBPACK_IMPORTED_MODULE_11__["default"];
           break;
+
         case 'bugL':
           image.src = _img_creatures_bugL_png__WEBPACK_IMPORTED_MODULE_13__["default"];
           break;
+
         case 'bug':
         case 'bugR':
           image.src = _img_creatures_bug_png__WEBPACK_IMPORTED_MODULE_12__["default"];
           break;
+
         case 'bugDead':
           image.src = _img_creatures_deadBug_png__WEBPACK_IMPORTED_MODULE_14__["default"];
           break;
+
         case 'background':
           image.src = _img_background_png__WEBPACK_IMPORTED_MODULE_15__["default"];
           break;
+
         default:
       }
+
       return image;
     }
   }, {
@@ -1405,8 +1541,10 @@ var ImageManager = /*#__PURE__*/function () {
       this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
     }
   }]);
+
   return ImageManager;
 }();
+
 
 
 /***/ }),
@@ -1422,15 +1560,20 @@ var ImageManager = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Menu; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var Menu = /*#__PURE__*/function () {
   function Menu(imageManager) {
     _classCallCheck(this, Menu);
+
     this.pause = false;
     this.music = true;
     this.imageManager = imageManager;
   }
+
   _createClass(Menu, [{
     key: "changePause",
     value: function changePause(stateTime) {
@@ -1443,6 +1586,7 @@ var Menu = /*#__PURE__*/function () {
         this.imageManager.showImage('intro0');
         this.pause = true;
       }
+
       return this.pause;
     }
   }, {
@@ -1461,8 +1605,10 @@ var Menu = /*#__PURE__*/function () {
       this.controllerStart = start;
     }
   }]);
+
   return Menu;
 }();
+
 
 
 /***/ }),
@@ -1479,12 +1625,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Platform; });
 /* harmony import */ var _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../img/surface/default/tile01.png */ "./src/img/surface/default/tile01.png");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Platform = /*#__PURE__*/function () {
   function Platform(context, x, y, name) {
     _classCallCheck(this, Platform);
+
     this.position = {
       x: x,
       y: y
@@ -1496,6 +1647,7 @@ var Platform = /*#__PURE__*/function () {
     this.start();
     this.id = 'platform';
   }
+
   _createClass(Platform, [{
     key: "start",
     value: function start() {
@@ -1506,6 +1658,7 @@ var Platform = /*#__PURE__*/function () {
     key: "draw",
     value: function draw() {
       var _this = this;
+
       if (this.image.complete) {
         this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
       } else {
@@ -1526,9 +1679,11 @@ var Platform = /*#__PURE__*/function () {
         case 'tile1':
           this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
           break;
+
         case 'tile2':
           this.image.src = tile2;
           break;
+
         default:
           this.image.src = _img_surface_default_tile01_png__WEBPACK_IMPORTED_MODULE_0__["default"];
       }
@@ -1544,8 +1699,10 @@ var Platform = /*#__PURE__*/function () {
       this.position.x = this.position.x - v;
     }
   }]);
+
   return Platform;
 }();
+
 
 
 /***/ }),
@@ -1562,12 +1719,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Player; });
 /* harmony import */ var _Sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Sprite */ "./src/js/components/Sprite.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Player = /*#__PURE__*/function () {
   function Player(context, imageManager, gravity, winCallback, loseCallback, img, skinId) {
     _classCallCheck(this, Player);
+
     this.position = {
       x: 100,
       y: 100
@@ -1604,6 +1766,7 @@ var Player = /*#__PURE__*/function () {
     this.horizon = this.context.canvas.height;
     this.start();
   }
+
   _createClass(Player, [{
     key: "start",
     value: function start() {
@@ -1616,6 +1779,7 @@ var Player = /*#__PURE__*/function () {
       this.sprite.updatePosition(this.position.x, this.position.y);
       this.position.y += this.velocity.y;
       this.position.x += this.velocity.x;
+
       if (this.position.y + this.height + this.velocity.y <= horizon) {
         this.velocity.y += this.gravity;
       } else {
@@ -1626,12 +1790,15 @@ var Player = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       var _this = this;
+
       this.update(this.horizon);
       if (this.position.y > this.context.canvas.height + this.height) this.die();
+
       if (this.keys.left.pressed && this.position.x > 799) {
         this.goLeft();
       } else if (this.keys.left.pressed && this.position.x <= 799) {
         this.stopX();
+
         if (this.keys.left.pressed) {
           this.dependent.forEach(function (element) {
             element.moveRight(_this.velocityRatio);
@@ -1641,6 +1808,7 @@ var Player = /*#__PURE__*/function () {
         this.goRight();
       } else if (this.keys.right.pressed && this.position.x >= 800) {
         this.stopX();
+
         if (this.keys.right.pressed) {
           this.dependent.forEach(function (element) {
             element.moveLeft(_this.velocityRatio);
@@ -1654,7 +1822,9 @@ var Player = /*#__PURE__*/function () {
     key: "jump",
     value: function jump() {
       var _this2 = this;
+
       var jumpCondition = this.position.y + this.height + this.velocity.y >= this.horizon;
+
       if (jumpCondition) {
         this.jumping = true;
         this.velocity.y -= 15;
@@ -1670,6 +1840,7 @@ var Player = /*#__PURE__*/function () {
         this.velocity.y -= 10;
         this.jumping = false;
       }
+
       if (forced) {
         this.velocity.y -= param;
       }
@@ -1700,6 +1871,7 @@ var Player = /*#__PURE__*/function () {
     key: "activate",
     value: function activate() {
       this.activated = this.activated + 1;
+
       if (this.awaited === this.activated) {
         this.winCallback();
       }
@@ -1760,8 +1932,10 @@ var Player = /*#__PURE__*/function () {
       this.loseCallback();
     }
   }]);
+
   return Player;
 }();
+
 
 
 /***/ }),
@@ -1777,14 +1951,19 @@ var Player = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PlayerCustomizer; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var PlayerCustomizer = /*#__PURE__*/function () {
   function PlayerCustomizer(imageManager) {
     _classCallCheck(this, PlayerCustomizer);
+
     this.imageManager = imageManager;
     this.skinId = null;
   }
+
   _createClass(PlayerCustomizer, [{
     key: "getPlayerName",
     value: function getPlayerName() {
@@ -1806,6 +1985,7 @@ var PlayerCustomizer = /*#__PURE__*/function () {
     key: "setPlayerName",
     value: function setPlayerName(setStats, levelup, startIntro) {
       var inputElement = document.querySelector('input');
+
       if (inputElement.value.trim().length) {
         document.getElementById('wrapperDiv').remove();
         setStats(inputElement.value.trim());
@@ -1819,6 +1999,7 @@ var PlayerCustomizer = /*#__PURE__*/function () {
     key: "setPlayerSkin",
     value: function setPlayerSkin(name) {
       var universalName = name.toLowerCase();
+
       switch (universalName) {
         case 'дима':
         case 'дмитрий':
@@ -1827,6 +2008,7 @@ var PlayerCustomizer = /*#__PURE__*/function () {
         case 'димочка':
           this.skinId = 'dimaPlayer';
           return this.imageManager.changeImage('Дима');
+
         default:
           this.skinId = 'normalPlayer';
           return this.imageManager.changeImage('Имя');
@@ -1838,8 +2020,10 @@ var PlayerCustomizer = /*#__PURE__*/function () {
       return this.skinId;
     }
   }]);
+
   return PlayerCustomizer;
 }();
+
 
 
 /***/ }),
@@ -1855,12 +2039,17 @@ var PlayerCustomizer = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Sprite; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var Sprite = /*#__PURE__*/function () {
   function Sprite(context, image, ticksPerFrame, numberOfFrames, width, height, positionX, positionY, ratio) {
     var id = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : 'not important';
+
     _classCallCheck(this, Sprite);
+
     this.context = context;
     this.image = image;
     this.frameIndex = 0;
@@ -1874,12 +2063,15 @@ var Sprite = /*#__PURE__*/function () {
     this.ratio = ratio;
     this.id = id;
   }
+
   _createClass(Sprite, [{
     key: "update",
     value: function update() {
       this.tickCount++;
+
       if (this.tickCount > this.ticksPerFrame) {
         this.tickCount = 0;
+
         if (this.frameIndex < this.numberOfFrames - 1) {
           this.frameIndex++;
         } else {
@@ -1915,8 +2107,10 @@ var Sprite = /*#__PURE__*/function () {
       this.image = newImage;
     }
   }]);
+
   return Sprite;
 }();
+
 
 
 /***/ }),
@@ -1935,210 +2129,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoosterMap", function() { return BoosterMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConditionMap", function() { return ConditionMap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "introData", function() { return introData; });
-// export const PlatformMap = {
-//     3: [
-//         {x: 200, y: 880, name: "tile1", w: 1800, h: 200},
-
-//         {x: 600, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 800, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 800, y: 480, name: "tile1", w: 200, h: 200},
-
-//         {x: 1600, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 1800, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 1800, y: 480, name: "tile1", w: 200, h: 200},
-
-//         {x: 2250, y: 280, name: "tile1", w: 200, h: 200},
-
-//         {x: 2700, y: 880, name: "tile1", w: 2400, h: 200},
-
-//         {x: 2700, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 2700, y: 480, name: "tile1", w: 200, h: 200},
-
-//         {x: 3180, y: 280, name: "tile1", w: 1580, h: 200},
-
-//         {x: 4780, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 4980, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 4980, y: 480, name: "tile1", w: 200, h: 200},
-
-//         {x: 5480, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 5980, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 6480, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 6980, y: 480, name: "tile1", w: 200, h: 200},
-
-//         {x: 7480, y: 880, name: "tile1", w: 1120, h: 200},
-
-//         {x: 8000, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 8200, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 8400, y: 680, name: "tile1", w: 200, h: 200},
-//         {x: 8200, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 8400, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 8400, y: 280, name: "tile1", w: 200, h: 200},
-
-//         {x: 9000, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 9400, y: 280, name: "tile1", w: 200, h: 200},
-//         {x: 10000, y: 680, name: "tile1", w: 200, h: 200},
-
-//         {x: 11000, y: 80, name: "tile1", w: 200, h: 200},
-//         {x: 10400, y: 480, name: "tile1", w: 600, h: 200},
-//         {x: 11000, y: 480, name: "tile1", w: 200, h: 200},
-//         {x: 11000, y: 280, name: "tile1", w: 200, h: 200},
-//     ],
-//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
-//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
-//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
-
-// };
-
-// export const BugsMap = {
-//     3: [
-//         {x: 1250, y: 640, name: "bug", magnet: 55},
-//         {x: 3400, y: 40, name: "bug", magnet: 50},
-//         {x: 4300, y: 40, name: "bug", magnet: 60},
-//         {x: 3450, y: 640, name: "bug", magnet: 100},
-//         {x: 7700, y: 640, name: "bug", magnet: 40},
-//     ],
-//     5: [ {x: 100, y: 560, name: "bug", magnet: 100}],
-//     8: [ {x: 100, y: 560, name: "bug", magnet: 100}],
-//     9: [ {x: 100, y: 560, name: "bug", magnet: 100}],
-
-// };
-
-// export const BoosterMap = {
-//     3: [
-//         {x: 2320, y: 170, w: 70, h: 100, name: "lafore", finish: false},
-//         {x: 3800, y: 150, w: 70, h: 100, name: "lafore", finish: false},
-//         {x: 4000, y: 760, w: 70, h: 100, name: "lafore", finish: false},
-//         {x: 6780, y: 320, w: 70, h: 100, name: "lafore", finish: false},
-//         {x: 10100, y: 110, w: 70, h: 100, name: "lafore", finish: false},
-//     ],
-//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
-//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
-//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
-
-// };
-
-// export const ConditionMap = {
-//     3: 3000,
-//     5: 10,
-//     8: 20,
-//     9: 3
-// };
-
-// export const introData = {
-//     0: { srcName: 'intro0'},
-//     1: { srcName: 'intro1', input: true },
-//     2: { srcName: 'intro2'},
-//     3: {},
-//     4: { srcName: 'intro4'},
-//     5: {},
-//     6: { srcName: 'intro6'},
-//     7: { srcName: 'intro7'},
-//     8: { introDone: true },
-//     9: {},
-//     10: {finish: true},
-//     11: {},
-// };
-
-// export const PlatformMap = {
-//     3: [{x: 100, y: 800, name: "tile1", w: 200, h: 200},{x: 0, y: 800, name: "tile1", w: 5000, h: 200}, {x: 1200, y: 600, name: "tile1", w: 200, h: 200},{x: 1800, y: 0, name: "tile1", w: 200, h: 200},],
-//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
-//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
-//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
-
-// // };
-
-//----------------------------------------
-
-// export const PlatformMap = {
-//     3: [{x: -540, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: -270, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 0, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 270, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 540, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 810, y: 800, name: "tile1", w: 270, h: 270},
-//         //{x: 1080, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 1350, y: 800, name: "tile1", w: 270, h: 270},
-//         //{x: 1620, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 1890, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2160, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2430, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2700, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
-//     ],
-//     5: [{x: -540, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: -270, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 0, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 270, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 540, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 810, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 1080, y: 800, name: "tile1", w: 270, h: 270},
-//         //{x: 1350, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 1620, y: 800, name: "tile1", w: 270, h: 270},
-//         //{x: 1890, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2160, y: 800, name: "tile1", w: 270, h: 270},
-//         //{x: 2430, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2700, y: 500, name: "tile1", w: 270, h: 270},
-//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 3240, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 3510, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 3780, y: 800, name: "tile1", w: 270, h: 270},
-
-//         {x: 4320, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 4860, y: 500, name: "tile1", w: 270, h: 270},
-//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
-//         {x: 2970, y: 800, name: "tile1", w: 270, h: 270},
-//     ],
-//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
-//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
-
-// };
-
-// export const BugsMap = {
-//     3: [ ],
-//     5: [ {x: 3270, y: 560, name: "bug", magnet: 100} ],
-//     8: [ {x: 100, y: 560, name: "bug", magnet: 100}],
-//     9: [ {x: 100, y: 560, name: "bug", magnet: 100}],
-
-// };
-
-// export const BoosterMap = {
-//     3: [{x: 2500, y: 0, w: 100, h: 700, name: "deadline", finish: true }, {x: 1200, y: 400, w: 70, h: 100, name: "lafore", finish: false}, ],
-//     5: [{x: 400, y: 300, url: "tile2"}, {x: 400, y: 100, url: "tile2"}, {x: 400, y: 500, url: "tile2"}],
-//     8: [{x: 0, y: 100, url: "tile1"}, {x: 0, y: 200, url: "tile2"}, {x: 0, y: 300, url: "tile1"}],
-//     9: [{x: 200, y: 100, url: "tile2"}, {x: 300, y: 200, url: "tile2"}, {x: 400, y: 300, url: "tile1"}],
-
-// };
-
-// export const ConditionMap = {
-//     3: 3,
-//     5: 10,
-//     8: 20,
-//     9: 3
-// };
-
-// export const introData = {
-//     0: { srcName: 'intro0'},
-//     1: { srcName: 'intro1', input: true },
-//     2: { srcName: 'intro2'},
-//     3: {},
-//     4: { srcName: 'intro4', introDone: true},
-//     5: {},
-//     6: { srcName: 'intro6'},
-//     7: { srcName: 'intro7'},
-//     8: { introDone: true },
-//     9: {},
-//     10: {finish: true},
-//     11: {},
-// };
-
-// // 0: { srcName: 'intro0'},
-// // 1: { srcName: 'intro1', input: true },
-// // 2: { srcName: 'intro2'},
-// // 3: {},
-// // 4: { srcName: 'intro4', introDone: true},
-// // 5: {},
-// // 6: {finish: true},
-
 var PlatformMap = {
   3: [{
     x: -540,
@@ -2176,17 +2166,13 @@ var PlatformMap = {
     name: "tile1",
     w: 270,
     h: 270
-  },
-  //{x: 1080, y: 800, name: "tile1", w: 270, h: 270},
-  {
+  }, {
     x: 1350,
     y: 800,
     name: "tile1",
     w: 270,
     h: 270
-  },
-  //{x: 1620, y: 800, name: "tile1", w: 270, h: 270},
-  {
+  }, {
     x: 1890,
     y: 800,
     name: "tile1",
@@ -2259,32 +2245,20 @@ var PlatformMap = {
     name: "tile1",
     w: 270,
     h: 270
-  },
-  //{x: 1350, y: 800, name: "tile1", w: 270, h: 270},
-  {
+  }, {
     x: 1620,
     y: 800,
     name: "tile1",
     w: 270,
     h: 270
-  },
-  //{x: 1890, y: 800, name: "tile1", w: 270, h: 270},
-  {
+  }, {
     x: 2160,
     y: 800,
     name: "tile1",
     w: 270,
     h: 270
-  },
-  //{x: 2430, y: 800, name: "tile1", w: 270, h: 270},
-  {
-    x: 2700,
-    y: 500,
-    name: "tile1",
-    w: 270,
-    h: 270
   }, {
-    x: 2970,
+    x: 2700,
     y: 800,
     name: "tile1",
     w: 270,
@@ -2302,80 +2276,340 @@ var PlatformMap = {
     w: 270,
     h: 270
   }, {
-    x: 3780,
-    y: 800,
+    x: 4050,
+    y: 700,
     name: "tile1",
     w: 270,
     h: 270
   }, {
     x: 4320,
-    y: 800,
+    y: 700,
     name: "tile1",
     w: 270,
     h: 270
   }, {
     x: 4860,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 5130,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 5400,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 5670,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 6480,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 6750,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 7020,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 7290,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 7560,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 7830,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 8640,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 8910,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 9180,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 9990,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 10530,
+    y: 700,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 10800,
+    y: 700,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 11340,
+    y: 600,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 11610,
+    y: 600,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 12150,
     y: 500,
     name: "tile1",
     w: 270,
     h: 270
   }, {
-    x: 2970,
+    x: 12420,
+    y: 500,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 13230,
     y: 800,
     name: "tile1",
     w: 270,
     h: 270
   }, {
-    x: 2970,
+    x: 13500,
     y: 800,
     name: "tile1",
     w: 270,
     h: 270
-  }],
-  8: [{
-    x: 0,
-    y: 100,
-    url: "tile1"
   }, {
-    x: 0,
-    y: 200,
-    url: "tile2"
+    x: 13770,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }, {
-    x: 0,
-    y: 300,
-    url: "tile1"
-  }],
-  9: [{
-    x: 200,
-    y: 100,
-    url: "tile2"
+    x: 14040,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }, {
-    x: 300,
-    y: 200,
-    url: "tile2"
+    x: 14310,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }, {
-    x: 400,
-    y: 300,
-    url: "tile1"
+    x: 15120,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 15390,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 16200,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 16470,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 17280,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 17550,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 17820,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 18900,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 19170,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 19440,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 20520,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 20790,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 21060,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 21330,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 21600,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 21870,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 22950,
+    y: 700,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 23220,
+    y: 700,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 23490,
+    y: 700,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 23760,
+    y: 700,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 25110,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 25380,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 25650,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 25920,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 26190,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
+  }, {
+    x: 26460,
+    y: 800,
+    name: "tile1",
+    w: 270,
+    h: 270
   }]
 };
 var BugsMap = {
   3: [],
   5: [{
-    x: 3270,
+    x: 5330,
     y: 560,
     name: "bug",
     magnet: 100
-  }],
-  8: [{
-    x: 100,
+  }, {
+    x: 7230,
     y: 560,
     name: "bug",
     magnet: 100
-  }],
-  9: [{
-    x: 100,
-    y: 560,
+  }, {
+    x: 23620,
+    y: 460,
     name: "bug",
     magnet: 100
   }]
@@ -2397,45 +2631,80 @@ var BoosterMap = {
     finish: false
   }],
   5: [{
-    x: 4880,
-    y: 300,
+    x: 26500,
+    y: 0,
+    w: 100,
+    h: 700,
+    name: "deadline",
+    finish: true
+  }, {
+    x: 1450,
+    y: 500,
     w: 70,
     h: 100,
     name: "lafore",
     finish: false
-  }],
-  8: [{
-    x: 0,
-    y: 100,
-    url: "tile1"
   }, {
-    x: 0,
-    y: 200,
-    url: "tile2"
+    x: 3350,
+    y: 500,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
   }, {
-    x: 0,
-    y: 300,
-    url: "tile1"
-  }],
-  9: [{
-    x: 200,
-    y: 100,
-    url: "tile2"
+    x: 5500,
+    y: 400,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
   }, {
-    x: 300,
-    y: 200,
-    url: "tile2"
+    x: 7200,
+    y: 460,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
   }, {
-    x: 400,
-    y: 300,
-    url: "tile1"
+    x: 10300,
+    y: 440,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }, {
+    x: 12400,
+    y: 360,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }, {
+    x: 16400,
+    y: 400,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }, {
+    x: 18200,
+    y: 400,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
+  }, {
+    x: 23520,
+    y: 400,
+    w: 70,
+    h: 100,
+    name: "lafore",
+    finish: false
   }]
 };
 var ConditionMap = {
-  3: 30,
-  5: 10,
-  8: 20,
-  9: 3
+  3: 3,
+  5: 10
 };
 var introData = {
   0: {
