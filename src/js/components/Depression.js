@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Depression {
-    constructor(context, gravity, img, loseCallback) {
+    constructor(context, img, loseCallback) {
         this.position = {
             x: 100,
             y: 300,
@@ -11,13 +11,11 @@ export default class Depression {
         this.height = 240;
 
         this.context = context;
-        //this.gravity = gravity;
-
         this.spriteImg = img;
         this.loseCallback = loseCallback;
 
         this.velocity = {
-            x: 3,
+            x: 2,
             y: 0,
         }
 
@@ -32,19 +30,7 @@ export default class Depression {
         this.sprite.update();
         this.sprite.updatePosition(this.position.x, this.position.y);
 
-        //this.position.y += this.velocity.y;
         this.position.x = this.position.x + this.velocity.x;
-
-        //console.log('depression апдейт', this.position.x)
-
-        // if (this.position.y + this.height + this.velocity.y <= 
-        //     this.context.canvas.height) {
-        //         this.velocity.y += this.gravity;
-        //     }
-        // else {
-        //     this.velocity.y = 0;
-        // }    
-        
     }
 
     animate() {
@@ -58,14 +44,11 @@ export default class Depression {
     begin() {      
         this.position.x = 100
         this.position.y = 300
-        this.velocity.x = 3; 
+        this.velocity.x = 1; 
 
-        // СУПЕР ВАЖНО
-        // 3
-        // 5
-        // setInterval(()=>{ 
-        //     this.velocity.x = this.velocity.x + 1; 
-        // }, 3000)
+        setInterval(() => { 
+            this.velocity.x = this.velocity.x + 2; 
+        }, 5000)
     }
 
     killHuman() {

@@ -2,7 +2,7 @@
 import Platform from "./Platform";
 import Platforma from "./Platforma";
 import Collectable from "./Collectable";
-
+import Bug from "./Bug"
 
 // maps
 import { PlatformMap } from "../utils/levels";
@@ -11,10 +11,8 @@ import { ConditionMap } from "../utils/levels";
 import { BoosterMap } from "../utils/levels";
 import { introData } from "../utils/levels";
 
-// resources
-
 export default class Game {
-    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression, bug, collisionManager, menu ) {
+    constructor ( player, playerCustom, controller, contextManager, imageManager, eventManager, depression, collisionManager, menu ) {
         this.player = player;
         this.playerCustomizer = playerCustom;
         this.controller = controller;
@@ -22,7 +20,6 @@ export default class Game {
         this.imageManager = imageManager;
         this.eventManager = eventManager;
         this.depression = depression;
-        this.bug = bug;
         this.collisionManager = collisionManager;
         this.menu = menu;
 
@@ -47,9 +44,7 @@ export default class Game {
         this.imageManager = new this.imageManager(this.managerContext);
         this.eventManager = new this.eventManager();
         this.playerCustomizer = new this.playerCustomizer(this.imageManager);
-
         this.collisionManager = new this.collisionManager();
-
         this.menu = new this.menu(this.imageManager);
         this.eventManager.setMenu(this.menu);
 
@@ -63,82 +58,52 @@ export default class Game {
     }
 
     setShowTime() {
-        console.log('___setShowTime___')
-
-        // глушим движок
         if (this.controller.currAnimId) this.controller.stop();
-        // удалить старые листенеры 
         this.eventManager.removeListener();
-        // отчистить все контексты
         this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
         this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-        // переключить на менежера
         this.contextManager.showManagerContext();
-        // повесить один листенер
         this.eventManager.addListener(this, 'keyup');
     }
 
-    setPlayTime() {
-        console.log('___setPlayTime___')
-
-        // удалить старые листенеры 
+    setPlayTime() { 
         this.eventManager.removeListener();
-        // отчистить все контексты
         this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
         this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-        // переключить на игру
         this.contextManager.showGameContext();
-        // повесить листенеры
         this.eventManager.addListener(this.player, 'keyup');
     }
 
     startIntro() {
-
         this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
-
-        //console.log('STAGE:', 'зашли в интро')
 
         if (introData[this.stats.lvl].introDone) {
             this.intro = false;
-            //console.log('STAGE:', 'закончили интро')
         } 
 
         if (introData[this.stats.lvl].input) {
-            //take name
-            //console.log('STAGE:', 'зашли в инпут')
-
             this.input = true;
             this.playerCustomizer.getPlayerName();
         } 
 
         if (introData[this.stats.lvl].srcName && this.intro) {
-            //console.log('STAGE:', 'показываем интро')
             this.imageManager.showImage(introData[this.stats.lvl].srcName);
         } else {
-
             if (this.player.gravity) {
-                //console.log('STAGE:', 'начинаем уровень')
                 this.startNewLevel();
             } else {
-                //console.log('STAGE:', 'начинаем игру')
                 this.startGame();
             }
         }
     }
 
     winLevel() {
-        //console.log('STAGE:', 'выиграли уровень')
         this.last = 'win';
-        console.log(this.last, '________________this.last')
         this.showLevelResult();
-
-
     }
 
     loseLevel() {
         this.last = 'lose';
-
-        console.log(this.last, '________________this.last')
         this.showLevelResult();
     }
 
@@ -147,47 +112,23 @@ export default class Game {
 
         if (this.last === 'win') {
             this.imageManager.showImage('winlevel')
-            //console.log('STAGE:', 'выиграли уровень - молдец')
-        }
-        else if (this.last === 'lose') {
+        } else if (this.last === 'lose') {
             this.imageManager.showImage('nevergiveup')
-            //console.log('STAGE:', 'выиграли уровень - не молдец')
         }
 
         if (introData[this.stats.lvl+1].finish) {
             this.winGame();
         }
-
     }
     
-    // showLevelResult(dead) {
-    //     this.setShowTime();
-
-    //     if (this.player.awaited === this.player.activated && !dead) {
-    //         this.imageManager.showImage('winlevel')
-    //         //console.log('STAGE:', 'выиграли уровень - молдец')
-    //     }
-    //     else if (dead) {
-    //         this.imageManager.showImage('nevergiveup')
-    //         //console.log('STAGE:', 'выиграли уровень - не молдец')
-    //     }
-
-    //     if (introData[this.stats.lvl+1].finish) {
-    //         this.winGame();
-    //     }
-
-    // }
     winGame() {
         this.setShowTime();
         this.imageManager.showImage('wingame');
 
-        // удалить листенеры
         this.eventManager.removeListener();
     }
 
     startGame() {
-        console.log('START', this.stats)
-
         this.player = new this.player(
             this.gameContext,
             this.imageManager,
@@ -199,28 +140,29 @@ export default class Game {
         );
 
         this.controller = new this.controller(this.gameContext, this.collisionManager);
-        
         this.menu.setCallbacks(this.controller.stop.bind(this.controller), this.controller.continue.bind(this.controller))
-        //this.eventManager.setControllerStop(this.controller.stop.bind(this.controller));
-        //this.eventManager.setControllerStart(this.controller.continue.bind(this.controller));
-
 
         this.depression = new this.depression(
             this.gameContext, 
-            this.stats.gravity,
             this.imageManager.changeImage('depression'),
             this.loseLevel.bind(this),
         )
 
-        this.sprites = [this.player.getSprite(), this.depression.getSprite()];
+        this.gameSprites = [this.player.getSprite(), this.depression.getSprite()];
 
         this.startNewLevel();
     }
 
     startNewLevel() {
+        let bugs = [];
+        let collectable = [];
+        let bugSprites = [];
+        let platforms = [];
+        this.sprites = [];
+
         this.setPlayTime();
 
-        this.player.begin();
+        this.player.begin(); 
         this.depression.begin();
         this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
@@ -228,27 +170,24 @@ export default class Game {
         //     return new Platform(this.gameContext, element.x, element.y, element.name)
         // });
 
-        const platforms = PlatformMap[this.stats.lvl].map(element => {
+        platforms = PlatformMap[this.stats.lvl].map(element => {
             return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
         });
 
-        const collectable = BoosterMap[this.stats.lvl].map(element => {
+        collectable = BoosterMap[this.stats.lvl].map(element => {
             return new Collectable(this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish)
         });
 
-        const bugs = BugsMap[this.stats.lvl].map(element => {
-            //console.log('+++++++++',element)
-            return new this.bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet, this.stats.gravity)
+        bugs = BugsMap[this.stats.lvl].map(element => {
+            return new Bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet, this.stats.gravity)
         });
 
-        const bugSprites = bugs.map((element)=>{
+        bugSprites = bugs.map((element)=>{
             return element.getSprite();
         })
 
-        this.sprites = [...this.sprites, ...bugSprites]
+        this.sprites = [...this.gameSprites, ...bugSprites];
 
-
-        // + collectable
         this.collisionManager.setData(this.player, platforms, bugs, this.depression, collectable);
 
         this.player.setDependentEntities([...platforms, this.depression, ...bugs, ...collectable]);

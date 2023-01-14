@@ -1,21 +1,17 @@
 export default class ContextManager {
     constructor() {
-        //ссылки на объекты контекста
         this.gameContext = null;
         this.managerContext = null;
 
-        //ссылка на объект текущ контекста (один из двух)
         this.activeContext = null;
 
         this.setupContexts();
     }
 
     setupContexts() {
-        //нода
         this.gameNode = document.getElementById('gameplay');
 
         if (this.gameNode.getContext('2d')) {
-
             this.gameContext = this.gameNode.getContext('2d');
             this.gameNode.width = window.innerWidth;
             this.gameNode.height = window.innerHeight;
@@ -32,8 +28,7 @@ export default class ContextManager {
             this.managerContext.fillRect(0, 0, this.managerNode.width, this.managerNode.height);
 
             this.activeContext = this.managerContext;
-        } 
-        else {
+        } else {
             alert('Ваш браузер полный отстой! Установите другой или попробуйте обновить этот :(');
         }
     }

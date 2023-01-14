@@ -9,9 +9,8 @@ export default class Bug {
 
         this.width = 240;
         this.height = 240;
-
+        this.gravity = gravity;
         this.context = context;
-
         this.spriteImg = img;
 
         this.velocity = {
@@ -25,8 +24,6 @@ export default class Bug {
         this.magnet = magnet
         this.magnet2 = this.magnet;
 
-        this.gravity = gravity;
-
         this.killed = false;
 
         this.start();
@@ -37,7 +34,6 @@ export default class Bug {
     }
 
     update() {
-
         if (this.path !== this.magnet && this.path > this.magnet) {
             this.path = this.path - 1;
             this.goLeft();
@@ -52,7 +48,6 @@ export default class Bug {
             this.magnet = -this.magnet2;
         }
 
-        //console.log('BUUUUUG',this.killed)
         if (this.killed) {
             this.stop();
             this.beKilled();

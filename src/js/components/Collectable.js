@@ -34,14 +34,10 @@ export default class Collectable {
                 }
             }
         }
-
-        
     }
 
     animate() {
-        if (!this.collected) {
-            this.draw();
-        }
+        if (!this.collected) this.draw();
     }
 
     changeDecor() {

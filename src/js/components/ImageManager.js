@@ -25,7 +25,6 @@ export default class ImageManager {
     }
 
     showImage(name) {
-
         const image = this.changeImage(name);
         
         if (image.complete) {
@@ -35,14 +34,13 @@ export default class ImageManager {
                 this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight)
             }
         }
+
         this.managerContext.globalAlpha = 0.5
     }
 
     changeImage(name) {
 
         let image = new Image();
-
-        console.log('__________________________',name)
 
         switch(name) {
             case 'intro0':
@@ -78,9 +76,6 @@ export default class ImageManager {
             case 'wingame':
                 image.src = wingame;
                 break;
-            case 'Андрей':
-                image.src = wingame;
-                break;
             case 'Дима':
             case 'dimaPlayerR':
                 image.src = dimaPlayerR;
@@ -104,7 +99,7 @@ export default class ImageManager {
                 image.src = bug;
                 break;
             case 'bugDead':
-                image.src = depression;
+                image.src = bugDead;
                 break;
             default:
         }

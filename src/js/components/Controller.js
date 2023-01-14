@@ -8,7 +8,6 @@ export default class Controller {
     }
 
     animate(args, currLvl) {
-
         this.args = args;
 
         if (this.lvl !== currLvl) {
@@ -21,18 +20,14 @@ export default class Controller {
 
         this.collisionManager.checkPlatformCollision(args[0].getVelocityRatio());
         this.collisionManager.checkBugCollision();
-        //this.collisionManager.checkDepressionCollision();
+        this.collisionManager.checkDepressionCollision();
         this.collisionManager.checkCollectableCollision();
 
         args.forEach(el => el.animate())      
     }
 
     stop() {
-        console.log('++++++++++++++++++++')
-        if (this.currAnimId) {
-            cancelAnimationFrame(this.currAnimId);
-        }
-
+        if (this.currAnimId) cancelAnimationFrame(this.currAnimId);
     }
 
     continue() {
