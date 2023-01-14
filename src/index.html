@@ -5,13 +5,52 @@
         <title>Canvas Boilerplate | Chris Courses</title>
         <style>
             body {
+                background:
+                        linear-gradient(black 1px, transparent 1px),
+                        linear-gradient(90deg, black 1px, transparent 1px),
+                        #333;
+                background-size: 3px 3px;
                 margin: 0;
-                
+            }
+            body:before {
+                content: "";
+                display: block;
+                background: radial-gradient(rgba(255, 180, 80, 0.2), transparent 65%);
+                width: 80vw;
+                height: 30vh;
+                margin: 0 auto 0 auto;
+                transform: translate3d(0, -50%, 0);
+                pointer-events: none;
+                position: absolute;
+                top: 50%;
             }
         </style>
     </head>
     <body id="body" style="position:relative;">
-        <canvas id="gameplay"></canvas>
-        <canvas id="management"></canvas>
+    <audio data-key="83" id="music" src="http://nyatality.mihaty.beget.tech/SW-main.mp3"></audio>
+    <canvas id="gameplay"></canvas>
+    <canvas id="management"></canvas>
+    <script>
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
+        }
+        function playSound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            audio.volume=0.1
+            if (!audio) return;
+            audio.classList.toggle('play')
+            if(audio.classList.contains('play')){
+                audio.currentTime = 0;
+                audio.play();
+            }
+            else{
+                audio.pause()
+            }
+        }
+        const keys = Array.from(document.querySelectorAll('.key'));
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
+    </script>
     </body>
 </html>
