@@ -1,13 +1,11 @@
 // entities
 import Platform from "./Platform";
-import Platforma from "./Platforma";
 import Collectable from "./Collectable";
 import Bug from "./Bug"
 
 // maps
 import { PlatformMap } from "../utils/levels";
 import { BugsMap } from "../utils/levels";
-import { ConditionMap } from "../utils/levels";
 import { BoosterMap } from "../utils/levels";
 import { introData } from "../utils/levels";
 
@@ -60,17 +58,17 @@ export default class Game {
     setShowTime() {
         if (this.controller.currAnimId) this.controller.stop();
         this.eventManager.removeListener();
-        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
         this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
         this.contextManager.showManagerContext();
+        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
         this.eventManager.addListener(this, 'keyup');
     }
 
     setPlayTime() { 
         this.eventManager.removeListener();
-        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
-        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
         this.contextManager.showGameContext();
+        this.managerContext.clearRect(0, 0, this.managerContext.canvas.width, this.managerContext.canvas.height);
+        this.gameContext.clearRect(0, 0, this.gameContext.canvas.width, this.gameContext.canvas.height);
         this.eventManager.addListener(this.player, 'keyup');
     }
 
@@ -112,6 +110,7 @@ export default class Game {
 
         if (this.last === 'win') {
             this.imageManager.showImage('winlevel')
+
         } else if (this.last === 'lose') {
             this.imageManager.showImage('nevergiveup')
         }
@@ -139,7 +138,7 @@ export default class Game {
             this.playerCustomizer.getSkinId(),
         );
 
-        this.controller = new this.controller(this.gameContext, this.collisionManager);
+        this.controller = new this.controller(this.gameContext, this.collisionManager, this.imageManager);
         this.menu.setCallbacks(this.controller.stop.bind(this.controller), this.controller.continue.bind(this.controller))
 
         this.depression = new this.depression(
@@ -154,6 +153,8 @@ export default class Game {
     }
 
     startNewLevel() {
+        console.log('___________________________________________this.stats.lvl',this.stats.lvl)
+
         let bugs = [];
         let collectable = [];
         let bugSprites = [];
@@ -164,22 +165,23 @@ export default class Game {
 
         this.player.begin(); 
         this.depression.begin();
-        this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
-
-        // const platforms = PlatformMap[this.stats.lvl].map(element => {
-        //     return new Platform(this.gameContext, element.x, element.y, element.name)
-        // });
+        //this.player.setLevelConditions(ConditionMap[this.stats.lvl]);
 
         platforms = PlatformMap[this.stats.lvl].map(element => {
-            return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
+            return new Platform(this.gameContext, element.x, element.y, element.name)
         });
 
+        // platforms = PlatformMap[this.stats.lvl].map(element => {
+        //     return new Platforma(this.gameContext, element.x, element.y, element.w, element.h)
+        // });
+
         collectable = BoosterMap[this.stats.lvl].map(element => {
+            console.log(element)
             return new Collectable(this.gameContext, element.x, element.y, element.w, element.h, element.name, element.finish)
         });
 
         bugs = BugsMap[this.stats.lvl].map(element => {
-            return new Bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet, this.stats.gravity)
+            return new Bug(this.gameContext, element.x, element.y, this.imageManager.changeImage(element.name), element.name, element.magnet, this.stats.gravity, this.imageManager)
         });
 
         bugSprites = bugs.map((element)=>{

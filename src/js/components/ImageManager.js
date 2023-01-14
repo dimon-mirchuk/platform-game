@@ -1,23 +1,23 @@
-import intro0 from "../../img/intro/intro1.jpg";
-import intro1 from "../../img/intro/intro2.jpg";
-import intro2 from "../../img/intro/intro3.jpg";
-import intro4 from "../../img/intro/intro5.jpg";
-import intro6 from "../../img/intro/intro6.jpg";
-import intro7 from "../../img/intro/intro7.jpg";
+import intro0 from "../../img/intro/intro1.png";
+import intro1 from "../../img/intro/intro2.png";
+import intro2 from "../../img/intro/intro3.png";
+import intro4 from "../../img/intro/intro5.png";
 
-import nevergiveup from "../../img/intro/nevergiveup.jpg";
-import timeout from "../../img/intro/timeout.jpg";
-import wingame from "../../img/intro/wingame.jpg";
-import winlevel from "../../img/intro/winlevel.jpg";
-import bugs from "../../img/intro/bugs.jpg";
+import nevergiveup from "../../img/intro/nevergiveup.png";
+import wingame from "../../img/intro/wingame.png";
+import winlevel from "../../img/intro/winlevel.png";
 
 import normalPlayerR from "../../img/player/normalPlayerR.png";
-
+import normalPlayerL from "../../img/player/normalPlayerL.png";
 import dimaPlayerR from "../../img/player/dimaPlayerR.png"
 import dimaPlayerL from "../../img/player/dimaPlayerL.png"
 
 import depression from "../../img/creatures/depression.png"
 import bug from "../../img/creatures/bug.png"
+import bugL from "../../img/creatures/bugL.png"
+import deadBug from "../../img/creatures/deadBug.png"
+
+import background from "../../img/background.png"
 
 export default class ImageManager {
     constructor ( managerContext ) {
@@ -28,14 +28,12 @@ export default class ImageManager {
         const image = this.changeImage(name);
         
         if (image.complete) {
-            this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight)
+            this.managerContext.drawImage(image, 0, 0, 1920, 1080)
         } else {
             image.onload = () => {
-                this.managerContext.drawImage(image, 0, 0, window.innerWidth, window.innerHeight)
+                this.managerContext.drawImage(image, 0, 0, 1920, 1080)
             }
         }
-
-        this.managerContext.globalAlpha = 0.5
     }
 
     changeImage(name) {
@@ -61,12 +59,6 @@ export default class ImageManager {
             case 'intro7':
                 image.src = intro7;
                 break;   
-            case 'bugs':
-                image.src = bugs;
-                break;
-            case 'timeout':
-                image.src = timeout;
-                break;
             case 'nevergiveup':
                 image.src = nevergiveup;
                 break;
@@ -85,21 +77,26 @@ export default class ImageManager {
                 break;
             case 'Имя':
             case 'normalPlayerR':
-            case 'normalPlayerL':
                 image.src = normalPlayerR;
+                break;
+            case 'normalPlayerL':
+                image.src = normalPlayerL;
                 break;
             case 'depression':
                 image.src = depression;
                 break;
             case 'bugL':
-                image.src = depression;
+                image.src = bugL;
                 break;
             case 'bug':
             case 'bugR':
                 image.src = bug;
                 break;
             case 'bugDead':
-                image.src = bugDead;
+                image.src = deadBug;
+                break;
+            case 'background':
+                image.src = background;
                 break;
             default:
         }

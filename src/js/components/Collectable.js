@@ -1,4 +1,5 @@
 import lafore from "../../img/collectable/lafore.png"
+import deadline from "../../img/collectable/deadline.png"
 
 export default class Collectable {
     constructor(context, x, y, w, h, name, finish) {
@@ -49,7 +50,6 @@ export default class Collectable {
                 this.image.src = lafore;
                 break;
             default:
-                this.image.src = null;
         }
     }
 

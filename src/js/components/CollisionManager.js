@@ -83,7 +83,7 @@ export default class CollisionManager {
         if (this.nearest.length > 0) {
             this.nearest.forEach(( element ) => {
                 if (element.finish) {
-                    this.player.winLevel();
+                    this.player.winCallback();
                 }
                 if ((this.player.position.y <= element.position.y && element.position.y <= this.player.position.y + this.player.height)||
                 (this.player.position.y <= element.position.y + element.height && element.position.y + element.height <= this.player.position.y + this.player.hight)) {

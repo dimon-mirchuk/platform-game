@@ -1,7 +1,7 @@
 import Sprite from "./Sprite";
 
 export default class Bug {
-    constructor(context, x, y, img, skinId, magnet, gravity) {
+    constructor(context, x, y, img, skinId, magnet, gravity, imageManager) {
         this.position = {
             x,
             y,
@@ -25,6 +25,8 @@ export default class Bug {
         this.magnet2 = this.magnet;
 
         this.killed = false;
+
+        this.imageManager = imageManager;
 
         this.start();
     }
@@ -68,6 +70,10 @@ export default class Bug {
 
     beKilled() {
         this.position.y = this.position.y + 10
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`bugDead`)
+        )
     }
 
     stop() {
@@ -76,10 +82,18 @@ export default class Bug {
 
     goLeft() {
         this.position.x -= this.velocity.x;
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skinId}L`)
+        )
     }
 
     goRight() {
         this.position.x += this.velocity.x;
+
+        this.sprite.updateImage(
+            this.imageManager.changeImage(`${this.skinId}R`)
+        )
     }
 
     moveRight(v) {

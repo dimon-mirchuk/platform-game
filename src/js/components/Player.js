@@ -112,8 +112,6 @@ export default class Player {
                 this.jumping = false;
             }, 1000);
         }
-
-        this.activate();
     }
 
     doubleJump(forced, param) {
@@ -174,6 +172,7 @@ export default class Player {
         this.keys.left.pressed = false;
         this.keys.right.pressed = false;
         this.keys.up.pressed = false;
+        this.setVelocityRatio(5);
 
         this.bugsFixed = 0;
 
@@ -188,7 +187,6 @@ export default class Player {
     }
 
     fixBug() {
-        console.log('FIXED A BUG')
         this.bugsFixed = this.bugsFixed + 1; 
     }
 

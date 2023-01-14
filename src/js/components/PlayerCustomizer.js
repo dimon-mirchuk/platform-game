@@ -8,16 +8,17 @@ export default class PlayerCustomizer {
         const body = document.getElementById('body');
 
         const wrapperDiv = document.createElement('div');
-        wrapperDiv.setAttribute('style', 'position: absolute; width: 100vw; height: 100vh; display: flex;');
+        wrapperDiv.setAttribute('style', 'position: absolute; display: flex; left: 299px; top: 452px;');
         wrapperDiv.setAttribute('id', 'wrapperDiv');
         body.appendChild(wrapperDiv);
         
         const conteinerDiv = document.createElement('div');
-        conteinerDiv.setAttribute('style', 'width: 300px; height: 300px; background: black; z-index: 5;')
+        conteinerDiv.setAttribute('style', 'width: 528px; height: 300px; z-index: 5;')
         wrapperDiv.appendChild(conteinerDiv);
 
         const input = document.createElement('input');
         input.setAttribute('type', 'text')
+        input.setAttribute('style', 'width: 552px; height: 81px; padding: 20px 21px; font-size: 76px;')
         conteinerDiv.appendChild(input);
         input.focus();
     }
@@ -32,7 +33,7 @@ export default class PlayerCustomizer {
             levelup();
             startIntro();
         } else {           
-            inputElement.setAttribute('style', 'border: 2px solid red');
+            inputElement.setAttribute('style', 'width: 552px; height: 81px; padding: 20px 21px; font-size: 76px;border: 2px solid red');
         }
     }
 

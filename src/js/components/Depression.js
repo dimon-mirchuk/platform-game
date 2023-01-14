@@ -24,6 +24,10 @@ export default class Depression {
 
     start() {
         this.sprite = new Sprite(this.context, this.spriteImg, 8, 4, 240, 240, this.position.x, this.position.y, 240);
+    
+        setInterval(() => { 
+            this.velocity.x = this.velocity.x + 2; 
+        }, 4000)
     }
 
     update() {
@@ -31,6 +35,10 @@ export default class Depression {
         this.sprite.updatePosition(this.position.x, this.position.y);
 
         this.position.x = this.position.x + this.velocity.x;
+    }
+
+    killHuman() {
+        this.loseCallback();
     }
 
     animate() {
@@ -45,14 +53,6 @@ export default class Depression {
         this.position.x = 100
         this.position.y = 300
         this.velocity.x = 1; 
-
-        setInterval(() => { 
-            this.velocity.x = this.velocity.x + 2; 
-        }, 5000)
-    }
-
-    killHuman() {
-        this.loseCallback();
     }
 
     moveRight(v) {
