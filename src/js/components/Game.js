@@ -115,7 +115,7 @@ export default class Game {
             this.imageManager.showImage('nevergiveup')
         }
 
-        if (introData[this.stats.lvl+1].finish) {
+        if (introData[this.stats.lvl+1].last && this.last === 'win') {
             this.winGame();
         }
     }
