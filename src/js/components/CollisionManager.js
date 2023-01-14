@@ -123,30 +123,30 @@ export default class CollisionManager {
             this.nearest.forEach(( element ) => {
 
                 if (element.position.y + velocityRatio < this.player.position.y + this.player.height && element.position.x > this.player.position.x ) {
-                        //console.log(1)
+                        console.log(1)
                     if (this.player.keys.right.pressed && element.position.y + element.height >= this.player.position.y) {
                         this.player.setVelocityRatio(0);
-                        //console.log(2)
+                        console.log(2)
                     }
-                    else {
-                        this.player.setVelocityRatio(velocityRatio);
-                        //console.log(3)
+                    else if(!this.player.keys.right.pressed) {
+                        this.player.setVelocityRatio(this.player.prevVelocityRatio);
+                        console.log(3)
                     }
                     
 
                 } else if (element.position.y + velocityRatio < this.player.position.y + this.player.height && element.position.x < this.player.position.x ) {
-                    //console.log(4)
+                    console.log(4)
                     if (this.player.keys.left.pressed && element.position.y + element.height >= this.player.position.y) {
                         this.player.setVelocityRatio(0);
-                        //console.log(5)
+                        console.log(5)
                     }
-                    else {
-                        this.player.setVelocityRatio(velocityRatio);
-                        //console.log(6)
+                    else if(!this.player.keys.left.pressed) {
+                        this.player.setVelocityRatio(this.player.prevVelocityRatio);
+                        console.log(6)
                     }
                 } 
                 else {
-                    //console.log(8)
+                    console.log(8)
                     this.player.setVelocityRatio(velocityRatio);
                     this.player.horizon = element.position.y;
                 } 
@@ -220,12 +220,12 @@ export default class CollisionManager {
             this.player.die()
         }
     }
-    
+
     checkCollectableCollision() {
 
         this.findNearest(this.collectable);
 
-        console.log('this.nearest', this.nearest)
+        //console.log('this.nearest', this.nearest)
 
         if (this.nearest.length > 0) {
             this.nearest.forEach(( element ) => {
@@ -239,7 +239,7 @@ export default class CollisionManager {
                     element.beCollected();
 
                     const prevV = this.player.getVelocityRatio();
-                    this.player.setVelocityRatio(prevV + 5);
+                    this.player.setVelocityRatio(prevV + 3);
                     
                 } 
             })

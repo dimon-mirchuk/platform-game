@@ -689,25 +689,25 @@ var CollisionManager = /*#__PURE__*/function () {
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x > _this2.player.position.x) {
-            //console.log(1)
+            console.log(1);
             if (_this2.player.keys.right.pressed && element.position.y + element.height >= _this2.player.position.y) {
               _this2.player.setVelocityRatio(0);
-              //console.log(2)
-            } else {
-              _this2.player.setVelocityRatio(velocityRatio);
-              //console.log(3)
+              console.log(2);
+            } else if (!_this2.player.keys.right.pressed) {
+              _this2.player.setVelocityRatio(_this2.player.prevVelocityRatio);
+              console.log(3);
             }
           } else if (element.position.y + velocityRatio < _this2.player.position.y + _this2.player.height && element.position.x < _this2.player.position.x) {
-            //console.log(4)
+            console.log(4);
             if (_this2.player.keys.left.pressed && element.position.y + element.height >= _this2.player.position.y) {
               _this2.player.setVelocityRatio(0);
-              //console.log(5)
-            } else {
-              _this2.player.setVelocityRatio(velocityRatio);
-              //console.log(6)
+              console.log(5);
+            } else if (!_this2.player.keys.left.pressed) {
+              _this2.player.setVelocityRatio(_this2.player.prevVelocityRatio);
+              console.log(6);
             }
           } else {
-            //console.log(8)
+            console.log(8);
             _this2.player.setVelocityRatio(velocityRatio);
             _this2.player.horizon = element.position.y;
           }
@@ -777,7 +777,9 @@ var CollisionManager = /*#__PURE__*/function () {
     value: function checkCollectableCollision() {
       var _this4 = this;
       this.findNearest(this.collectable);
-      console.log('this.nearest', this.nearest);
+
+      //console.log('this.nearest', this.nearest)
+
       if (this.nearest.length > 0) {
         this.nearest.forEach(function (element) {
           if (element.finish) {
@@ -786,7 +788,7 @@ var CollisionManager = /*#__PURE__*/function () {
           if (_this4.player.position.y <= element.position.y && element.position.y <= _this4.player.position.y + _this4.player.height || _this4.player.position.y <= element.position.y + element.height && element.position.y + element.height <= _this4.player.position.y + _this4.player.hight) {
             element.beCollected();
             var prevV = _this4.player.getVelocityRatio();
-            _this4.player.setVelocityRatio(prevV + 5);
+            _this4.player.setVelocityRatio(prevV + 3);
           }
         });
       }
@@ -913,7 +915,7 @@ var Controller = /*#__PURE__*/function () {
       }
       this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
       this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-      this.collisionManager.checkPlatformCollision();
+      this.collisionManager.checkPlatformCollision(args[0].getVelocityRatio());
       this.collisionManager.checkBugCollision();
       //this.collisionManager.checkDepressionCollision();
       this.collisionManager.checkCollectableCollision();
@@ -1873,6 +1875,7 @@ var Player = /*#__PURE__*/function () {
     this.height = 240;
     this.awaited = 0;
     this.activated = 0;
+    this.prevVelocityRatio = 5;
     this.velocityRatio = 5;
     this.context = context;
     this.imageManager = imageManager;
@@ -1911,6 +1914,7 @@ var Player = /*#__PURE__*/function () {
     key: "animate",
     value: function animate() {
       var _this = this;
+      console.log('___________________________-', this.velocityRatio);
       this.update(this.horizon);
       if (this.position.y > this.context.canvas.height + this.height) {
         this.die();
@@ -2048,11 +2052,16 @@ var Player = /*#__PURE__*/function () {
   }, {
     key: "setVelocityRatio",
     value: function setVelocityRatio(x) {
-      this.velocityRatio = x;
+      if (x === 0 && this.velocityRatio !== 0) {
+        this.prevVelocityRatio = this.velocityRatio;
+        this.velocityRatio = x;
+      } else {
+        this.velocityRatio = x;
+      }
     }
   }, {
     key: "getVelocityRatio",
-    value: function getVelocityRatio(x) {
+    value: function getVelocityRatio() {
       return this.velocityRatio;
     }
   }, {

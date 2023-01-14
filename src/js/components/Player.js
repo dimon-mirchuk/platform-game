@@ -33,6 +33,7 @@ export default class Player {
         this.awaited = 0;
         this.activated = 0;
 
+        this.prevVelocityRatio = 5;
         this.velocityRatio = 5;
 
         this.context = context;
@@ -77,6 +78,8 @@ export default class Player {
     }
 
     animate() {
+        console.log('___________________________-',this.velocityRatio)
+
         this.update(this.horizon);
 
         if (this.position.y > this.context.canvas.height + this.height) {
@@ -227,10 +230,19 @@ export default class Player {
     }
 
     setVelocityRatio(x) {
-        this.velocityRatio = x
+
+        if (x === 0 && this.velocityRatio !== 0) {
+            this.prevVelocityRatio = this.velocityRatio;
+            this.velocityRatio = x
+        } else {
+            this.velocityRatio = x
+        }
+
+
+        
     }
 
-    getVelocityRatio(x) {
+    getVelocityRatio() {
         return this.velocityRatio;
     }
 

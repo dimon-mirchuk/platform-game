@@ -19,7 +19,7 @@ export default class Controller {
         this.currAnimId = requestAnimationFrame(this.animate.bind(this, args));
         this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
 
-        this.collisionManager.checkPlatformCollision();
+        this.collisionManager.checkPlatformCollision(args[0].getVelocityRatio());
         this.collisionManager.checkBugCollision();
         //this.collisionManager.checkDepressionCollision();
         this.collisionManager.checkCollectableCollision();
